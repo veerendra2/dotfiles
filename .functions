@@ -1,0 +1,101 @@
+#!/bin/bash
+
+# Courtesy: https://github.com/jessfraz/dotfiles
+# Packages: feh
+
+# Simple calculator
+calc() {
+	local result=""
+	result="$(printf "scale=10;%s\\n" "$*" | bc --mathlib | tr -d '\\\n')"
+	#						└─ default (when `--mathlib` is used) is 20
+
+	if [[ "$result" == *.* ]]; then
+		# improve the output for decimal numbers
+		# add "0" for cases like ".5"
+		# add "0" for cases like "-.5"
+		# remove trailing zeros
+		printf "%s" "$result" |
+			sed -e 's/^\./0./'  \
+			-e 's/^-\./-0./' \
+			-e 's/0*$//;s/\.$//'
+	else
+		printf "%s" "$result"
+	fi
+	printf "\\n"
+}
+
+# Make a temporary directory and enter it
+tmpd() {
+	local dir
+	if [ $# -eq 0 ]; then
+		dir=$(mktemp -d)
+	else
+		dir=$(mktemp -d -t "${1}.XXXXXXXXXX")
+	fi
+	cd "$dir" || exit
+}
+
+# Determine size of a file or total size of a directory
+
+fs() {
+	# shellcheck disable=SC2199
+	if [[ -n "$@" ]]; then
+		du -sh -- "$@"
+	else
+		du -sh -- .[^.]* *
+	fi
+}
+
+# Create a git.io short URL
+
+gitio() {
+	if [ -z "${1}" ] || [ -z "${2}" ]; then
+		echo "Usage: \`gitio slug url\`"
+		return 1
+	fi
+	curl -i https://git.io/ -F "url=${2}" -F "code=${1}"
+}
+
+# `o` with no arguments opens the current directory, otherwise opens the given
+# location
+o() {
+	if [ $# -eq 0 ]; then
+		xdg-open .	> /dev/null 2>&1
+	else
+		xdg-open "$@" > /dev/null 2>&1
+	fi
+}
+
+# Get colors in manual pages
+
+man() {
+	env \
+		LESS_TERMCAP_mb="$(printf '\e[1;31m')" \
+		LESS_TERMCAP_md="$(printf '\e[1;31m')" \
+		LESS_TERMCAP_me="$(printf '\e[0m')" \
+		LESS_TERMCAP_se="$(printf '\e[0m')" \
+		LESS_TERMCAP_so="$(printf '\e[1;44;33m')" \
+		LESS_TERMCAP_ue="$(printf '\e[0m')" \
+		LESS_TERMCAP_us="$(printf '\e[1;32m')" \
+		man "$@"
+}
+
+
+# Use feh to nicely view images
+openimage() {
+	local types='*.jpg *.JPG *.png *.PNG *.gif *.GIF *.jpeg *.JPEG'
+
+	cd "$(dirname "$1")" || exit
+	local file
+	file=$(basename "$1")
+
+	feh -q "$types" --auto-zoom \
+		--sort filename --borderless \
+		--scale-down --draw-filename \
+		--image-bg black \
+		--start-at "$file"
+}
+
+
+# Flush Directory Service cache
+alias flushdns="dscacheutil -flushcache"

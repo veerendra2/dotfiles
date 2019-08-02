@@ -1,0 +1,35 @@
+# The following two lines give a two-line status, with the current window highlighted
+hardstatus alwayslastline
+hardstatus string '%{= kG}[%{G}%H%? %1`%?%{g}][%= %{= kw}%-w%{+b yk} %n*%t%?(%u)%? %{-}%+w %=%{g}][%{B}%m/%d %{W}%C%A%{g}]'
+
+# Huge scrollback buffer
+defscrollback 5000
+
+# No welcome message
+startup_message off
+
+# 256 colors
+attrcolor b ".I"
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+defbce on
+
+# Mouse tracking allows to switch region focus by clicking
+#mousetrack on
+
+# Mouse scroll on
+termcapinfo xterm* ti@:te@
+
+# window numbering starts at 1 not 0
+bind c screen 1
+bind 0 select 10
+
+
+# Navigating regions with Ctrl-arrows
+#bindkey "^[[1;5D" focus left
+#bindkey "^[[1;5C" focus right
+#bindkey "^[[1;5A" focus up
+#bindkey "^[[1;5B" focus down
+
+# Switch windows with F3 (prev) and F4 (next)
+bindkey "^[OR" prev
+bindkey "^[OS" next
