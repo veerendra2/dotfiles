@@ -3,7 +3,7 @@
 My customized `dotfiles` collection
  
 ## How to install?
-_Have install it manually right now...writing an automated python script install it. Check out [one-installer](https://github.com/veerendra2/one-installer)_
+_Have install it manually right now...writing an automated python script to install it. Check out [one-installer](https://github.com/veerendra2/one-installer)_
 
 ## My Other Resources
 
@@ -32,8 +32,6 @@ _Have install it manually right now...writing an automated python script install
 | `afk`    | `i3lock -c 000000 > /dev/null 2>&1` | Lock   |
 | `catn`   | `cat -n` | `cat`s a file with line numbers   |
 | `sniff`  | `sudo ngrep -d 'en1' -t '^(GET\|POST) ' 'tcp and port 80'` |  `ngrep`s on port 80 for `GET` or `POST` |
-| `pbpaste`| `xclip -selection clipboard -o` |         |
-| `pbpaste`| `xclip -selection clipboard -o` |         |
 
 
 ### `.functions`
@@ -60,6 +58,6 @@ _Have install it manually right now...writing an automated python script install
 
 
 ## Thanks to :pray:
-* [jessfraz](https://github.com/jessfraz) - [https://gist.github.com/joaopizani/2718397](https://gist.github.com/joaopizani/2718397)
-* [joaopizani](https://gist.github.com/joaopizani) - [https://github.com/jessfraz/dotfiles](https://github.com/jessfraz/dotfiles)
+* [jessfraz](https://github.com/jessfraz) - [https://github.com/jessfraz/dotfiles](https://github.com/jessfraz/dotfiles)
+* [joaopizani](https://gist.github.com/joaopizani) - [https://gist.github.com/joaopizani/2718397](https://gist.github.com/joaopizani/2718397)
 * [necolas](https://github.com/necolas) - [https://github.com/necolas/dotfiles](https://github.com/necolas/dotfiles)
