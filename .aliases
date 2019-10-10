@@ -30,3 +30,10 @@ alias afk="i3lock -c 000000 > /dev/null 2>&1"
 alias catn="cat -n"
 
 alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
+
+# Stopwatch
+alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
+
+# IP addresses
+alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
+

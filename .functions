@@ -96,6 +96,42 @@ openimage() {
 		--start-at "$file"
 }
 
+isup() {
+	local uri=$1
+
+	if curl -s --head  --request GET "$uri" | grep "200 OK" > /dev/null ; then
+		echo "$uri is down"
+	else
+		echo "$uri is up"
+	fi
+}
+
+# `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
+# the `.git` directory, listing directories first. The output gets piped into
+# `less` with options to preserve color and line numbers, unless the output is
+# small enough for one screen.
+tre() {
+	tree -aC -I '.git' --dirsfirst "$@" | less -FRNX
+}
 
 # Flush Directory Service cache
 alias flushdns="dscacheutil -flushcache"
+
+# Get file from partner
+getfile() {
+if [ -z "$1" ]; then
+  echo "Usage: getfile <file_name>"
+  return 1
+fi
+iface=`route | grep '^default' | grep -o '[^ ]*$'`
+ipa=`ip a | grep $iface | grep inet | awk {{'print $2'}} | cut -d / -f1`
+echo "Client: pv <file-name> | nc $ipa 8169"
+echo "Ctrl+c to exit"
+nc -lvp 8169 > $1
+}
+
+localip() {
+iface=`route | grep '^default' | grep -o '[^ ]*$'`
+ipa=`ip a | grep $iface | grep inet | awk {{'print $2'}} | cut -d / -f1`
+echo $ipa
+}
