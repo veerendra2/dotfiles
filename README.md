@@ -24,6 +24,7 @@ My customized `dotfiles` collection
 | `timer`  | `echo "Timer started. Stop with Ctrl-D." && date && time cat && date` |  Simple timer on terminal|
 
 ### `.functions`
+
 | Aliase  |  Description   |
 | ------- | -------------- |
 | `calc`  | Calculator     |
@@ -39,6 +40,7 @@ My customized `dotfiles` collection
 | `localip` | Local primary IP |
 
 ### `.dockerfunctions`
+
 | Aliase  |  Description   |
 | ------- | -------------- |
 | `docker_rm_stopped`  | Removes stopped containers     |
@@ -46,7 +48,9 @@ My customized `dotfiles` collection
 | `docker_rm_imgs`  | Removes all Docker images     |
 | `docker_rm_stopped_imgs`  | Remove stopped container's Docker images |
 
+
 ## How to install?
+
 _Have install it manually right now...writing an automated python script to install it. Check out [one-installer](https://github.com/veerendra2/one-installer)_
 
 
@@ -60,6 +64,7 @@ _Have install it manually right now...writing an automated python script to inst
 
 
 ## :pray: Thanks to
+
 * [jessfraz](https://github.com/jessfraz) - [https://github.com/jessfraz/dotfiles](https://github.com/jessfraz/dotfiles)
 * [joaopizani](https://gist.github.com/joaopizani) - [https://gist.github.com/joaopizani/2718397](https://gist.github.com/joaopizani/2718397)
 * [necolas](https://github.com/necolas) - [https://github.com/necolas/dotfiles](https://github.com/necolas/dotfiles)
