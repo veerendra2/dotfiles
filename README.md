@@ -2,18 +2,6 @@
 
 My customized `dotfiles` collection
  
-## How to install?
-_Have install it manually right now...writing an automated python script to install it. Check out [one-installer](https://github.com/veerendra2/one-installer)_
-
-## My Other Resources
-
-| Links  | Description |
-| ------- | -------------- |
-| [my-utils](https://github.com/veerendra2/my-utils)    | scripts, tools, code snippets, tips and tricks  | 
-| [my-k8s-applications](https://github.com/veerendra2/my-k8s-applications) | Dockerfiles, K8s deployments, etcs |
-| [https://veerendra2.github.io/](https://veerendra2.github.io/)     | My Blog       |
-
-
 ## Content
 ### `.aliases`
 
@@ -32,20 +20,23 @@ _Have install it manually right now...writing an automated python script to inst
 | `afk`    | `i3lock -c 000000 > /dev/null 2>&1` | Lock   |
 | `catn`   | `cat -n` | `cat`s a file with line numbers   |
 | `sniff`  | `sudo ngrep -d 'en1' -t '^(GET\|POST) ' 'tcp and port 80'` |  `ngrep`s on port 80 for `GET` or `POST` |
-
+| `pubip`  | `dig +short myip.opendns.com @resolver1.opendns.com` | Public IP|
+| `timer`  | `echo "Timer started. Stop with Ctrl-D." && date && time cat && date` |  Simple timer on terminal|
 
 ### `.functions`
 | Aliase  |  Description   |
 | ------- | -------------- |
 | `calc`  | Calculator     |
-| `tmpd`  | Create `tmp` directory and `cd` |
 | `fs`     | File size or total directory size |
 | `tmpd`  | Create `tmp` directory and `cd` |
-| `fs`     | File size or total directory size |
 | `gitio`  | Create a git.io short URL |
 | `o`     | Opens directory in UI |
 | `openimage` | Opens images with `feh` |
 | `flushdns` | Flush Directory Service cache |
+| `isup` | Check if uri is up |
+| `tre` | `tree` with hidden files and color |
+| `getfile` | Starts `nc` server to get file |
+| `localip` | Local primary IP |
 
 ### `.dockerfunctions`
 | Aliase  |  Description   |
@@ -55,9 +46,20 @@ _Have install it manually right now...writing an automated python script to inst
 | `docker_rm_imgs`  | Removes all Docker images     |
 | `docker_rm_stopped_imgs`  | Remove stopped container's Docker images |
 
+## How to install?
+_Have install it manually right now...writing an automated python script to install it. Check out [one-installer](https://github.com/veerendra2/one-installer)_
 
 
-## Thanks to :pray:
+## :open_file_folder: My Other Resources
+
+| Links  | Description |
+| ------- | -------------- |
+| [my-utils](https://github.com/veerendra2/my-utils)    | scripts, tools, code snippets, tips and tricks  | 
+| [my-k8s-applications](https://github.com/veerendra2/my-k8s-applications) | Dockerfiles, K8s deployments, etcs |
+| [https://veerendra2.github.io/](https://veerendra2.github.io/)     | My Blog       |
+
+
+## :pray: Thanks to
 * [jessfraz](https://github.com/jessfraz) - [https://github.com/jessfraz/dotfiles](https://github.com/jessfraz/dotfiles)
 * [joaopizani](https://gist.github.com/joaopizani) - [https://gist.github.com/joaopizani/2718397](https://gist.github.com/joaopizani/2718397)
 * [necolas](https://github.com/necolas) - [https://github.com/necolas/dotfiles](https://github.com/necolas/dotfiles)
