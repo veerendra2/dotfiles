@@ -100,9 +100,9 @@ isup() {
 	local uri=$1
 
 	if curl -s --head  --request GET "$uri" | grep "200 OK" > /dev/null ; then
-		echo "$uri is down"
+		echo "Yep!"
 	else
-		echo "$uri is up"
+		echo "Nope!"
 	fi
 }
 
@@ -111,7 +111,7 @@ isup() {
 # `less` with options to preserve color and line numbers, unless the output is
 # small enough for one screen.
 tre() {
-	tree -aC -I '.git' --dirsfirst "$@" | less -FRNX
+	tree -aCsh -I '.git' --dirsfirst "$@" | less -FRNX
 }
 
 # Flush Directory Service cache
