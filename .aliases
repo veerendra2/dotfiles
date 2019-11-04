@@ -37,3 +37,6 @@ alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date
 # IP addresses
 alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
 
+# Open new tab in mate terminal
+alias tab="mate-terminal --tab"
+
