@@ -6,4 +6,3 @@ do
   echo "[*] Downloading to $HOME/$x"
   curl -qo $HOME/$x https://raw.githubusercontent.com/veerendra2/dotfiles/master/$x > /dev/null 2>&1
 done
-bash
