@@ -49,9 +49,9 @@ My customized `dotfiles` collection
 | `docker_rm_stopped_imgs`  | Remove stopped container's Docker images |
 
 
-## How to install?
+## Install
 
-_Have install it manually right now...writing an automated python script to install it. Check out [one-installer](https://github.com/veerendra2/one-installer)_
+`$ curl https://git.io/JeDNZ | sudo bash`
 
 
 ## :open_file_folder: My Other Resources
