@@ -51,7 +51,7 @@ My customized `dotfiles` collection
 
 ## Install
 
-`$ curl https://git.io/JeDNZ | sudo bash`
+`$ curl https://git.io/JeDNZ | bash`
 
 
 ## :open_file_folder: My Other Resources
