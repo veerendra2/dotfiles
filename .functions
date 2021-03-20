@@ -111,7 +111,7 @@ isup() {
 # `less` with options to preserve color and line numbers, unless the output is
 # small enough for one screen.
 tre() {
-	tree -aCsh -I '.git' --dirsfirst "$@" | less -FRNX
+	tree -aupCsh -I '.git' --dirsfirst "$@" | less -FRNX
 }
 
 # Flush Directory Service cache
