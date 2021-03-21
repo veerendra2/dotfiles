@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "[*] Installing Dependency Packages"
-sudo apt-get update && sudo apt-get install curl feh xclip i3lock ngrep -y
+sudo apt-get update && sudo apt-get install curl feh xclip i3lock ngrep pv -y
 for x in .aliases .bash_profiles .bash_prompt .bashrc .curlrc .dockerfunctions .exports .functions .path .screenrc;
 do
   echo "[*] Downloading to $HOME/$x"
