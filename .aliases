@@ -3,7 +3,7 @@
 # Courtesy:
 # - https://github.com/jessfraz/dotfiles
 # - https://github.com/necolas/dotfiles
-# Dependency Packages: xclip, i3lock, ngrep
+# Dependency Packages: xclip, i3lock, ngrep, vagrant
 
 alias ll='ls -alF'
 alias la='ls -lahF'
@@ -15,7 +15,7 @@ alias sudo="sudo "
 
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
-alias p="cd ~/PycharmProjects"
+alias p="cd ~/projects"
 
 alias h="history"
 #alias hosts='sudo vim /etc/hosts'
@@ -38,5 +38,21 @@ alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date
 alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
 
 # Open new tab in mate terminal
-alias tab="mate-terminal --tab"
+alias tab="gnome-terminal --tab"
 
+# Python
+alias python="python3"
+alias pyserver="python3 -m http.server"
+
+# Vagrant
+alias vs="vagrant ssh"
+alias vd="vagrant destroy"
+
+# SSL
+alias self_cert="openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout server.key -out server.pem"
+
+# Git
+alias git_graph="git log --graph --decorate --pretty=oneline --abbrev-commit"
+alias gis="git status"
+aliases gadd="git add -A"
+aliases gpush="git push origin master"

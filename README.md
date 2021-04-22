@@ -22,6 +22,8 @@ My customized `dotfiles` collection
 | `sniff`  | `sudo ngrep -d 'en1' -t '^(GET\|POST) ' 'tcp and port 80'` |  `ngrep`s on port 80 for `GET` or `POST` |
 | `pubip`  | `dig +short myip.opendns.com @resolver1.opendns.com` | Public IP|
 | `timer`  | `echo "Timer started. Stop with Ctrl-D." && date && time cat && date` |  Simple timer on terminal|
+| `self_cert` | `openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout server.key -out server.pem` | Generates self signed certificates |
+| `git_graph` | `git log --graph --decorate --pretty=oneline --abbrev-commit` | Git Graph |
 
 ### `.functions`
 
@@ -38,6 +40,8 @@ My customized `dotfiles` collection
 | `tre` | `tree` with hidden files and color |
 | `getfile` | Starts `nc` server to get file |
 | `localip` | Local primary IP |
+| `ssl_validity` | Verifies Certificate Validity of Domain |
+| `updatedotfiles` | Updates dotfiles |
 
 ### `.dockerfunctions`
 
