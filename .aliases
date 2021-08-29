@@ -56,3 +56,6 @@ alias git_graph="git log --graph --decorate --pretty=oneline --abbrev-commit"
 alias gis="git status"
 alias gadd="git add -A"
 alias gpush="git push origin master"
+
+# Spotifycli toggle 
+alias spty="spotifycli --playpause"

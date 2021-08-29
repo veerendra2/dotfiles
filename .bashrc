@@ -112,8 +112,8 @@ for file in ~/.{bash_prompt,aliases,functions,path,dockerfunctions,exports}; do
 done
 unset file
 
-echo "*********************************"
-echo "*       WELCOME VEERENDRA       *"
-echo "* `date`  *"
-echo "*********************************"
+echo "*************************************"
+echo "*          WELCOME VEERENDRA        *"
+echo "* `date +"%a %e %b %Y %r"`  *"
+echo "*************************************"
 
