@@ -59,3 +59,6 @@ alias gpush="git push origin master"
 
 # Spotifycli toggle 
 alias spty="spotifycli --playpause"
+
+# Curl with times. Reference -> https://stackoverflow.com/questions/18215389
+curltime="curl -w \"@$HOME/.curl-format\" -o /dev/null -s "

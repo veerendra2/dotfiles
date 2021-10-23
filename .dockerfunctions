@@ -4,15 +4,15 @@
 
 # Removes stopped containers
 docker_rm_stopped(){
-    running=`sudo docker ps -q`
-    stopped=`sudo docker ps -aq | grep -v $running`
-    sudo docker rm -f $stopped
+    running=`docker ps -q`
+    stopped=`docker ps -aq | grep -v $running`
+    docker rm -f $stopped
 }
 
 
 # Stop all containers
 docker_stop_all(){
-sudo docker stop `sudo docker ps -q`
+docker stop `docker ps -q`
 }
 
 # Removes all docker Images ** DANGER **
@@ -21,7 +21,7 @@ echo "Are you sure want to delete all Docker images?"
 read a
 if [ "$a" == "yes" ];
 then
-sudo docker rmi -f `sudo docker images -q --no-trunc` > /dev/null
+docker rmi -f `docker images -q --no-trunc` > /dev/null
 else
   echo "Aborted!"
 fi
