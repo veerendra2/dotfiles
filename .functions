@@ -153,3 +153,21 @@ do
 done
 printf "\b[DONE]"
 }
+
+# Curl with times. Reference -> https://stackoverflow.com/questions/18215389
+function curltime(){
+	curl -w @- -o /dev/null -s "$1" <<'EOF'
+    time_namelookup:  %{time_namelookup}\n
+       time_connect:  %{time_connect}\n
+    time_appconnect:  %{time_appconnect}\n
+   time_pretransfer:  %{time_pretransfer}\n
+      time_redirect:  %{time_redirect}\n
+ time_starttransfer:  %{time_starttransfer}\n
+                    ----------\n
+         time_total:  %{time_total}\n
+EOF
+}
+
+function rm_file_git_history(){
+	git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch $1' HEAD
+}

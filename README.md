@@ -13,7 +13,7 @@ My customized `dotfiles` collection
 | `lsd`       | `ls -lhF --color \| grep --color=never '^d'`                                             | List directories only                   |
 | `dl`        | `cd ~/Downloads`                                                                         |                                         |
 | `dt`        | `cd ~/Desktop`                                                                           |                                         |
-| `p`         | `cd ~/PycharmProjects`                                                                   |                                         |
+| `p`         | `cd ~/projects`                                                                          |                                         |
 | `h`         | `history`                                                                                |                                         |
 | `pbcopy`    | `xclip -selection clipboard`                                                             | Send data to clipboard                  |
 | `pbpaste`   | `xclip -selection clipboard -o`                                                          | Get data from clipboard                 |
@@ -24,25 +24,26 @@ My customized `dotfiles` collection
 | `timer`     | `echo "Timer started. Stop with Ctrl-D." && date && time cat && date`                    | Simple timer on terminal                |
 | `self_cert` | `openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout server.key -out server.pem` | Generates self signed certificates      |
 | `git_graph` | `git log --graph --decorate --pretty=oneline --abbrev-commit`                            | Git Graph                               |
-| `curltime`  | `curl -w \"@$HOME/.curl-format\" -o /dev/null -s `                                       | `curl`s URL and display times           |
 
 ### `.functions`
 
-| Aliase           | Description                             |
-| ---------------- | --------------------------------------- |
-| `calc`           | Calculator                              |
-| `fs`             | File size or total directory size       |
-| `tmpd`           | Create `tmp` directory and `cd`         |
-| `gitio`          | Create a git.io short URL               |
-| `o`              | Opens directory in UI                   |
-| `openimage`      | Opens images with `feh`                 |
-| `flushdns`       | Flush Directory Service cache           |
-| `isup`           | Check if uri is up                      |
-| `tre`            | `tree` with hidden files and color      |
-| `getfile`        | Starts `nc` server to get file          |
-| `localip`        | Local primary IP                        |
-| `ssl_validity`   | Verifies Certificate Validity of Domain |
-| `updatedotfiles` | Updates dotfiles                        |
+| Aliase                | Description                             |
+| --------------------- | --------------------------------------- |
+| `calc`                | Calculator                              |
+| `fs`                  | File size or total directory size       |
+| `tmpd`                | Create `tmp` directory and `cd`         |
+| `gitio`               | Create a git.io short URL               |
+| `o`                   | Opens directory in UI                   |
+| `openimage`           | Opens images with `feh`                 |
+| `flushdns`            | Flush Directory Service cache           |
+| `isup`                | Check if uri is up                      |
+| `tre`                 | `tree` with hidden files and color      |
+| `getfile`             | Starts `nc` server to get file          |
+| `localip`             | Local primary IP                        |
+| `ssl_validity`        | Verifies Certificate Validity of Domain |
+| `updatedotfiles`      | Updates dotfiles                        |
+| `curltime`            | curl URL and display times              |
+| `rm_file_git_history` | Remove file from git commit history     |
 
 ### `.dockerfunctions`
 

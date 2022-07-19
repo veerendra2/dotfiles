@@ -55,10 +55,5 @@ alias self_cert="openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ser
 alias git_graph="git log --graph --decorate --pretty=oneline --abbrev-commit"
 alias gis="git status"
 alias gadd="git add -A"
-alias gpush="git push origin master"
+alias gpush="git push origin main"
 
-# Spotifycli toggle 
-alias spty="spotifycli --playpause"
-
-# Curl with times. Reference -> https://stackoverflow.com/questions/18215389
-curltime="curl -w \"@$HOME/.curl-format\" -o /dev/null -s "
