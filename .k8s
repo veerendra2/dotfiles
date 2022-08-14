@@ -1,0 +1,14 @@
+#!/bin/bash
+
+alias kubegetcon='kubectl config get-contexts'
+alias kubecurcon='kubectl config current-context'
+alias kubegp='kubectl get pods'
+alias kubegpa='kubectl get pods --all-namespaces'
+
+kubechns(){
+    kubectl config set-context --current --namespace=$1
+}
+
+kubechcon(){
+    kubectl config use-context $1
+}

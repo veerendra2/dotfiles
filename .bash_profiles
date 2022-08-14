@@ -3,7 +3,7 @@
 # Courtesy: https://github.com/jessfraz/dotfiles
 
 # Load .bashrc and other files...
-for file in ~/.{bashrc,bash_prompt,aliases,functions,path,dockerfunc,exports}; do
+for file in ~/.{bashrc,bash_prompt,aliases,functions,path,dockerfunc,exports,k8s}; do
 	if [[ -r "$file" ]] && [[ -f "$file" ]]; then
 		# shellcheck source=/dev/null
 		source "$file"

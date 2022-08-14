@@ -105,7 +105,7 @@ if ! shopt -oq posix; then
 fi
 
 # Load .bashrc and other files...
-for file in ~/.{bash_prompt,aliases,functions,path,dockerfunctions,exports}; do
+for file in ~/.{bash_prompt,aliases,functions,path,dockerfunctions,exports,k8s}; do
 	if [[ -r "$file" ]] && [[ -f "$file" ]]; then
 		source "$file"
 	fi

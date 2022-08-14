@@ -146,7 +146,7 @@ function ssl_validity() {
 function updatedotfiles() {
 sp="/-\|"
 echo -n '[*] Updating dotfiles.....'
-for x in .aliases .bash_profiles .bash_prompt .bashrc .curlrc .dockerfunctions .exports .functions .path .screenrc;
+for x in .aliases .bash_profiles .bash_prompt .bashrc .curlrc .dockerfunctions .exports .functions .path .screenrc .k8s;
 do
   printf "\b${sp:i++%${#sp}:1}"
   curl -qo $HOME/$x https://raw.githubusercontent.com/veerendra2/dotfiles/master/$x > /dev/null 2>&1
