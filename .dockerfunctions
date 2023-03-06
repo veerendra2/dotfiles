@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Courtesy: https://github.com/jessfraz/dotfiles
 
@@ -8,7 +8,6 @@ docker_rm_stopped(){
     stopped=`docker ps -aq | grep -v $running`
     docker rm -f $stopped
 }
-
 
 # Stop all containers
 docker_stop_all(){
@@ -27,7 +26,6 @@ else
 fi
 }
 
-
 # Removes stopped container images
 docker_rm_stopped_imgs(){
 
@@ -38,5 +36,4 @@ docker_rm_stopped_imgs(){
 	done
 
 	docker rmi -f "${images[@]}" 2>&1 || true
-
 }

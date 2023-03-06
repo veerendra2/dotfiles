@@ -1,8 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Courtesy:
-# - https://github.com/jessfraz/dotfiles
-# - https://github.com/necolas/dotfiles
 # Dependency Packages: xclip, i3lock, ngrep, vagrant
 
 alias ll='ls -alF'

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Courtesy: https://github.com/jessfraz/dotfiles
 # Packages: feh, pv
