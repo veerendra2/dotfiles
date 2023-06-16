@@ -4,6 +4,7 @@ alias kubegetcon='kubectl config get-contexts'
 alias kubecurcon='kubectl config current-context'
 alias kubegp='kubectl get pods'
 alias kubegpa='kubectl get pods --all-namespaces'
+alias k='kubectl'
 
 kubechns(){
     kubectl config set-context --current --namespace=$1
