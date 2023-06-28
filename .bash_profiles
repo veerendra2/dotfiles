@@ -1,6 +1,4 @@
-#!/bin/bash
-
-# Courtesy: https://github.com/jessfraz/dotfiles
+#!/usr/bin/env bash
 
 # Load .bashrc and other files...
 for file in ~/.{bashrc,bash_prompt,aliases,functions,path,dockerfunc,exports,k8s}; do

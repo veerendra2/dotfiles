@@ -1,9 +1,11 @@
-#!/bin/bash
-echo "[*] Installing Dependency Packages"
-sudo apt-get update && sudo apt-get install curl feh xclip i3lock ngrep pv openssl python3-pip -y
-pip3 install spotify-cli-linux
+#!/usr/bin/env bash
+
+sudo apt-get update
+sudo apt-get install curl feh xclip ngrep pv openssl python3-pip -y
+
 sudo curl -qo /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.27.2/yq_freebsd_amd64 > /dev/null 2>&1
 sudo chmod +x /usr/local/bin/yq
+
 for x in .aliases .bash_profiles .bash_prompt .bashrc .curlrc .dockerfunctions .exports .functions .path .screenrc .k8s .vimrc;
 do
   echo "[*] Downloading to $HOME/$x"

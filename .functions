@@ -1,6 +1,4 @@
-#!/bin/bash
-
-# Courtesy: https://github.com/jessfraz/dotfiles
+#!/usr/bin/env bash
 # Packages: feh, pv
 
 # Simple calculator
@@ -44,16 +42,6 @@ fs() {
 	else
 		du -sh -- .[^.]* *
 	fi
-}
-
-# Create a git.io short URL
-
-gitio() {
-	if [ -z "${1}" ] || [ -z "${2}" ]; then
-		echo "Usage: \`gitio slug url\`"
-		return 1
-	fi
-	curl -i https://git.io/ -F "url=${2}" -F "code=${1}"
 }
 
 # `o` with no arguments opens the current directory, otherwise opens the given
@@ -114,27 +102,25 @@ tre() {
 	tree -aupCsh -I '.git' --dirsfirst "$@" | less -FRNX
 }
 
-# Flush Directory Service cache
-alias flushdns="dscacheutil -flushcache"
-
+# TODO Need to test again!
 # Get file from partner
 getfile() {
-if [ -z "$1" ]; then
-  echo "Usage: getfile <file_name>"
-  return 1
-fi
-iface=`route | grep '^default' | grep -o '[^ ]*$'`
-ipa=`ip a | grep $iface | grep inet | awk {{'print $2'}} | cut -d / -f1`
-echo "Client: pv <file-name> | nc $ipa 8169"
-echo "Ctrl+c to exit"
-nc -lvnp 8169 > $1
+	if [ -z "$1" ]; then
+		echo "Usage: getfile <file_name>"
+		return 1
+	fi
+		iface=`route | grep '^default' | grep -o '[^ ]*$'`
+		ipa=`ip a | grep $iface | grep inet | awk {{'print $2'}} | cut -d / -f1`
+	echo "Client: pv <file-name> | nc $ipa 8169"
+	echo "Ctrl+c to exit"
+	nc -lvnp 8169 > $1
 }
 
 # Get Local IP
 localip() {
-iface=`route | grep '^default' | grep -o '[^ ]*$'`
-ipa=`ip a | grep $iface | grep inet | awk {{'print $2'}} | cut -d / -f1`
-echo $ipa
+	iface=`route | grep '^default' | grep -o '[^ ]*$'`
+	ipa=`ip a | grep $iface | grep inet | awk {{'print $2'}} | cut -d / -f1`
+	echo $ipa
 }
 
 # SSL
@@ -142,19 +128,7 @@ function ssl_validity() {
     echo | openssl s_client -servername $1 -connect $1:443 2>/dev/null | openssl x509 -noout -dates
 }
 
-# Fancy dotfiles update
-function updatedotfiles() {
-sp="/-\|"
-echo -n '[*] Updating dotfiles.....'
-for x in .aliases .bash_profiles .bash_prompt .bashrc .curlrc .dockerfunctions .exports .functions .path .screenrc .k8s;
-do
-  printf "\b${sp:i++%${#sp}:1}"
-  curl -qo $HOME/$x https://raw.githubusercontent.com/veerendra2/dotfiles/master/$x > /dev/null 2>&1
-done
-printf "\b[DONE]"
-}
-
-# Curl with times. Reference -> https://stackoverflow.com/questions/18215389
+# Curl with times. https://stackoverflow.com/questions/18215389
 function curltime(){
 	curl -w @- -o /dev/null -s "$1" <<'EOF'
     time_namelookup:  %{time_namelookup}\n
@@ -168,6 +142,51 @@ function curltime(){
 EOF
 }
 
+# Remove files from git history
 function rm_file_git_history(){
 	git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch $1' HEAD
+}
+
+# Removes stopped containers
+docker_rm_stopped(){
+	running=`docker ps -q`
+	stopped=`docker ps -aq | grep -v $running`
+	docker rm -f $stopped
+}
+
+# Stop all containers
+docker_stop_all(){
+	docker stop `docker ps -q`
+}
+
+# Removes all docker Images ** DANGER **
+docker_rm_imgs(){
+	echo "Are you sure want to delete all Docker images?"
+	read a
+	if [ "$a" == "yes" ];
+	then
+		docker rmi -f `docker images -q --no-trunc` > /dev/null
+	else
+		echo "Aborted!"
+	fi
+}
+
+# Removes stopped container images
+docker_rm_stopped_imgs(){
+	mapfile -t images < <(docker images -q --no-trunc)
+	for c in $(docker ps -aq); do
+		image=$(docker inspect --format '{{.Image}}' "$c")
+		images=( "${images[@]/$image}" )
+	done
+	docker rmi -f "${images[@]}" 2>&1 || true
+}
+
+# Change namespace in kubeconfig
+kubechns(){
+    kubectl config set-context --current --namespace=$1
+}
+
+# Change context in kubeconfig
+kubechcon(){
+    kubectl config use-context $1
 }
