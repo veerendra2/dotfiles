@@ -60,3 +60,8 @@ alias kubecurcon='kubectl config current-context'
 alias kubegp='kubectl get pods'
 alias kubegpa='kubectl get pods --all-namespaces'
 alias k='kubectl'
+
+if [ "$(uname -s)" == "Darwin" ]; then
+  # When latest bash installed from Homebrew(brew install bash)
+  alias bash=/usr/local/bin/bash
+fi
