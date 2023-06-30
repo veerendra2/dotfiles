@@ -1,6 +1,5 @@
 
 #!/usr/bin/env bash
-#!/bin/bash
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -145,5 +144,5 @@ fi
 
 echo "*************************************"
 echo "*          WELCOME VEERENDRA        *"
-echo "* `date +"%a %e %b %Y %r"`       *"
+echo "*   `date +"%a %e %b %Y %r"`     *"
 echo "*************************************"

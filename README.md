@@ -37,4 +37,4 @@ $ chsh -s /usr/local/bin/bash
 ```
 * Update "command" `/usr/local/bin/bash -l` in iTerm profiles like below
 
-<img src="https://user-images.githubusercontent.com/8393701/249885411-c841014c-ab37-41c4-8a57-7b95fda573f0.png" alt="PiHole" width="500"/>
+<img src="https://user-images.githubusercontent.com/8393701/249885411-c841014c-ab37-41c4-8a57-7b95fda573f0.png" width="500"/>

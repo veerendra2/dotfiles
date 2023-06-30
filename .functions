@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Packages: feh, pv
 
 # Simple calculator
 calc() {
@@ -116,14 +115,7 @@ getfile() {
 	nc -lvnp 8169 > $1
 }
 
-# Get Local IP
-localip() {
-	iface=`route | grep '^default' | grep -o '[^ ]*$'`
-	ipa=`ip a | grep $iface | grep inet | awk {{'print $2'}} | cut -d / -f1`
-	echo $ipa
-}
-
-# SSL
+# SSL Validity
 function ssl_validity() {
     echo | openssl s_client -servername $1 -connect $1:443 2>/dev/null | openssl x509 -noout -dates
 }

@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-# - https://github.com/jessfraz/dotfiles
-# - https://github.com/necolas/dotfiles
-# Dependency packages: xclip, ngrep, vagrant
 
 alias ll='ls -alF'
 alias la='ls -lahF'
@@ -17,9 +14,6 @@ alias p="cd ~/projects"
 
 alias h="history"
 
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
-
 # Concatenate and print content of files (add line numbers)
 alias catn="cat -n"
 
@@ -28,11 +22,19 @@ alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 # Stopwatch
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 
-# IP addresses
-alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
+# Public address
+alias pubip="dig +short txt ch whoami.cloudflare @1.0.0.1"
 
-# Open new tab in mate terminal
-alias tab="gnome-terminal --tab"
+# Local address
+alias localip="ip r | grep '^default' | awk '{print $9, $5}'"
+
+if [ "$(uname -s)" == "Linux" ]; then
+  # Open new tab in mate terminal
+  alias tab="gnome-terminal --tab"
+
+  alias pbcopy='xclip -selection clipboard'
+  alias pbpaste='xclip -selection clipboard -o'
+fi
 
 # Python
 alias python="python3"
@@ -44,12 +46,6 @@ alias vd="vagrant destroy"
 
 # Generate self-signed certificates
 alias self_cert="openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout server.key -out server.pem"
-
-# Git
-alias git_graph="git log --graph --decorate --pretty=oneline --abbrev-commit"
-alias gis="git status"
-alias gadd="git add -A"
-alias gpush="git push origin main"
 
 # Flush Directory Service cache
 alias flushdns="dscacheutil -flushcache"
