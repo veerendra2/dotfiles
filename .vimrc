@@ -29,7 +29,6 @@ set shiftwidth=2        " 2 spaces for indentation
 
 " bells
 set noerrorbells        " turn off audio bell
-set visualbell          " but leave on a visual bell
 
 " search
 set hlsearch            " highlighted search results
@@ -37,7 +36,7 @@ set showmatch           " show matching bracket
 
 " other
 set guioptions=aAace    " don't show scrollbar in MacVim
-" call pathogen#infect()  " use pathogen
+set backspace=indent,eol,start
 
 " clipboard
 set clipboard=unnamed   " allow yy, etc. to interact with OS X clipboard
