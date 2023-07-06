@@ -10,4 +10,5 @@ export EDITOR=vim
 if [ "$(uname -s)" == "Darwin" ]; then
   # When latest bash installed from Homebrew(brew install bash)
   export SHELL=/usr/local/bin/bash
+  export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=/Library/Fonts"
 fi
