@@ -26,7 +26,7 @@ alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date
 alias pubip="dig +short txt ch whoami.cloudflare @1.0.0.1"
 
 # Local address
-alias localip="ip r | grep '^default' | awk '{print $9, $5}'"
+alias localip='ip r | grep '^default' | awk '\''{print $9, $5}'\'''
 
 if [ "$(uname -s)" == "Linux" ]; then
   # Open new tab in mate terminal

@@ -2,5 +2,9 @@
 
 if [ "$(uname -s)" == "Darwin" ]; then
   # When latest bash installed from Homebrew(brew install bash)
-  export PATH=$PATH:/usr/local/bin:
+  export PATH=/usr/local/bin:$PATH
+fi
+
+if [ -d "${HOME}/.local/bin" ] ; then
+  export PATH=$HOME/.local/bin:$PATH
 fi

@@ -54,7 +54,6 @@ o() {
 }
 
 # Get colors in manual pages
-
 man() {
 	env \
 		LESS_TERMCAP_mb="$(printf '\e[1;31m')" \
@@ -66,7 +65,6 @@ man() {
 		LESS_TERMCAP_us="$(printf '\e[1;32m')" \
 		man "$@"
 }
-
 
 # Use feh to nicely view images
 openimage() {
@@ -158,8 +156,6 @@ docker_rm_imgs(){
 	if [ "$a" == "yes" ];
 	then
 		docker rmi -f `docker images -q --no-trunc` > /dev/null
-	else
-		echo "Aborted!"
 	fi
 }
 
