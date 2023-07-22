@@ -8,7 +8,14 @@ export HISTCONTROL=ignoredups;
 export EDITOR=vim
 
 if [ "$(uname -s)" == "Darwin" ]; then
-  # When latest bash installed from Homebrew(brew install bash)
-  export SHELL=/usr/local/bin/bash
+  # homebrew core package `bash` bin location ``brew --prefix``
+  export SHELL=$(brew --prefix)/bin/bash
+  if [ "$(uname -m)" == "arm64" ]; then
+    # apple silicon
+    export SHELL=/opt/homebrew/bin/bash
+  else
+    # intel
+    export SHELL=/usr/local/bin/bash
+  fi
   export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=/Library/Fonts"
 fi

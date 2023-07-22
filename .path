@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
 
 if [ "$(uname -s)" == "Darwin" ]; then
-  # When latest bash installed from Homebrew(brew install bash)
-  export PATH=/usr/local/bin:$PATH
+  # homebrew core packages bin `brew --prefix`
+  if [ "$(uname -m)" == "arm64" ]; then
+    # apple silicon
+    export PATH=/opt/homebrew/bin:$PATH
+  else
+    # intel
+    export PATH=/usr/local/bin:$PATH
+  fi
 fi
 
 if [ -d "${HOME}/.local/bin" ] ; then
