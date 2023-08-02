@@ -23,7 +23,7 @@ alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 
 # Public address
-alias pubip="dig +short txt ch whoami.cloudflare @1.0.0.1"
+alias pubip="dig +short txt ch whoami.cloudflare @1.0.0.1 | tr -d '\"'"
 
 # Local address
 alias localip='ip r | grep '^default' | awk '\''{print $9, $5}'\'''
