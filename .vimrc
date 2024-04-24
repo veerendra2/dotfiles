@@ -46,3 +46,11 @@ inoremap {      {}<Left>
 inoremap {<CR>  {<CR>}<Esc>O
 inoremap {{     {
 inoremap {}     {}
+
+if v:version < 802
+    packadd! dracula
+endif
+syntax enable
+colorscheme dracula
+
+set rtp+=/opt/homebrew/opt/fzf
