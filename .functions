@@ -168,13 +168,3 @@ docker_rm_stopped_imgs(){
 	done
 	docker rmi -f "${images[@]}" 2>&1 || true
 }
-
-# Change namespace in kubeconfig
-kubechns(){
-    kubectl config set-context --current --namespace=$1
-}
-
-# Change context in kubeconfig
-kubechcon(){
-    kubectl config use-context $1
-}

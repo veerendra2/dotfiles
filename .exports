@@ -17,4 +17,7 @@ if [ "$(uname -s)" == "Darwin" ]; then
     export SHELL=/usr/local/bin/bash
   fi
   export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=/Library/Fonts"
+  # iTerm
+  export LC_ALL=en_US.UTF-8
+  export LC_CTYPE=en_US.UTF-8
 fi

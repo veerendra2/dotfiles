@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+if [ "$(uname -s)" == "Darwin" ]; then
+	brew install yq ngrep openssl pv curl direnv
+fi
+
+if [ "$(uname -s)" == "Darwin" ]; then
+	apt-get update && apt-get install curl feh xclip ngrep pv openssl direnv -y
+  curl -qo /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 > /dev/null 2>&1
+  chmod +x /usr/local/bin/yq
+fi
+
 mkdir -p ~/projects
 
 pushd ~/projects > /dev/null

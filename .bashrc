@@ -151,6 +151,11 @@ if hash thefuck 2>/dev/null; then
     eval "$(thefuck --alias)"
 fi
 
+# direnv completion
+if hash direnv 2>/dev/null; then
+    eval "$(direnv hook bash)"
+fi
+
 echo "*************************************"
 echo "*          WELCOME VEERENDRA        *"
 echo "*   `date +"%a %e %b %Y %r"`     *"
