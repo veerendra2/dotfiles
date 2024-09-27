@@ -73,7 +73,7 @@ k8s_prompt()
 	CLUSTER=$(myenv=$CONTEXT yq '.contexts | map(select(.name == env(myenv))) | .[] | .context.cluster' ~/.kube/config | sed 's/"//g')
 	NAMESPACE=$(myenv=$CONTEXT yq '.contexts | map(select(.name == env(myenv))) | .[] | .context.namespace' ~/.kube/config | sed 's/"//g')
 
-	echo -e "${orange} ⎈ ${CLUSTER}, ${NAMESPACE}";
+	echo -e "${orange} ☸️ ${CLUSTER}, ${NAMESPACE}";
 }
 
 cloud=""
