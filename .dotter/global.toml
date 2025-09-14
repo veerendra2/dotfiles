@@ -1,0 +1,12 @@
+[helpers]
+
+[default]
+depends = []
+
+[default.files]
+install = ""
+
+[default.variables]
+
+[settings]
+default_target_type = "automatic"

@@ -136,16 +136,6 @@ if hash kubectl 2>/dev/null; then
 	source <(kubectl completion bash)
 fi
 
-# get the gh completions
-if hash gh 2>/dev/null; then
-	eval "$(gh completion -s bash)"
-fi
-
-# ngrok completion
-if hash ngrok 2>/dev/null; then
-    eval "$(ngrok completion bash)"
-fi
-
 # thefuck completion
 if hash thefuck 2>/dev/null; then
     eval "$(thefuck --alias)"
@@ -155,8 +145,3 @@ fi
 if hash direnv 2>/dev/null; then
     eval "$(direnv hook bash)"
 fi
-
-echo "*************************************"
-echo "*          WELCOME VEERENDRA        *"
-echo "*   `date +"%a %e %b %Y %r"`     *"
-echo "*************************************"

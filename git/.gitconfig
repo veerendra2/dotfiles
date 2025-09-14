@@ -8,6 +8,7 @@
   editor = vim
 
 [help]
+	# Automatically correct and execute mistyped commands
 	autocorrect = 1
 
 [includeIf "gitdir:~/projects/office/"]
@@ -21,4 +22,6 @@
 	name = Veerendra
 	email = 8393701+veerendra2@users.noreply.github.com
 [url "git@github.com:"]
+	insteadOf = https://github.com/
+	insteadOf = https://github.com/
 	insteadOf = https://github.com/

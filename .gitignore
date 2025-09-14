@@ -1,2 +1,4 @@
 .idea/
 .extra
+.dotter/local.toml
+.dotter/cache.toml
