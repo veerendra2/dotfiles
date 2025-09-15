@@ -26,20 +26,19 @@ add_newline = true
 
 [username]
 format = '[$user]($style) at '
-show_always = true
 
 [hostname]
-ssh_only = false
+format = '[$hostname]($style) in '
 
 [shlvl]
 disabled = false
 format = '[$symbol$shlvl]($style) '
-symbol = "↕️ "
+symbol = " "
 threshold = 3
 
 [directory]
 format = '[$path ]($style)[$read_only]($read_only_style)'
-read_only = "🔒"
+read_only = "󱪨 "
 read_only_style = "red"
 style = 'bold fg:dark_blue'
 truncate_to_repo = false
@@ -54,7 +53,7 @@ truncation_symbol = '…/'
 
 [kubernetes]
 format = '[$symbol$context, $namespace]($style) '
-symbol = "☸ "
+symbol = "󱃾 "
 disabled = false
 contexts = [
   { context_pattern = "dev", style = "green" },
@@ -66,6 +65,8 @@ contexts = [
 style = 'fg:green'
 symbol = ' '
 format = '[on](white) [$symbol$branch ]($style)'
+truncation_length = 20
+truncation_symbol = '…'
 
 [git_status]
 style = 'fg:red'
@@ -81,18 +82,22 @@ pyenv_prefix = ''
 [nodejs]
 style = 'blue'
 symbol = ' '
+format = "via [$symbol($version )]($style)"
 
 [golang]
 style = 'blue'
 symbol = ' '
+format = "[$symbol($version )]($style)"
 
 [rust]
 style = 'orange'
 symbol = ' '
+format = "[$symbol($version )]($style)"
 
 [ruby]
 style = 'blue'
 symbol = ' '
+format = "via [$symbol($version )]($style)"
 
 [package]
 symbol = '󰏗 '
@@ -109,9 +114,9 @@ symbol = '󰠅 '
 
 [terraform]
 disabled = false
-format = '[$symbol $version, $workspace]($style) '
+format = '[$symbol$version]($style) '
 style = 'bold 105'
-symbol = ' '
+symbol = '󱁢 '
 
 [docker_context]
 symbol = ' '
@@ -134,19 +139,19 @@ format = '[$symbol]($style)'
 
 [time]
 disabled = false
-format = '[\[$time\]]($style) '
+format = '[ $time]($style) '
 time_format = '%R'
 utc_time_offset = 'local'
 
 [cmd_duration]
 min_time = 500
 style = 'fg:gray'
-format = '[$duration]($style)'
+format = '[󱫍 $duration]($style)'
 
 [vagrant]
 format = '[$symbol($version )]($style)'
 version_format = 'v${raw}'
-symbol = '⍱ '
+symbol = ' '
 
 [palettes.nord]
 dark_blue = '#5E81AC'

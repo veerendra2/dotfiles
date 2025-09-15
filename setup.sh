@@ -50,10 +50,12 @@ case "$ACTION" in
   "-i"|"--install")
     case "$(uname -s)" in
       "Darwin")
-        brew install stow openssl pv direnv
+        brew install stow openssl starship
         ;;
       "Linux")
-        sudo apt-get update && sudo apt-get install -y stow curl feh xclip openssl direnv
+        sudo apt-get update && sudo apt-get install -y stow curl feh xclip openssl
+        # Install starship
+        curl -sS https://starship.rs/install.sh | sh
         ;;
     esac
 
