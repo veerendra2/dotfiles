@@ -1,0 +1,13 @@
+theme = Chalk
+font-family = Osaka-Mono
+font-synthetic-style = false
+font-size = 16
+
+window-height = 35
+window-width = 150
+
+background-opacity = 0.9
+background-blur-radius = 20
+
+mouse-hide-while-typing = true
+window-decoration = true

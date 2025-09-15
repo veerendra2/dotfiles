@@ -1,0 +1,175 @@
+format = """
+$username\
+$hostname\
+$directory\
+$shlvl\
+$git_branch\
+$git_status\
+$kubernetes\
+$terraform\
+$python\
+$nodejs\
+$golang\
+$rust\
+$ruby\
+$aws\
+$azure\
+$docker_context\
+$vagrant\
+$jobs\
+$time\
+$cmd_duration\
+$line_break\
+$character"""
+
+add_newline = true
+
+[username]
+format = '[$user]($style) at '
+show_always = true
+
+[hostname]
+ssh_only = false
+
+[shlvl]
+disabled = false
+format = '[$symbol$shlvl]($style) '
+symbol = "↕️ "
+threshold = 3
+
+[directory]
+format = '[$path ]($style)[$read_only]($read_only_style)'
+read_only = "🔒"
+read_only_style = "red"
+style = 'bold fg:dark_blue'
+truncate_to_repo = false
+truncation_length = 3
+truncation_symbol = '…/'
+
+[directory.substitutions]
+'Documents' = '󰈙'
+'Downloads' = ' '
+'Music' = ' '
+'Pictures' = ' '
+
+[kubernetes]
+format = '[$symbol$context, $namespace]($style) '
+symbol = "☸ "
+disabled = false
+contexts = [
+  { context_pattern = "dev", style = "green" },
+  { context_pattern = "stage", style = "yellow" },
+  { context_pattern = "prod", style = "red" },
+]
+
+[git_branch]
+style = 'fg:green'
+symbol = ' '
+format = '[on](white) [$symbol$branch ]($style)'
+
+[git_status]
+style = 'fg:red'
+format = '([$all_status$ahead_behind]($style) )'
+
+[python]
+style = 'teal'
+symbol = ' '
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+pyenv_version_name = true
+pyenv_prefix = ''
+
+[nodejs]
+style = 'blue'
+symbol = ' '
+
+[golang]
+style = 'blue'
+symbol = ' '
+
+[rust]
+style = 'orange'
+symbol = ' '
+
+[ruby]
+style = 'blue'
+symbol = ' '
+
+[package]
+symbol = '󰏗 '
+
+[aws]
+symbol = ' '
+style = 'yellow'
+format = '[$symbol($profile)]($style)'
+
+[azure]
+disabled = true
+format = '$symbol($subscription) '
+symbol = '󰠅 '
+
+[terraform]
+disabled = false
+format = '[$symbol $version, $workspace]($style) '
+style = 'bold 105'
+symbol = ' '
+
+[docker_context]
+symbol = ' '
+style = 'fg:#06969A'
+format = '[$symbol]($style) $path'
+detect_files = [
+  'docker-compose.yml',
+  'docker-compose.yaml',
+  'Dockerfile',
+  'compose.yml',
+  'compose.yaml',
+]
+detect_extensions = ['Dockerfile']
+
+[jobs]
+symbol = ' '
+style = 'red'
+number_threshold = 1
+format = '[$symbol]($style)'
+
+[time]
+disabled = false
+format = '[\[$time\]]($style) '
+time_format = '%R'
+utc_time_offset = 'local'
+
+[cmd_duration]
+min_time = 500
+style = 'fg:gray'
+format = '[$duration]($style)'
+
+[vagrant]
+format = '[$symbol($version )]($style)'
+version_format = 'v${raw}'
+symbol = '⍱ '
+
+[palettes.nord]
+dark_blue = '#5E81AC'
+blue = '#81A1C1'
+teal = '#88C0D0'
+red = '#BF616A'
+orange = '#D08770'
+green = '#A3BE8C'
+yellow = '#EBCB8B'
+purple = '#B48EAD'
+gray = '#434C5E'
+black = '#2E3440'
+white = '#D8DEE9'
+
+[palettes.onedark]
+dark_blue = '#61afef'
+blue = '#56b6c2'
+red = '#e06c75'
+green = '#98c379'
+purple = '#c678dd'
+cyan = '#56b6c2'
+orange = '#be5046'
+yellow = '#e5c07b'
+gray = '#828997'
+white = '#abb2bf'
+black = '#2c323c'
