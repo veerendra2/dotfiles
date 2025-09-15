@@ -18,3 +18,7 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+[user]
+	name = Veerendra
+	email = 8393701+veerendra2@users.noreply.github.com
