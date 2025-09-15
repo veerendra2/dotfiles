@@ -23,10 +23,13 @@ $line_break\
 $character"""
 
 add_newline = true
-palette = "nord"
 
 [username]
 format = '[$user]($style) at '
+show_always = true
+
+[hostname]
+ssh_only = false
 
 [shlvl]
 disabled = false
