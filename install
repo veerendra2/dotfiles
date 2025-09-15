@@ -22,7 +22,11 @@ esac
 mkdir -p ${HOME}/{projects,.config}
 
 pushd ~/projects > /dev/null
-git clone https://github.com/veerendra2/dotfiles.git
+
+if [[ ! -d "${HOME}/projects/dotfiles"  ]]; then
+    ssh-keyscan github.com >> ~/.ssh/known_hosts
+    git clone https://github.com/veerendra2/prepare-my-machine.git
+fi
 
 pushd dotfiles > /dev/null
 git pull
