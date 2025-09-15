@@ -1,3 +1,5 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 format = """
 $username\
 $hostname\
@@ -16,6 +18,7 @@ $aws\
 $azure\
 $docker_context\
 $vagrant\
+$direnv\
 $jobs\
 $time\
 $cmd_duration\
@@ -23,6 +26,8 @@ $line_break\
 $character"""
 
 add_newline = true
+
+palette = "nord"
 
 [username]
 format = '[$user]($style) at '
@@ -52,13 +57,13 @@ truncation_symbol = '…/'
 'Pictures' = ' '
 
 [kubernetes]
-format = '[$symbol$context, $namespace]($style) '
+format = '[$symbol$context  $namespace]($style) '
 symbol = "󱃾 "
 disabled = false
 contexts = [
-  { context_pattern = "dev", style = "green" },
-  { context_pattern = "stage", style = "yellow" },
-  { context_pattern = "prod", style = "red" },
+  { context_pattern = "^dev.*", style = "blue" },
+  { context_pattern = "^stage.*", style = "yellow" },
+  { context_pattern = "^prod.*", style = "red" },
 ]
 
 [git_branch]
@@ -140,7 +145,7 @@ format = '[$symbol]($style)'
 [time]
 disabled = false
 format = '[ $time]($style) '
-time_format = '%R'
+time_format = '%T'
 utc_time_offset = 'local'
 
 [cmd_duration]
@@ -152,6 +157,9 @@ format = '[󱫍 $duration]($style)'
 format = '[$symbol($version )]($style)'
 version_format = 'v${raw}'
 symbol = ' '
+
+[direnv]
+disabled = false
 
 [palettes.nord]
 dark_blue = '#5E81AC'
