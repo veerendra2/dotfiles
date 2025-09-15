@@ -49,13 +49,19 @@ if [[ -d /etc/bash_completion.d/ ]]; then
 fi
 
 # We do this before the following so that all the paths work.
-for file in ~/.{bash_prompt,aliases,functions,path,exports,extra}; do
+for file in ~/.{aliases,functions,exports,extra}; do
 	if [[ -r "$file" ]] && [[ -f "$file" ]]; then
 		# shellcheck source=/dev/null
 		source "$file"
 	fi
 done
 unset file
+
+set_win_title(){
+	echo -ne "\033]0; ${PWD} \007"
+}
+starship_precmd_user_func="set_win_title"
+eval "$(starship init bash)"
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config
 # ignoring wildcards

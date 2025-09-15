@@ -28,3 +28,4 @@ fi
 
 export PATH="${HOME}/.local/bin:${PATH}"
 export GOPATH="${HOME}/go"
+export STARSHIP_CONFIG="${HOME}/.config/starship.toml"
