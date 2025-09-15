@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+set -e
+
+if [[ "$1" == "uninstall" ]]; then
+  pushd ~/projects/dotfiles
+  stow -D -t ${HOME} {bash,curl,vim,git,screen}
+  stow -D -t ${HOME}/.config --no-folding .config
+  echo "Dotfiles uninstalled!"
+  exit 0
+fi
+
 case "$(uname -s)" in
   "Darwin")
     brew install openssl pv curl direnv
@@ -21,7 +31,4 @@ touch bash/.extra .extra-gitconfig
 
 stow -t ${HOME} {bash,curl,vim,git,screen}
 stow -t ${HOME}/.config --no-folding .config
-
-# To uninstall
-# stow -D -t ${HOME} {bash,curl,vim,git,screen}
-# stow -D -t ${HOME}/.config --no-folding .config
+echo "Dotfiles installed!"
