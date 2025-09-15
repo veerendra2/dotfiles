@@ -19,8 +19,9 @@ git pull
 
 touch bash/.extra .extra-gitconfig
 
-stow {bash,curl,vim,git,screen}
-stow --target "${HOME}/.config" --no-folding .config
+stow -t ${HOME} {bash,curl,vim,git,screen}
+stow -t ${HOME}/.config --no-folding .config
 
 # To uninstall
-# stow -D .
+# stow -D -t ${HOME} {bash,curl,vim,git,screen}
+# stow -D -t ${HOME}/.config --no-folding .config
