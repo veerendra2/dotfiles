@@ -8,24 +8,21 @@ export HISTCONTROL=ignoredups;
 export EDITOR=vim
 
 if [ "$(uname -s)" == "Darwin" ]; then
-  if command -v brew >/dev/null; then
-    BREW_PREFIX=$(brew --prefix)
-
-    # Set Homebrew's bash as the default shell
-    export SHELL="${BREW_PREFIX}/bin/bash"
-
-    # Add Homebrew's binary directory to the PATH
-    export PATH="${BREW_PREFIX}/bin:$PATH"
-
-    # Set Homebrew Cask options
-    export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=/Library/Fonts"
-
-    # Set locale variables for iTerm
-    export LC_ALL=en_US.UTF-8
-    export LC_CTYPE=en_US.UTF-8
+  # apple silicon
+  if [ "$(uname -m)" == "arm64" ]; then
+    export PATH=/opt/homebrew/bin:$PATH
+  # intel
+  else
+    export PATH=/usr/local/bin:$PATH
   fi
+  # Set Homebrew Cask options
+  export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=/Library/Fonts"
+
+  # Set locale variables for iTerm
+  export LC_ALL=en_US.UTF-8
+  export LC_CTYPE=en_US.UTF-8
 fi
 
 export PATH="${HOME}/.local/bin:${PATH}"
 export GOPATH="${HOME}/go"
-export STARSHIP_CONFIG="${HOME}/.config/starship.toml"
+export STARSHIP_CONFIG="${HOME}/.config/starship/starship.toml"
