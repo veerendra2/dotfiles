@@ -6,6 +6,9 @@ alias la='ls -lahF'
 alias l='ls -CF'
 alias lsd="ls -lhF --color | grep --color=never '^d'"
 
+# Always enable colored `grep` output
+alias grep='grep --color=auto '
+
 # Allow aliases to be with sudo
 alias sudo="sudo "
 
@@ -28,14 +31,6 @@ alias pubip="dig +short txt ch whoami.cloudflare @1.0.0.1 | tr -d '\"'"
 
 # Local address
 alias localip='ip r | grep '^default' | awk '\''{print $9, $5}'\'''
-
-if [ "$(uname -s)" == "Linux" ]; then
-  # Open new tab in mate terminal
-  alias tab="gnome-terminal --tab"
-
-  alias pbcopy='xclip -selection clipboard'
-  alias pbpaste='xclip -selection clipboard -o'
-fi
 
 # Python
 alias python="python3"

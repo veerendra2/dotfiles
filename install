@@ -1,16 +1,15 @@
 #!/usr/bin/env bash
 
-if [ "$(uname -s)" == "Darwin" ]; then
-	brew install yq ngrep openssl pv curl direnv
-fi
+case "$(uname -s)" in
+  "Darwin")
+    brew install openssl pv curl direnv
+    ;;
+  "Linux")
+    sudo apt-get update && sudo apt-get install -y curl feh xclip pv openssl direnv
+    ;;
+esac
 
-if [ "$(uname -s)" == "Darwin" ]; then
-	apt-get update && apt-get install curl feh xclip ngrep pv openssl direnv -y
-  curl -qo /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 > /dev/null 2>&1
-  chmod +x /usr/local/bin/yq
-fi
-
-mkdir -p ~/projects
+mkdir -p ${HOME}/{projects,.config}
 
 pushd ~/projects > /dev/null
 git clone https://github.com/veerendra2/dotfiles.git
@@ -18,8 +17,10 @@ git clone https://github.com/veerendra2/dotfiles.git
 pushd dotfiles > /dev/null
 git pull
 
-for file in $(find ${PWD} -name ".*" -not -name ".gitignore" -not -name ".git" -not -name ".config" -not -name ".github" -not -name ".*.swp" -not -name ".gnupg");
-do
-	f=$(basename $file);
-	ln -sfn $file ${HOME}/$f;
-done
+touch bash/.extra .extra-gitconfig
+
+stow {bash,curl,vim,git,screen}
+stow --target "${HOME}/.config" --no-folding .config
+
+# To uninstall
+# stow -D .

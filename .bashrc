@@ -145,3 +145,8 @@ fi
 if hash direnv 2>/dev/null; then
     eval "$(direnv hook bash)"
 fi
+
+# thefuck completion
+if hash pay-respects 2>/dev/null; then
+    eval "$(pay-respects bash)"
+fi

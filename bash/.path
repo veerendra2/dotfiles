@@ -11,6 +11,5 @@ if [ "$(uname -s)" == "Darwin" ]; then
   fi
 fi
 
-if [ -d "${HOME}/.local/bin" ] ; then
-  export PATH=$HOME/.local/bin:$PATH
-fi
+export PATH=$HOME/.local/bin:$PATH
+export GOPATH="${HOME}/go"

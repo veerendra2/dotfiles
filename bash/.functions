@@ -42,6 +42,24 @@ fs() {
 	fi
 }
 
+pbcopy() {
+	stdin=$(</dev/stdin);
+	pbcopy="$(which pbcopy)";
+	if [[ -n "$pbcopy" ]]; then
+		echo "$stdin" | "$pbcopy"
+	else
+		echo "$stdin" | xclip -selection clipboard
+	fi
+}
+pbpaste() {
+	pbpaste="$(which pbpaste)";
+	if [[ -n "$pbpaste" ]]; then
+		"$pbpaste"
+	else
+		xclip -selection clipboard
+	fi
+}
+
 # `o` with no arguments opens the current directory, otherwise
 # opens the given location
 o() {
@@ -98,27 +116,13 @@ tre() {
 	tree -aupCsh -I '.git' --dirsfirst "$@" | less -FRNX
 }
 
-# TODO Need to test again!
-# Get file from partner
-getfile() {
-	if [ -z "$1" ]; then
-		echo "Usage: getfile <file_name>"
-		return 1
-	fi
-		iface=`route | grep '^default' | grep -o '[^ ]*$'`
-		ipa=`ip a | grep $iface | grep inet | awk {{'print $2'}} | cut -d / -f1`
-	echo "Client: pv <file-name> | nc $ipa 8169"
-	echo "Ctrl+c to exit"
-	nc -lvnp 8169 > $1
-}
-
 # SSL Validity
-function ssl_validity() {
+ssl_validity() {
     echo | openssl s_client -servername $1 -connect $1:443 2>/dev/null | openssl x509 -noout -dates
 }
 
 # Curl with times. https://stackoverflow.com/questions/18215389
-function curltime(){
+curltime(){
 	curl -w @- -o /dev/null -s "$1" <<'EOF'
     time_namelookup:  %{time_namelookup}\n
        time_connect:  %{time_connect}\n
@@ -132,7 +136,7 @@ EOF
 }
 
 # Remove files from git history
-function rm_file_git_history(){
+rm_file_git_history(){
 	git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch $1' HEAD
 }
 

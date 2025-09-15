@@ -16,6 +16,9 @@ shopt -s nocaseglob
 # Append to the Bash history file, rather than overwriting it
 shopt -s histappend
 
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell
+
 # Enable some Bash 4 features when possible:
 # * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
 # * Recursive globbing, e.g. `echo **/*.txt`
@@ -68,9 +71,9 @@ if hash kubectl 2>/dev/null; then
 	source <(kubectl completion bash)
 fi
 
-# thefuck completion
-if hash thefuck 2>/dev/null; then
-    eval "$(thefuck --alias)"
+# thefuck alternative
+if hash pay-respects 2>/dev/null; then
+    eval "$(pay-respects bash)"
 fi
 
 # direnv completion
