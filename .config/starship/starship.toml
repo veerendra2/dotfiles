@@ -1,3 +1,5 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 format = """
 $username\
 $hostname\
@@ -16,6 +18,7 @@ $aws\
 $azure\
 $docker_context\
 $vagrant\
+$direnv\
 $jobs\
 $time\
 $cmd_duration\
@@ -24,22 +27,23 @@ $character"""
 
 add_newline = true
 
+palette = "nord"
+
 [username]
 format = '[$user]($style) at '
-show_always = true
 
 [hostname]
-ssh_only = false
+format = '[$hostname]($style) in '
 
 [shlvl]
 disabled = false
 format = '[$symbol$shlvl]($style) '
-symbol = "↕️ "
+symbol = " "
 threshold = 3
 
 [directory]
 format = '[$path ]($style)[$read_only]($read_only_style)'
-read_only = "🔒"
+read_only = "󱪨 "
 read_only_style = "red"
 style = 'bold fg:dark_blue'
 truncate_to_repo = false
@@ -51,21 +55,24 @@ truncation_symbol = '…/'
 'Downloads' = ' '
 'Music' = ' '
 'Pictures' = ' '
+'projects' = ' '
 
 [kubernetes]
-format = '[$symbol$context, $namespace]($style) '
-symbol = "☸ "
+format = '[$symbol$context  $namespace]($style) '
+symbol = "󱃾 "
 disabled = false
 contexts = [
-  { context_pattern = "dev", style = "green" },
-  { context_pattern = "stage", style = "yellow" },
-  { context_pattern = "prod", style = "red" },
+  { context_pattern = "^dev.*", style = "blue" },
+  { context_pattern = "^stage.*", style = "yellow" },
+  { context_pattern = "^prod.*", style = "red" },
 ]
 
 [git_branch]
 style = 'fg:green'
 symbol = ' '
 format = '[on](white) [$symbol$branch ]($style)'
+truncation_length = 20
+truncation_symbol = '…'
 
 [git_status]
 style = 'fg:red'
@@ -81,18 +88,22 @@ pyenv_prefix = ''
 [nodejs]
 style = 'blue'
 symbol = ' '
+format = "[$symbol($version )]($style)"
 
 [golang]
 style = 'blue'
 symbol = ' '
+format = "[$symbol($version )]($style)"
 
 [rust]
 style = 'orange'
 symbol = ' '
+format = "[$symbol($version )]($style)"
 
 [ruby]
 style = 'blue'
 symbol = ' '
+format = "[$symbol($version )]($style)"
 
 [package]
 symbol = '󰏗 '
@@ -109,14 +120,16 @@ symbol = '󰠅 '
 
 [terraform]
 disabled = false
-format = '[$symbol $version, $workspace]($style) '
+format = '[$symbol$version]($style) '
 style = 'bold 105'
-symbol = ' '
+symbol = '󱁢 '
 
 [docker_context]
+disabled = false
 symbol = ' '
 style = 'fg:#06969A'
-format = '[$symbol]($style) $path'
+format = '[$symbol]($style) '
+only_with_files = true
 detect_files = [
   'docker-compose.yml',
   'docker-compose.yaml',
@@ -134,19 +147,55 @@ format = '[$symbol]($style)'
 
 [time]
 disabled = false
-format = '[\[$time\]]($style) '
-time_format = '%R'
+format = '[ $time]($style) '
+time_format = '%T'
 utc_time_offset = 'local'
 
 [cmd_duration]
 min_time = 500
 style = 'fg:gray'
-format = '[$duration]($style)'
+format = '[󱫍 $duration]($style)'
 
 [vagrant]
 format = '[$symbol($version )]($style)'
 version_format = 'v${raw}'
-symbol = '⍱ '
+symbol = ' '
+
+[direnv]
+disabled = false
+allowed_msg = ' '
+not_allowed_msg = '󰂭 '
+denied_msg = ' '
+loaded_msg = ' '
+unloaded_msg = '󰿅 '
+
+[character]
+disabled = false
+success_symbol = '[](bold fg:color_green)'
+error_symbol = '[](bold fg:color_red)'
+
+[os.symbols]
+Windows = "󰍲"
+Ubuntu = "󰕈"
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Macos = "󰀵"
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Fedora = "󰣛"
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = "󰣇"
+Artix = "󰣇"
+EndeavourOS = ""
+CentOS = ""
+Debian = "󰣚"
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
+Pop = ""
 
 [palettes.nord]
 dark_blue = '#5E81AC'
