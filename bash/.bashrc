@@ -31,19 +31,15 @@ done
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
 	if [[ -f /usr/share/bash-completion/bash_completion ]]; then
-		# shellcheck source=/dev/null
 		. /usr/share/bash-completion/bash_completion
 	elif [[ -f /etc/bash_completion ]]; then
-		# shellcheck source=/dev/null
 		. /etc/bash_completion
 	elif [[ -f /usr/local/etc/bash_completion ]]; then
-		# shellcheck source=/dev/null
 		. /usr/local/etc/bash_completion
 	fi
 fi
 if [[ -d /etc/bash_completion.d/ ]]; then
 	for file in /etc/bash_completion.d/* ; do
-		# shellcheck source=/dev/null
 		source "$file"
 	done
 fi
@@ -51,7 +47,6 @@ fi
 # We do this before the following so that all the paths work.
 for file in ~/.{aliases,functions,exports,extra}; do
 	if [[ -r "$file" ]] && [[ -f "$file" ]]; then
-		# shellcheck source=/dev/null
 		source "$file"
 	fi
 done
