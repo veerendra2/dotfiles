@@ -55,6 +55,7 @@ truncation_symbol = '…/'
 'Downloads' = ' '
 'Music' = ' '
 'Pictures' = ' '
+'projects' = ' '
 
 [kubernetes]
 format = '[$symbol$context  $namespace]($style) '
@@ -87,7 +88,7 @@ pyenv_prefix = ''
 [nodejs]
 style = 'blue'
 symbol = ' '
-format = "via [$symbol($version )]($style)"
+format = "[$symbol($version )]($style)"
 
 [golang]
 style = 'blue'
@@ -102,7 +103,7 @@ format = "[$symbol($version )]($style)"
 [ruby]
 style = 'blue'
 symbol = ' '
-format = "via [$symbol($version )]($style)"
+format = "[$symbol($version )]($style)"
 
 [package]
 symbol = '󰏗 '
@@ -124,9 +125,11 @@ style = 'bold 105'
 symbol = '󱁢 '
 
 [docker_context]
+disabled = false
 symbol = ' '
 style = 'fg:#06969A'
-format = '[$symbol]($style) $path'
+format = '[$symbol]($style) '
+only_with_files = true
 detect_files = [
   'docker-compose.yml',
   'docker-compose.yaml',
@@ -160,6 +163,39 @@ symbol = ' '
 
 [direnv]
 disabled = false
+allowed_msg = ' '
+not_allowed_msg = '󰂭 '
+denied_msg = ' '
+loaded_msg = ' '
+unloaded_msg = '󰿅 '
+
+[character]
+disabled = false
+success_symbol = '[](bold fg:color_green)'
+error_symbol = '[](bold fg:color_red)'
+
+[os.symbols]
+Windows = "󰍲"
+Ubuntu = "󰕈"
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Macos = "󰀵"
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Fedora = "󰣛"
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = "󰣇"
+Artix = "󰣇"
+EndeavourOS = ""
+CentOS = ""
+Debian = "󰣚"
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
+Pop = ""
 
 [palettes.nord]
 dark_blue = '#5E81AC'
