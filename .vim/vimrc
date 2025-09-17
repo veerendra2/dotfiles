@@ -48,9 +48,9 @@ inoremap {{     {
 inoremap {}     {}
 
 if v:version < 802
-    packadd! dracula
+    packadd! desert
 endif
 syntax enable
-colorscheme dracula
+colorscheme desert
 
 set rtp+=/opt/homebrew/opt/fzf

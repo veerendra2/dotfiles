@@ -6,46 +6,31 @@ set -e
 declare -a dotfiles=(
   "bash"
   "curl"
-  "vim"
   "git"
   "screen"
 )
+declare -a dotfiles_no_folding=(
+  ".config"
+  ".vim"
+)
 
-if [[ "$1" == "--help" || "$1" == "-h" ]]; then
-  echo "Usage: $0 [option]"
-  echo
-  echo "Options:"
-  echo "  -i, --install      Install dotfiles (default)"
-  echo "  -r, --re-stow      Re-stow dotfiles (update symbolic links)"
-  echo "  -d, --delete       Delete dotfiles (uninstall)"
-  echo "  -h, --help         Show this help message"
-  exit 0
-fi
-
-ACTION=${1:-"-i"}
-
-case "$ACTION" in
-  "-d"|"--delete")
+# A function to handle the stowing process
+function stow_dotfiles() {
+    local action=${1}
     pushd ~/projects/dotfiles > /dev/null
-    for pkg in "${dotfiles[@]}"; do
-        stow -D -t "${HOME}" "$pkg"
-    done
-    stow -D -t "${HOME}/.config" --no-folding .config
-    echo "[.] Dotfiles uninstalled!"
-    exit 0
-    ;;
 
-  "-r"|"--re-stow")
-    pushd ~/projects/dotfiles > /dev/null
     for pkg in "${dotfiles[@]}"; do
-        stow -R -t "${HOME}" "$pkg"
+        stow "${action}" -t "${HOME}" "$pkg"
     done
-    stow -R -t "${HOME}/.config" --no-folding .config
-    echo "[*] Dotfiles re-stowed!"
-    exit 0
-    ;;
+    for pkg in "${dotfiles_no_folding[@]}"; do
+        stow "${action}" -t "${HOME}/${pkg}" --no-folding "$pkg"
+    done
+    popd > /dev/null
+}
 
-  "-i"|"--install")
+ACTION=${1:-"stow"}
+
+if [[ "$1" == "-i" ]]; then
     case "$(uname -s)" in
       "Darwin")
         brew install stow openssl starship
@@ -56,34 +41,40 @@ case "$ACTION" in
         curl -sS https://starship.rs/install.sh | sh
         ;;
     esac
+    ACTION="stow"
+fi
 
-    mkdir -p "${HOME}"/{projects,.config}
-
+case "$ACTION" in
+  "-d"|"--delete")
+    stow_dotfiles "-D"
+    echo "[.] Dotfiles uninstalled!"
+    ;;
+  "-r"|"--re-stow")
+    stow_dotfiles "-R"
+    echo "[*] Dotfiles re-stowed!"
+    ;;
+  "stow")
+    mkdir -p "${HOME}"/{projects,.config,.vim}
     pushd "${HOME}/projects" > /dev/null
-
-    # Clone dotfiles repo if not exists
     if [[ ! -d "dotfiles"  ]]; then
         ssh-keyscan github.com >> ~/.ssh/known_hosts
         git clone https://github.com/veerendra2/dotfiles.git
     fi
-
     pushd dotfiles > /dev/null
-
-    # Just to make sure get latest changes in case script runs
-    # in already cloned repo
-    git pull
-
-    # Create empty files to put machine specific/custom dotfiles
-    # manually if needed. These extra dotfiles are not tracked in git
-    touch bash/.extra .extra-gitconfig
-
-    for pkg in "${dotfiles[@]}"; do
-      stow -t "${HOME}" "$pkg"
-    done
-    stow -t "${HOME}/.config" --no-folding .config
+    git pull > /dev/null
+    touch bash/.extra git/.extra-gitconfig
+    stow_dotfiles
     echo "[*] Dotfiles installed!"
     ;;
-
+  "--help"|"-h")
+    echo "Usage: $0 [option]"
+    echo
+    echo "Options:"
+    echo "  -i      Install dependency packages and stow dotfiles"
+    echo "  -r      Re-stow dotfiles"
+    echo "  -d      Delete dotfiles"
+    echo "  -h      Show this help message"
+    ;;
   *)
     echo "Invalid option: $1"
     echo "Run '$0 --help' for usage."
