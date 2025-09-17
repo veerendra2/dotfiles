@@ -48,9 +48,9 @@ inoremap {{     {
 inoremap {}     {}
 
 if v:version < 802
-    packadd! desert
+    packadd! monokai
 endif
 syntax enable
-colorscheme desert
+colorscheme monokai
 
 set rtp+=/opt/homebrew/opt/fzf

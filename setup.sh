@@ -2,7 +2,6 @@
 
 set -e
 
-# List of dotfiles directories
 declare -a dotfiles=(
   "bash"
   "curl"
@@ -62,7 +61,7 @@ case "$ACTION" in
     fi
     pushd dotfiles > /dev/null
     git pull > /dev/null
-    touch bash/.extra git/.extra-gitconfig
+    touch {bash/.extra,git/.extra-gitconfig}
     stow_dotfiles
     echo "[*] Dotfiles installed!"
     ;;

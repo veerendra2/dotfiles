@@ -68,9 +68,9 @@ contexts = [
 ]
 
 [git_branch]
+format = '[on](white) [$symbol$branch ]($style)'
 style = 'color_green'
 symbol = ' '
-format = '[on](white) [$symbol$branch ]($style)'
 truncation_length = 20
 truncation_symbol = '…'
 
@@ -79,11 +79,11 @@ style = 'color_red_1'
 format = '([$all_status$ahead_behind]($style) )'
 
 [python]
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+pyenv_prefix = ''
+pyenv_version_name = true
 style = 'teal'
 symbol = ' '
-format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
-pyenv_version_name = true
-pyenv_prefix = ''
 
 [nodejs]
 style = 'blue'
@@ -125,11 +125,7 @@ style = 'bold 105'
 symbol = '󱁢 '
 
 [docker_context]
-disabled = false
-symbol = ' '
-style = 'fg:#06969A'
-format = '[$symbol]($style) '
-only_with_files = true
+detect_extensions = ['Dockerfile']
 detect_files = [
   'docker-compose.yml',
   'docker-compose.yaml',
@@ -137,65 +133,70 @@ detect_files = [
   'compose.yml',
   'compose.yaml',
 ]
-detect_extensions = ['Dockerfile']
+disabled = false
+format = '[$symbol]($style) '
+only_with_files = true
+style = 'fg:#06969A'
+symbol = ' '
 
 [jobs]
-symbol = ' '
-style = 'red'
-number_threshold = 1
 format = '[$symbol]($style)'
+number_threshold = 1
+style = 'red'
+symbol = ' '
 
 [time]
 disabled = false
-format = '[ $time]($style) '
+format = '[󱑒 $time]($style) '
 time_format = '%T'
 utc_time_offset = 'local'
 
 [cmd_duration]
+format = '[󱫍 $duration]($style)'
 min_time = 500
 style = "color_cyan"
-format = '[󱫍 $duration]($style)'
 
 [vagrant]
 format = '[$symbol($version )]($style)'
-version_format = 'v${raw}'
 symbol = ' '
+version_format = 'v${raw}'
 
 [direnv]
-disabled = false
 allowed_msg = ' '
-not_allowed_msg = '󰂭 '
 denied_msg = ' '
+disabled = false
 loaded_msg = ' '
+not_allowed_msg = '󰂭 '
+style = "bright-yellow"
 unloaded_msg = '󰿅 '
 
 [character]
 disabled = false
-success_symbol = '[](bold fg:color_green)'
 error_symbol = '[](bold fg:color_red)'
+success_symbol = '[](bold fg:color_green)'
 
 [os.symbols]
-Windows = "󰍲"
-Ubuntu = "󰕈"
-SUSE = ""
-Raspbian = "󰐿"
-Mint = "󰣭"
-Macos = "󰀵"
-Manjaro = ""
-Linux = "󰌽"
-Gentoo = "󰣨"
-Fedora = "󰣛"
 Alpine = ""
 Amazon = ""
 Android = ""
 Arch = "󰣇"
 Artix = "󰣇"
-EndeavourOS = ""
 CentOS = ""
 Debian = "󰣚"
+EndeavourOS = ""
+Fedora = "󰣛"
+Gentoo = "󰣨"
+Linux = "󰌽"
+Macos = "󰀵"
+Manjaro = ""
+Mint = "󰣭"
+Pop = ""
+Raspbian = "󰐿"
 Redhat = "󱄛"
 RedHatEnterprise = "󱄛"
-Pop = ""
+SUSE = ""
+Ubuntu = "󰕈"
+Windows = "󰍲"
 
 [palettes.cusom]
 color_fg0 = '#fbf1c7'
