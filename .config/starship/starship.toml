@@ -27,7 +27,7 @@ $character"""
 
 add_newline = true
 
-palette = "nord"
+palette = "cusom"
 
 [username]
 format = '[$user]($style) at '
@@ -45,7 +45,7 @@ threshold = 3
 format = '[$path ]($style)[$read_only]($read_only_style)'
 read_only = "󱪨 "
 read_only_style = "red"
-style = 'bold fg:dark_blue'
+style = 'bold color_aqua'
 truncate_to_repo = false
 truncation_length = 3
 truncation_symbol = '…/'
@@ -58,32 +58,32 @@ truncation_symbol = '…/'
 'projects' = ' '
 
 [kubernetes]
-format = '[$symbol$context  $namespace]($style) '
+format = '[$symbol$context \($namespace\)]($style) '
 symbol = "󱃾 "
 disabled = false
 contexts = [
-  { context_pattern = "^dev.*", style = "blue" },
-  { context_pattern = "^stage.*", style = "yellow" },
-  { context_pattern = "^prod.*", style = "red" },
+  { context_pattern = "^dev.*", style = "color_purple" },
+  { context_pattern = "^stage.*", style = "color_orange" },
+  { context_pattern = "^prod.*", style = "color_red" },
 ]
 
 [git_branch]
-style = 'fg:green'
-symbol = ' '
 format = '[on](white) [$symbol$branch ]($style)'
+style = 'color_green'
+symbol = ' '
 truncation_length = 20
 truncation_symbol = '…'
 
 [git_status]
-style = 'fg:red'
+style = 'color_red_1'
 format = '([$all_status$ahead_behind]($style) )'
 
 [python]
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+pyenv_prefix = ''
+pyenv_version_name = true
 style = 'teal'
 symbol = ' '
-format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
-pyenv_version_name = true
-pyenv_prefix = ''
 
 [nodejs]
 style = 'blue'
@@ -125,11 +125,7 @@ style = 'bold 105'
 symbol = '󱁢 '
 
 [docker_context]
-disabled = false
-symbol = ' '
-style = 'fg:#06969A'
-format = '[$symbol]($style) '
-only_with_files = true
+detect_extensions = ['Dockerfile']
 detect_files = [
   'docker-compose.yml',
   'docker-compose.yaml',
@@ -137,88 +133,81 @@ detect_files = [
   'compose.yml',
   'compose.yaml',
 ]
-detect_extensions = ['Dockerfile']
+disabled = false
+format = '[$symbol]($style) '
+only_with_files = true
+style = 'fg:#06969A'
+symbol = ' '
 
 [jobs]
-symbol = ' '
-style = 'red'
-number_threshold = 1
 format = '[$symbol]($style)'
+number_threshold = 1
+style = 'red'
+symbol = ' '
 
 [time]
 disabled = false
-format = '[ $time]($style) '
+format = '[󱑒 $time]($style) '
 time_format = '%T'
 utc_time_offset = 'local'
 
 [cmd_duration]
-min_time = 500
-style = 'fg:gray'
 format = '[󱫍 $duration]($style)'
+min_time = 500
+style = "color_cyan"
 
 [vagrant]
 format = '[$symbol($version )]($style)'
-version_format = 'v${raw}'
 symbol = ' '
+version_format = 'v${raw}'
 
 [direnv]
-disabled = false
 allowed_msg = ' '
-not_allowed_msg = '󰂭 '
 denied_msg = ' '
+disabled = false
 loaded_msg = ' '
+not_allowed_msg = '󰂭 '
+style = "bright-yellow"
 unloaded_msg = '󰿅 '
 
 [character]
 disabled = false
-success_symbol = '[](bold fg:color_green)'
 error_symbol = '[](bold fg:color_red)'
+success_symbol = '[](bold fg:color_green)'
 
 [os.symbols]
-Windows = "󰍲"
-Ubuntu = "󰕈"
-SUSE = ""
-Raspbian = "󰐿"
-Mint = "󰣭"
-Macos = "󰀵"
-Manjaro = ""
-Linux = "󰌽"
-Gentoo = "󰣨"
-Fedora = "󰣛"
 Alpine = ""
 Amazon = ""
 Android = ""
 Arch = "󰣇"
 Artix = "󰣇"
-EndeavourOS = ""
 CentOS = ""
 Debian = "󰣚"
+EndeavourOS = ""
+Fedora = "󰣛"
+Gentoo = "󰣨"
+Linux = "󰌽"
+Macos = "󰀵"
+Manjaro = ""
+Mint = "󰣭"
+Pop = ""
+Raspbian = "󰐿"
 Redhat = "󱄛"
 RedHatEnterprise = "󱄛"
-Pop = ""
+SUSE = ""
+Ubuntu = "󰕈"
+Windows = "󰍲"
 
-[palettes.nord]
-dark_blue = '#5E81AC'
-blue = '#81A1C1'
-teal = '#88C0D0'
-red = '#BF616A'
-orange = '#D08770'
-green = '#A3BE8C'
-yellow = '#EBCB8B'
-purple = '#B48EAD'
-gray = '#434C5E'
-black = '#2E3440'
-white = '#D8DEE9'
-
-[palettes.onedark]
-dark_blue = '#61afef'
-blue = '#56b6c2'
-red = '#e06c75'
-green = '#98c379'
-purple = '#c678dd'
-cyan = '#56b6c2'
-orange = '#be5046'
-yellow = '#e5c07b'
-gray = '#828997'
-white = '#abb2bf'
-black = '#2c323c'
+[palettes.cusom]
+color_fg0 = '#fbf1c7'
+color_bg1 = '#3c3836'
+color_bg3 = '#665c54'
+color_blue = '#458588'
+color_aqua = '#689d6a'
+color_green = '#98971a'
+color_orange = '#d65d0e'
+color_purple = '#b16286'
+color_red = '#cc241d'
+color_red_1 = '#e06c75'
+color_yellow = '#d79921'
+color_cyan = '#56b6c2'

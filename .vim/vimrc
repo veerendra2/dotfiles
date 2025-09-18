@@ -48,9 +48,9 @@ inoremap {{     {
 inoremap {}     {}
 
 if v:version < 802
-    packadd! dracula
+    packadd! monokai
 endif
 syntax enable
-colorscheme dracula
+colorscheme monokai
 
 set rtp+=/opt/homebrew/opt/fzf

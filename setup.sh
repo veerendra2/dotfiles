@@ -6,7 +6,6 @@ set -e
 declare -a dotfiles=(
   "bash"
   "curl"
-  "vim"
   "git"
   "screen"
 )
@@ -31,6 +30,7 @@ case "$ACTION" in
         stow -D -t "${HOME}" "$pkg"
     done
     stow -D -t "${HOME}/.config" --no-folding .config
+    stow -D -t "${HOME}/.vim" --no-folding .vim
     echo "[.] Dotfiles uninstalled!"
     exit 0
     ;;
@@ -41,6 +41,7 @@ case "$ACTION" in
         stow -R -t "${HOME}" "$pkg"
     done
     stow -R -t "${HOME}/.config" --no-folding .config
+    stow -R -t "${HOME}/.vim" --no-folding .vim
     echo "[*] Dotfiles re-stowed!"
     exit 0
     ;;
@@ -57,7 +58,7 @@ case "$ACTION" in
         ;;
     esac
 
-    mkdir -p "${HOME}"/{projects,.config}
+    mkdir -p "${HOME}"/{projects,.config,.vim}
 
     pushd "${HOME}/projects" > /dev/null
 
@@ -75,12 +76,13 @@ case "$ACTION" in
 
     # Create empty files to put machine specific/custom dotfiles
     # manually if needed. These extra dotfiles are not tracked in git
-    touch bash/.extra .extra-gitconfig
+    touch {bash/.extra,git/.extra-gitconfig}
 
     for pkg in "${dotfiles[@]}"; do
       stow -t "${HOME}" "$pkg"
     done
     stow -t "${HOME}/.config" --no-folding .config
+    stow -t "${HOME}/.vim" --no-folding .vim
     echo "[*] Dotfiles installed!"
     ;;
 
