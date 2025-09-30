@@ -22,3 +22,5 @@
 [user]
 	name = Veerendra
 	email = 8393701+veerendra2@users.noreply.github.com
+[init]
+	defaultBranch = main
