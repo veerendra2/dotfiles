@@ -49,7 +49,7 @@ case "$ACTION" in
   "-i"|"--install")
     case "$(uname -s)" in
       "Darwin")
-        brew install stow openssl starship
+        brew install stow openssl starship font-commit-mono-nerd-font
         ;;
       "Linux")
         sudo apt-get update && sudo apt-get install -y stow curl feh xclip openssl

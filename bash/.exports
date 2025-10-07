@@ -1,19 +1,31 @@
 #!/usr/bin/env bash
 
+# Prepends the given path, prevents adding same path to $PATH
+# when spawning bash in bash
+prepend_path() {
+  case ":$PATH:" in
+    *":$1:"*) ;;
+    *) PATH="$1:$PATH" ;;
+  esac
+}
+
 # Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=50000000;
 export HISTFILESIZE=$HISTSIZE;
 export HISTCONTROL=ignoredups;
+
+export STARSHIP_CONFIG="${HOME}/.config/starship/starship.toml"
+export GOPATH="${HOME}/go"
 
 export EDITOR=vim
 
 if [ "$(uname -s)" == "Darwin" ]; then
   # apple silicon
   if [ "$(uname -m)" == "arm64" ]; then
-    export PATH=/opt/homebrew/bin:$PATH
+    prepend_path "/opt/homebrew/bin"
   # intel
   else
-    export PATH=/usr/local/bin:$PATH
+    prepend_path "/usr/local/bin"
   fi
   # Set Homebrew Cask options
   export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=/Library/Fonts"
@@ -23,6 +35,7 @@ if [ "$(uname -s)" == "Darwin" ]; then
   export LC_CTYPE=en_US.UTF-8
 fi
 
-export PATH="${HOME}/.local/bin:${PATH}"
-export GOPATH="${HOME}/go"
-export STARSHIP_CONFIG="${HOME}/.config/starship/starship.toml"
+prepend_path "${HOME}/.local/bin"
+prepend_path "${HOME}/go/bin"
+
+export PATH

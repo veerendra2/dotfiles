@@ -1,7 +1,7 @@
-theme = Chalk
-font-family = Osaka-Mono
+theme = Dark+
+font-family = CommitMono Nerd Font
 font-synthetic-style = false
-font-size = 16
+font-size = 18
 
 window-height = 35
 window-width = 150
