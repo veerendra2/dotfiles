@@ -36,6 +36,6 @@ if [ "$(uname -s)" == "Darwin" ]; then
 fi
 
 prepend_path "${HOME}/.local/bin"
-prepend_path "${GOPATH}/bin"
+prepend_path "${HOME}/go/bin"
 
 export PATH
