@@ -49,12 +49,15 @@ case "$ACTION" in
   "-i"|"--install")
     case "$(uname -s)" in
       "Darwin")
-        brew install stow openssl starship font-commit-mono-nerd-font
+        brew install stow openssl starship navi font-commit-mono-nerd-font
         ;;
       "Linux")
         sudo apt-get update && sudo apt-get install -y stow curl feh xclip openssl
         # Install starship
         curl -sS https://starship.rs/install.sh | sh
+
+        # Install navi
+        bash <(curl -sL https://raw.githubusercontent.com/denisidoro/navi/master/scripts/install)
         ;;
     esac
 

@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-# Run `git update-index --skip-worktree .extra` to ignore changes for this file

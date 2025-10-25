@@ -74,10 +74,15 @@ fi
 
 # thefuck alternative
 if hash pay-respects 2>/dev/null; then
-    eval "$(pay-respects bash)"
+  eval "$(pay-respects bash)"
 fi
 
 # direnv completion
 if hash direnv 2>/dev/null; then
-    eval "$(direnv hook bash)"
+  eval "$(direnv hook bash)"
+fi
+
+# navi (https://github.com/denisidoro/navi) completion
+if hash direnv 2>/dev/null; then
+  eval "$(navi widget bash)"
 fi

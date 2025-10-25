@@ -38,5 +38,6 @@ fi
 prepend_path "${HOME}/.local/bin"
 prepend_path "${HOME}/go/bin"
 prepend_path "${HOME}/.krew/bin"
+prepend_path "${HOME}/.cargo/bin"
 
 export PATH
