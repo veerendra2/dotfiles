@@ -36,10 +36,6 @@ curl -sL "ipinfo.io/<ip>" | jq
 
 curl -sL "ipinfo.io/<self_global_ip>" | jq
 
-# Launch a container with network utils
-
-docker run -it --entrypoint /bin/sh nicolaka/netshoot
-
 # Map ports
 
 sudo nmap -sS -sV -0 "<target>"
