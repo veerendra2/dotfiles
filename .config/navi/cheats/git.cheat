@@ -1,0 +1,10 @@
+% git
+
+# Remove files from git history
+git filter-branch --tree-filter 'rm -f <file-path-from-root-of-repo>' HEAD
+
+# Keep the file, but don't track changes
+git update-index --skip-worktree <FILE>
+
+# Revert back previous local commit
+git reset --soft HEAD~1

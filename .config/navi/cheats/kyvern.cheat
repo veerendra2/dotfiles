@@ -1,0 +1,7 @@
+% kyverno
+
+# View policy namespaced report summaries
+kubectl get policyreport -A
+
+# View policy cluster report summaries
+kubectl get clusterpolicyreport

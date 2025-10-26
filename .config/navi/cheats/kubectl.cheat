@@ -1,0 +1,25 @@
+% kubectl
+
+# Drain nodes
+kubectl drain <NODE_NAME> --ignore-daemonsets --delete-emptydir-data
+
+# Force delete resources (for example: VolumeSnapshotContent)
+kubectl delete volumesnapshotcontent snapcontent-011b11d1-1101-4b11-b1b1-011abcde11db
+kubectl patch pvc/elasticsearch-data-es-visibility-es-data-0-migrated --type json --patch='[ { "op": "remove", "path": "/metadata/finalizers" } ]' -n temporal
+kubectl patch volumesnapshotcontent/snapcontent-0a772694-18af-49d6-835d-b76226dad9d4  --type json --patch='[ { "op": "remove", "path": "/metadata/finalizers" } ]'
+
+# Force delete a pod
+kubectl delete pod <POD_NAME> --grace-period=0 --force
+
+# Launch a debug contatiner
+;https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/
+kubectl debug -it TARGET_POD --image=busybox:1.28 --target=TARGET_POD_CONTAINER
+
+# Login into node with debug pod
+kubectl debug node/<NODE_NAME> -c veerendra -it --image=mcr.microsoft.com/cbl-mariner/busybox:2.0 -n kyverno
+
+# Delete objects without deleting the depends
+kubectl delete sts <STATEFULLSET_NAME> --cascade=orphan
+
+# Merge kubeconfigs
+KUBECONFIG=$(for f in ./kubeconfig/*; do echo -n "${f}:"; done;) kubectl config view --merge --flatten > ~/.kube/config

@@ -2,8 +2,8 @@
 style:
   tag:
     color: cyan
-    width_percentage: 26
-    min_width: 20
+    width_percentage: 15
+    min_width: 10
   comment:
     color: yellow
     width_percentage: 42

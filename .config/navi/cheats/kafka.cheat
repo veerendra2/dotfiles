@@ -1,0 +1,4 @@
+% kafka
+
+# Check kafka version
+bin/kafka-topics.sh --version

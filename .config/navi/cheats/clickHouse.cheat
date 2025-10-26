@@ -1,0 +1,22 @@
+% clickhouse
+
+# to connect clickhouse
+clickhouse-client
+
+# to connect clickhouse keeper
+clickhouse keeper-client clickhouse-keeper-0
+
+# to force restore
+touch /var/lib/clickhouse/flags/force_restore_data
+
+# To view cluster info
+SELECT * FROM system.clusters LIMIT 2 FORMAT Vertical;
+
+# To get `auditlog` table creation sql command
+SHOW CREATE TABLE auditlog
+
+# To alter TTL for clickhouse DB (Retetion)
+ALTER TABLE logs.logs_local MODIFY TTL toDateTime(timestamp) + INTERVAL 3 DAY
+
+# To view TTL and how to create table
+SHOW CREATE TABLE logs.logs_local;

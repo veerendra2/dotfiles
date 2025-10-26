@@ -1,0 +1,10 @@
+% docker
+
+# Launch it-tools docker container
+docker run -d --name it-tools --restart unless-stopped -p 8006:80 corentinth/it-tools:latest
+
+# Show complete output during build
+export BUILDKIT_PROGRESS=plain
+
+# Show full putput
+docker build --progress=plain --no-cache -t tag .

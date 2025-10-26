@@ -1,0 +1,4 @@
+% az, az cli
+
+# Get AKS cluster credentials
+az aks get-credentials --admin --subscription=<SUBSCRIPTION_NAME> --name <CLUSTER_NAME> --resource-group <RESORUCE_GROUP_NAME> --file <FILE_ANAME>

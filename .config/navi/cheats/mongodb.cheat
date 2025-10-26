@@ -1,0 +1,35 @@
+% mongodb, mongosh
+
+# Connect to mongo instances
+mongosh -u <MONGODB_ROOT_USER> -p <MONGODB_ROOT_PASSWORD>
+
+# Show dbs
+show dbs
+
+# Create or select databases
+use veerendra
+
+# Initiate or establish first member
+rs.initiate()
+
+# Add members
+rs.add( { host: "mongodb-service.mongod-0:27017" } )
+
+# Check states
+rs.status()
+
+# Insert document in collection `user`
+; NOTE: collection is more like a table in RDBMS
+db.user.insert({"Name":"veerendra",Age:32,Gender:"Male"})
+
+# List collections in selected database
+db.getCollectionNames()
+
+# List contents in a(`user`) collection
+db.<COLLECTION_NAME>.find()
+
+# Get featureCompatibilityVersion
+db.adminCommand({ getParameter: 1, featureCompatibilityVersion: 1 })
+
+# Set featureCompatibilityVersion
+db.adminCommand({ setFeatureCompatibilityVersion: "<VERSION>", confirm: true})

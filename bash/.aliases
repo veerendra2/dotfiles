@@ -55,3 +55,6 @@ alias k=kubecolor
 #alias k='kubectl'
 alias kx='kubectx'
 alias kn='kubens'
+
+# navi
+alias np='navi --print'

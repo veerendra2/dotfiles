@@ -1,0 +1,13 @@
+% prometheus
+
+# Getting all series in the TSDB
+{__name__!=""}
+
+# Getting all metric names
+group by(__name__) ({__name__!=""})
+
+# Getting all values for a specific label
+group by(<MY_LABEL>) ({__name__!=""})
+
+# Total number of pod restarts
+kube_pod_container_status_restarts_total{namespace="<NAMESPACE>", container=~"<CONTAINERS>"} != 0
