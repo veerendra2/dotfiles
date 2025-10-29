@@ -1,0 +1,14 @@
+% flux, fluxcd
+
+# Reconcile kustomization
+flux reconcile kustomization <KR_NAME> --with-source
+
+# Reconcile HelmRelease
+flux reconcile helmrelease -n <NAMESPACE> <HR_NAME> --with-source
+
+# Force reconcile a HelmRelease
+flux reconcile helmrelease -n <NAMESPACE> <HR_NAME> --force --reset
+
+$ NAMESPACE: kubectl get ns -o custom-columns=:metadata.name --no-headers
+$ HR_NAME: kubectl get helmrelease -n <NAMESPACE> -o custom-columns=:metadata.name --no-headers
+$ KR_NAME: kubectl get kustomization -n flux-system -o custom-columns=:metadata.name --no-headers

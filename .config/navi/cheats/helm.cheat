@@ -1,0 +1,19 @@
+% helm
+
+# Download a Helm chart and extract it
+helm fetch <REPO_NAME>/<CHART_NAME> --version <VERSION> --untar
+
+# Search for a Helm chart in a repository
+helm search repo <REPO_NAME>/<CHART_NAME> --version <VERSION>
+
+# Render a Helm chart locally
+helm template <LOCAL_CHART>
+
+# Export values of a Helm release to a file
+helm -n <NAMESPACE> get values <HELM_RELEASE> > values.yaml
+
+# Render a Helm chart using values from a Flux HelmRelease
+kubectl -n <NAMESPACE> get helmreleases.helm.toolkit.fluxcd.io <HELM_RELEASE> -o yaml | yq e '.spec.values' | helm template <REPO_NAME>/<CHART_NAME> --version <VERSION> -f -
+
+
+$ NAMESPACE: kubectl get ns -o custom-columns=:metadata.name --no-headers

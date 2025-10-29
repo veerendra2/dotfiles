@@ -1,4 +1,4 @@
-% postgres, psql
+% postgres, psql, sql
 
 # Connect to postgres instance
 psql -U <USERNAME> -d template1
@@ -47,5 +47,10 @@ EXPLAIN ANALYZE SELECT * FROM <TABLE>;
 CREATE DATABASE <DATABASE_NAME>;
 
 # Create user with password
-CREATE USER suma WITH ENCRYPTED PASSWORD '<MY_PASSWORD>';
+CREATE USER <USER> WITH ENCRYPTED PASSWORD '<MY_PASSWORD>';
 
+# Grant privileges on database to user
+GRANT ALL PRIVILEGES ON DATABASE <DATABASE> TO <USER>;
+
+# Run analysis
+EXPLAIN ANALYZE SELECT * FROM <TABLE>;

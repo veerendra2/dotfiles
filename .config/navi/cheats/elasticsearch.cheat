@@ -1,0 +1,47 @@
+% elasticsearch
+
+# Check cluster health
+GET /_cluster/health
+
+# List all indices
+GET /_cat/indices?v
+
+# Get ingest node details
+GET /_nodes/ingest
+
+# View index details
+GET /<INDEX>
+
+# List all shards
+GET /_cat/shards
+
+# View shard allocation
+GET /_cat/allocation
+
+# Check recovery status
+GET /_cat/recovery
+
+# Get document count
+GET /_cat/count
+
+# Get master node info
+GET /_cat/master
+
+# List all nodes
+GET /_cat/nodes
+
+# Show indices matching pattern, sorted by index name
+GET /_cat/indices/my-index*?v=true&s=index
+
+# Explain shard allocation for the cluster
+GET _cluster/allocation/explain
+
+# Retry failed shard allocations
+POST _cluster/reroute?retry_failed
+
+# Retry failed shard allocations (with curl)
+curl -X POST -u elastic:<PASSWORD> "https://localhost:9000/_cluster/reroute?retry_failed"
+
+# Check cluster health (with curl)
+curl -X GET -u elastic:<PASSWORD> "https://localhost:9000/_cluster/health" | jq .
+

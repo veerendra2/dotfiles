@@ -1,4 +1,13 @@
 % az, az cli
 
 # Get AKS cluster credentials
-az aks get-credentials --admin --subscription=<SUBSCRIPTION_NAME> --name <CLUSTER_NAME> --resource-group <RESORUCE_GROUP_NAME> --file <FILE_ANAME>
+az aks get-credentials --admin --subscription=<SUBSCRIPTION_NAME> --name <CLUSTER_NAME> --resource-group <RESOURCE_GROUP_NAME> --file <FILE_NAME>
+
+# Update AKS nodepool
+az aks nodepool update --resource-group <RESOURCE_GROUP_NAME> --cluster-name <CLUSTER_NAME> --name <NODEPOOL_NAME>
+
+
+$ SUBSCRIPTION_NAME: az account list --query "[].name" -o tsv
+$ CLUSTER_NAME: az aks list --query "[].name" -o tsv
+$ RESOURCE_GROUP_NAME: az group list --query "[].name" -o tsv
+$ NODEPOOL_NAME: az aks nodepool list --cluster-name <CLUSTER_NAME> --resource-group <RESOURCE_GROUP> --query "[].name" -o tsv
