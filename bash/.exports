@@ -16,7 +16,7 @@ export HISTCONTROL=ignoredups;
 
 export STARSHIP_CONFIG="${HOME}/.config/starship/starship.toml"
 export GOPATH="${HOME}/go"
-
+export NAVI_PATH="${HOME}/.config/navi/config.yaml"
 export EDITOR=vim
 
 if [ "$(uname -s)" == "Darwin" ]; then
