@@ -6,5 +6,5 @@ docker run -d --name it-tools --restart unless-stopped -p 8006:80 corentinth/it-
 # Show complete output during build
 export BUILDKIT_PROGRESS=plain
 
-# Show full putput
+# Show full output
 docker build --progress=plain --no-cache -t tag .
