@@ -15,7 +15,7 @@ SELECT * FROM system.clusters LIMIT 2 FORMAT Vertical;
 # To get `auditlog` table creation sql command
 SHOW CREATE TABLE auditlog
 
-# To alter TTL for clickhouse DB (Retetion)
+# To alter TTL for clickhouse DB (Retention)
 ALTER TABLE logs.logs_local MODIFY TTL toDateTime(timestamp) + INTERVAL 3 DAY
 
 # To view TTL and how to create table
