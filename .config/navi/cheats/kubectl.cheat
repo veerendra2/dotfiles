@@ -1,0 +1,55 @@
+% kubectl
+
+# Drain nodes
+kubectl drain <NODE_NAME> --ignore-daemonsets --delete-emptydir-data
+
+# Remove finalizers for namespaced resources (e.g. pvc/my-pvc)
+; Make sure delete the resource first
+kubectl patch <RESOURCE>/<NAME> --type json --patch='[ { "op": "remove", "path": "/metadata/finalizers" } ]' -n <NAMESPACE>
+
+# Remove finalizers for resources (e.g. pvc/my-pvc)
+; Make sure delete the resource first
+kubectl patch <RESOURCE>/<NAME> --type json --patch='[ { "op": "remove", "path": "/metadata/finalizers" } ]'
+
+# Force delete a pod
+kubectl delete -n <NAMESPACE> pod <POD_NAME> --grace-period=0 --force
+
+# Launch a debug container
+;https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/
+kubectl debug -it <POD_NAME> --image=busybox:1.28 --target=<POD_CONTAINER>
+
+# Login into node with debug pod
+kubectl debug node/<NODE_NAME> -c veerendra-debug -it --image=mcr.microsoft.com/cbl-mariner/busybox:2.0 -n <NAMESPACE>
+
+# Delete statefulset without deleting the depends
+kubectl delete -n <NAMESPACE> sts <STATEFULLSET_NAME> --cascade=orphan
+
+# View failed cert-manager requests/challenges
+kubectl -n <NAMESPACE> get certificaterequests.cert-manager.io,orders.acme.cert-manager.io,challenges.acme.cert-manager.io | egrep "(invalid|error|False)"
+
+# Delete cert-manager certificate requests/challenges
+kubectl -n <NAMESPACE> delete certificaterequests.cert-manager.io <CERT_REQUESTS>
+
+# Renew cert-manager certificate
+cert-manager -n <NAMESPACE> renew <CERT_REQUESTS>
+
+# Create port-forward for a service
+kubectl -n <NAMESPACE> port-forward svc/<SERVICE_NAME> <SERVICE_PORT>
+
+# Get secret
+kubectl get secret -n <NAMESPACE> <K8S_SECRET> -o jsonpath="{.data.<K8S_SECRET_KEY>}" | base64 --decode | pbcopy
+
+# Merge kubeconfigs
+KUBECONFIG=$(for f in ./kubeconfig/*; do echo -n "${f}:"; done;) kubectl config view --merge --flatten > ~/.kube/config
+
+
+$ NAMESPACE: kubectl get ns -o custom-columns=:metadata.name --no-headers
+$ POD_NAME: kubectl get pods -o custom-columns=:metadata.name --no-headers -n <NAMESPACE>
+$ NODE_NAME: kubectl get nodes -o custom-columns=:metadata.name --no-headers
+$ STATEFULLSET_NAME: kubectl get statefulsets -o custom-columns=:metadata.name --no-headers
+$ CERT_REQUESTS: kubectl get certificaterequests.cert-manager.io -n <NAMESPACE> -o custom-columns=:metadata.name --no-headers
+$ SERVICE_NAME: kubectl get svc -n <NAMESPACE> -o custom-columns=:metadata.name --no-headers
+$ SERVICE_PORT: kubectl get svc <SERVICE_NAME> -n <NAMESPACE> -o jsonpath='{range .spec.ports[*]}{.port}{"\n"}{end}'
+$ POD_CONTAINER: kubectl get pod <POD_NAME> -n <NAMESPACE> -o jsonpath='{range .spec.containers[*]}{.name}{"\n"}{end}'
+$ K8S_SECRET: kubectl get secrets -n <NAMESPACE> -o custom-columns=:metadata.name --no-headers
+$ K8S_SECRET_KEY: kubectl get -n <NAMESPACE> secrets <K8S_SECRET> -o jsonpath='{.data}' | jq -r 'keys[]'

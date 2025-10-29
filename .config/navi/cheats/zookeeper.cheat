@@ -1,0 +1,7 @@
+% zookeeper
+
+# Connect to zookeeper shell
+./bin/zkCli.sh
+
+# Determine the node is leader or follower
+echo stat | nc localhost 2181 | grep Mode

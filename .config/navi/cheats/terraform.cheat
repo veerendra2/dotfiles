@@ -1,0 +1,16 @@
+% terraform
+
+# Pull state from remote
+terraform state pull > tfstate.json
+
+# List resources from state
+terraform state list
+
+# Remove resources from state
+terraform state rm <TF_RESOURCE_NAME>
+
+# Move resources
+terraform state mv <SRC_RESOURCE_NAME> <DEST_RESOURCE_NAME>
+
+# Remove all resource from state (DRY RUN ONLY!)
+terraform state rm -dry-run $(terraform state list)

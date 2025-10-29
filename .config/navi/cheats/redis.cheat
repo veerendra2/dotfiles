@@ -1,0 +1,7 @@
+% redis, redis-cli
+
+# Get replica info
+INFO
+
+# List all keys
+KEYS *

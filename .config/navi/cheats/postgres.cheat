@@ -1,0 +1,54 @@
+% postgres, psql, sql
+
+# Connect to postgres instance
+psql -U <USERNAME> -d template1
+
+# Connect to database
+\c <DATABASE_NAME>
+
+# List all users
+\du
+
+# Quit psql
+\q
+
+# List databases
+\l
+
+# List all schemas
+\dn
+
+# List all tables
+\dt
+
+# Detailed info on a table
+\d+ <TABLE_NAME>
+
+# List all views
+\dv
+
+# Enable extended display
+\x on
+
+# Expanded display is used automatically
+\x auto
+
+# Enable timing of query
+\timing
+
+
+# Replicate status on MASTER
+select * from pg_stat_replication;
+
+# Run analysis
+EXPLAIN ANALYZE SELECT * FROM <TABLE>;
+
+# Create database (SQL command)
+CREATE DATABASE <DATABASE_NAME>;
+
+# Create user with password
+CREATE USER <USER> WITH ENCRYPTED PASSWORD '<MY_PASSWORD>';
+
+# Grant privileges on database to user
+GRANT ALL PRIVILEGES ON DATABASE <DATABASE> TO <USER>;
+
