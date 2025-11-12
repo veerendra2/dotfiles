@@ -1,0 +1,7 @@
+% restic
+
+# Initialize sftp repository
+restic -r sftp:<SSH_USERNAME>@<SSH_HOST>:<REMOTE_PATH> init
+
+# Run sftp backup
+restic -r sftp:<SSH_USERNAME>@<SSH_HOST>:<REMOTE_PATH> backup <LOCAL_SRC_PATH>
