@@ -14,3 +14,5 @@ terraform state mv <SRC_RESOURCE_NAME> <DEST_RESOURCE_NAME>
 
 # Remove all resource from state (DRY RUN ONLY!)
 terraform state rm -dry-run $(terraform state list)
+
+$ TF_RESOURCE_NAME: terraform state list
