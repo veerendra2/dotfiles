@@ -31,6 +31,7 @@ case "$ACTION" in
     done
     stow -D -t "${HOME}/.config" --no-folding .config
     stow -D -t "${HOME}/.vim" --no-folding .vim
+    stow -D -t "${HOME}/.ssh" --no-folding .ssh
     echo "[.] Dotfiles uninstalled!"
     exit 0
     ;;
@@ -42,6 +43,7 @@ case "$ACTION" in
     done
     stow -R -t "${HOME}/.config" --no-folding .config
     stow -R -t "${HOME}/.vim" --no-folding .vim
+    stow -R -t "${HOME}/.ssh" --no-folding .ssh
     echo "[*] Dotfiles re-stowed!"
     exit 0
     ;;
@@ -61,7 +63,7 @@ case "$ACTION" in
         ;;
     esac
 
-    mkdir -p "${HOME}"/{projects,.config,.vim}
+    mkdir -p "${HOME}"/{projects,.config,.vim,.ssh,.ssh/config.d}
 
     pushd "${HOME}/projects" > /dev/null
 
@@ -86,6 +88,7 @@ case "$ACTION" in
     done
     stow -t "${HOME}/.config" --no-folding .config
     stow -t "${HOME}/.vim" --no-folding .vim
+    stow -t "${HOME}/.ssh" --no-folding .ssh
     echo "[*] Dotfiles installed!"
     ;;
 
