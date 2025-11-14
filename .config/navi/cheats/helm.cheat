@@ -15,5 +15,15 @@ helm -n <NAMESPACE> get values <HELM_RELEASE> > values.yaml
 # Render a Helm chart using values from a Flux HelmRelease
 kubectl -n <NAMESPACE> get helmreleases.helm.toolkit.fluxcd.io <HELM_RELEASE> -o yaml | yq e '.spec.values' | helm template <REPO_NAME>/<CHART_NAME> --version <VERSION> -f -
 
+# Login helm OCI registry
+helm registry login <REGISTRY_URL>
+
+; Example: helm push mongodb-16.5.22.tgz oci://registry-1.docker.io/bitnamicharts
+# Helm push OCI registry
+helm push <CHART_TGZ> <OCI_REGISTRY>
+
+; Example: helm pull oci://registry-1.docker.io/bitnamicharts/mongodb --version 16.2.1
+# Helm pull OCI registry
+helm pull <OCI_REGISTRY> --version <CHART_VERSION>
 
 $ NAMESPACE: kubectl get ns -o custom-columns=:metadata.name --no-headers
