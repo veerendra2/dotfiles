@@ -1,0 +1,3 @@
+% scp
+
+scp path/to/local_file remote_host:path/to/remote_file

@@ -1,4 +1,4 @@
 % ansible
 
 # List hosts and tags
-ansible-playbook main.yml --list-tags --list-hosts
+ansible-playbook <PLAYBOOK_FILE> --list-tags --list-hosts

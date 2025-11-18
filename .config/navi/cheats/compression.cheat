@@ -1,0 +1,39 @@
+% tar, zip, gzip, 7z
+
+# Create a tar containing files
+tar cf <NAME>.tar <FILES>
+
+# Extract the files from a tar
+tar xf <TAR_FILE>
+
+# Create a tar with Gzip compression
+tar czf <NAME>.tar.gz <files>
+
+# Extract a tar using Gzip
+tar xzf <TARGZ_FILE>
+
+# List contents of a tar (gzip compressed)
+tar -tzvf <TARGZ_FILE>
+
+# List contents of a tar (uncompressed)
+tar --list --verbose --file=<TAR_FILE>
+
+% gzip
+
+# Compress file and appends .gz to its name
+gzip <PATH>
+
+# Decompress compressed file
+gzip -d <GZ_FILE>
+
+% 7z
+
+# Extract to directory
+7z x ZIP_FILE -o <OUTPUT_DIR>
+
+
+$ PATH: ls
+$ TAR_FILE: ls *.tar
+$ TARGZ_FILE: ls *.tar.gz
+$ GZ_FILE: ls *.gz
+$ ZIP_FILE: ls *.zip
