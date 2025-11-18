@@ -1,0 +1,12 @@
+% nextcloud
+
+# Run nextcloud update
+./occ upgrade
+
+# Set/toggle maintenance
+./occ maintenance:mode <MODE>
+
+# Set memory limit
+php -d memory_limit=1024M ./occ preview:generate-all
+
+$ MODE: echo -e "--off\n--on"

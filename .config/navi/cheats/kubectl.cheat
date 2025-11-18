@@ -39,6 +39,9 @@ kubectl -n <NAMESPACE> port-forward svc/<SERVICE_NAME> <SERVICE_PORT>
 # Get secret
 kubectl get secret -n <NAMESPACE> <K8S_SECRET> -o jsonpath="{.data.<K8S_SECRET_KEY>}" | base64 --decode | pbcopy
 
+# Raw API query
+kubectl get --raw /apis/apps/v1
+
 # Merge kubeconfigs
 KUBECONFIG=$(for f in ./kubeconfig/*; do echo -n "${f}:"; done;) kubectl config view --merge --flatten > ~/.kube/config
 

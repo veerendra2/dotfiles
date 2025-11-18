@@ -1,0 +1,34 @@
+% netplan
+
+;https://netplan.readthedocs.io/en/stable/netplan-yaml
+
+# Enable/disable DHCP(v4) for the interface
+netplan set <IFACE_TYPE>.<IFACE_NAME>.dhcp4=<BOOL_VALUE>
+
+# Add IP(v4) addresses for interfaces
+netplan set <IFACE_TYPE>.<IFACE_NAME>.addresses=[192.168.0.120/24]
+
+# Add network gateway(v4)
+netplan set <IFACE_TYPE>.<IFACE_NAME>.gateway4=192.168.0.1
+
+# Add DNS nameservers
+netplan set <IFACE_TYPE>.<IFACE_NAME>.nameservers.addresses=[1.1.1.1]
+
+# Put interface down all the times
+sudo netplan set <IFACE_TYPE>.<IFACE_NAME>.activation-mode=off
+
+# Enable/disable use NTP for the interface (Override)
+netplan set <IFACE_TYPE>.<IFACE_NAME>.dhcp4-overrides.use-ntp=<BOOL_VALUE>
+
+# Enable/disable DHCP(v4) for the interface (Override)
+netplan set <IFACE_TYPE>.<IFACE_NAME>.dhcp4-overrides.use-dns=<BOOL_VALUE>
+
+# Dryrun config
+netplan try
+
+# Apply config
+netplan apply
+
+$ IFACE_TYPE: printf "ethernets\nwifis\n"
+$ IFACE_NAME: printf "eth0\nwlan0\n"
+$ BOOL_VALUE: printf "true\nfalse\n"
