@@ -7,7 +7,7 @@ helm fetch <REPO_NAME>/<CHART_NAME> --version <VERSION> --untar
 helm search repo <REPO_NAME>/<CHART_NAME> --version <VERSION>
 
 # Render a Helm chart locally
-helm template <LOCAL_CHART>
+helm template <LOCAL_CHART_LOCATION>
 
 # Export values of a Helm release to a file
 helm -n <NAMESPACE> get values <HR_NAME> > values.yaml
@@ -28,3 +28,4 @@ helm pull <OCI_REGISTRY> --version <CHART_VERSION>
 
 $ NAMESPACE: kubectl get ns -o custom-columns=:metadata.name --no-headers
 $ HR_NAME: kubectl get helmrelease -n <NAMESPACE> -o custom-columns=:metadata.name --no-headers
+$ LOCAL_CHART_LOCATION: fd -t d . ~ | fzf --preview 'ls -la {}'
