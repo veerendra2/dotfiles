@@ -1,7 +1,5 @@
 # Dotfiles
 
-![starship config image](./assets/image.png)
-
 ## Install
 
 ### For MacOS

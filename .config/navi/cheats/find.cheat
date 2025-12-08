@@ -1,0 +1,37 @@
+% gnu find
+
+# Find all files size between X and Y (G -> GB, M -> MB)
+find <PATH> -size +<GREATER_THAN_SIZE> -size -<LESS_THAN_SIZE>
+
+# Find all bigger than X size files (G -> GB, M -> MB)
+find <PATH> -size +<GREATER_THAN_SIZE>
+
+# Find all smaller than X size files (G -> GB, M -> MB)
+find <PATH> -size -<LESS_THAN_SIZE>
+
+# Find all files that are exactly X size (G -> GB, M -> MB)
+find <PATH> -size <SIZE>
+
+# Find last X days modified files
+find <PATH> -mtime <DAYS>
+
+# find last X days accessed files
+find <PATH> -atime <DAYS>
+
+# find last X to Y days modified files
+find <PATH> -mtime +<X_DAYS> –mtime -<Y_DAYS>
+
+# find changed files in last X minutes
+find <PATH> -cmin -<MINUTES>
+
+# find modified files in last X minutes
+find <PATH> -mmin -<MINUTES>
+
+# find accessed files in last X minutes
+find / -amin -<MINUTES>
+
+# Find and delete X size files (G -> GB, M -> MB)
+find / -type f -size +<FILE_SIZE> -exec rm -f {} \;
+
+# Find and suffix (added .bak)
+find . -type f -name '<FILE_NAME_PREFIX>*' -exec mv {} {}.bak\;

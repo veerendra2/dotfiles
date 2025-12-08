@@ -9,4 +9,7 @@ brew tap-info --installed
 # List installed taps
 brew tap
 
+# List/search available packages in tap
+brew search <TAP>
+
 $ TAP: brew tap
