@@ -8,7 +8,7 @@ lsof -i :<port> \
 
 # Kill a process using a port given a name
 
-port="$(echo "<process>" | grep -Eo ':([0-9][0-9][0-9]+) ' | tr -d ':')"
+port="$(echo "<PROCESS>" | grep -Eo ':([0-9][0-9][0-9]+) ' | tr -d ':')"
 lsof -i :$port \
  | awk '{l=$2} END {print l}' \
  | xargs kill
@@ -34,7 +34,7 @@ curl -sL "ipinfo.io/<ip>" | jq
 
 # Geolocation data for own IP
 
-curl -sL "ipinfo.io/<self_global_ip>" | jq
+curl -sL "ipinfo.io/<SELF_PUBLIC_IP>" | jq
 
 # Map ports
 
@@ -52,5 +52,5 @@ lsof -Pn -i4
 
 python3 -m http.server
 
-$ self_global_ip: dig +short myip.opendns.com @resolver1.opendns.com
-$ process: lsof -iTCP -sTCP:LISTEN -n -P | sed -E "s/:([0-9][0-9][0-9]+) /:$(tput setaf 3)\1$(tput sgr0) /g" --- --header-lines 1
+$ SELF_PUBLIC_IP: dig +short myip.opendns.com @resolver1.opendns.com
+$ PROCESS: lsof -iTCP -sTCP:LISTEN -n -P | sed -E "s/:([0-9][0-9][0-9]+) /:$(tput setaf 3)\1$(tput sgr0) /g" --- --header-lines 1
