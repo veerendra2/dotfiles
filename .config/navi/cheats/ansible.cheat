@@ -2,3 +2,9 @@
 
 # List hosts and tags
 ansible-playbook <PLAYBOOK_FILE> --list-tags --list-hosts
+
+# This will output "foo\nyes"
+echo foo
+true \
+   && echo yes \
+   || echo no
