@@ -3,6 +3,9 @@
 # Connect to mongo instances
 mongosh -u <MONGODB_ROOT_USER> -p <MONGODB_ROOT_PASSWORD>
 
+# Connect to mongo instance (With root user and default password)
+mongosh -u ${MONGODB_ROOT_USER} -p $(cat /opt/bitnami/mongodb/secrets/mongodb-root-password)
+
 # Show dbs
 show dbs
 

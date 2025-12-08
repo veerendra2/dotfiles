@@ -46,13 +46,13 @@ kubectl get --raw /apis/apps/v1
 KUBECONFIG=$(for f in ./kubeconfig/*; do echo -n "${f}:"; done;) kubectl config view --merge --flatten > ~/.kube/config
 
 
-$ NAMESPACE: kubectl get ns -o custom-columns=:metadata.name --no-headers
-$ POD_NAME: kubectl get pods -o custom-columns=:metadata.name --no-headers -n <NAMESPACE>
-$ NODE_NAME: kubectl get nodes -o custom-columns=:metadata.name --no-headers
-$ STATEFULLSET_NAME: kubectl get statefulsets -o custom-columns=:metadata.name --no-headers
-$ CERT_REQUESTS: kubectl get certificaterequests.cert-manager.io -n <NAMESPACE> -o custom-columns=:metadata.name --no-headers
-$ SERVICE_NAME: kubectl get svc -n <NAMESPACE> -o custom-columns=:metadata.name --no-headers
+$ NAMESPACE: kubectl get ns --- --column 1 --header-lines 1 --delimiter '\s\s+'
+$ POD_NAME: kubectl get pods -n <NAMESPACE> --- --column 1 --header-lines 1 --delimiter '\s\s+'
+$ NODE_NAME: kubectl get nodes --- --column 1 --header-lines 1 --delimiter '\s\s+'
+$ STATEFULLSET_NAME: kubectl get statefulsets -n <NAMESPACE> --column 1 --header-lines 1 --delimiter '\s\s+'
+$ CERT_REQUESTS: kubectl get certificaterequests.cert-manager.io -n <NAMESPACE> --column 1 --header-lines 1 --delimiter '\s\s+'
+$ SERVICE_NAME: kubectl get svc -n <NAMESPACE> --column 1 --header-lines 1 --delimiter '\s\s+'
 $ SERVICE_PORT: kubectl get svc <SERVICE_NAME> -n <NAMESPACE> -o jsonpath='{range .spec.ports[*]}{.port}{"\n"}{end}'
 $ POD_CONTAINER: kubectl get pod <POD_NAME> -n <NAMESPACE> -o jsonpath='{range .spec.containers[*]}{.name}{"\n"}{end}'
-$ K8S_SECRET: kubectl get secrets -n <NAMESPACE> -o custom-columns=:metadata.name --no-headers
+$ K8S_SECRET: kubectl get secrets -n <NAMESPACE> --column 1 --header-lines 1 --delimiter '\s\s+'
 $ K8S_SECRET_KEY: kubectl get -n <NAMESPACE> secrets <K8S_SECRET> -o jsonpath='{.data}' | jq -r 'keys[]'

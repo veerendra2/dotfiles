@@ -9,6 +9,6 @@ flux reconcile helmrelease -n <NAMESPACE> <HR_NAME> --with-source
 # Force reconcile a HelmRelease
 flux reconcile helmrelease -n <NAMESPACE> <HR_NAME> --force --reset
 
-$ NAMESPACE: kubectl get ns -o custom-columns=:metadata.name --no-headers
-$ HR_NAME: kubectl get helmrelease -n <NAMESPACE> -o custom-columns=:metadata.name --no-headers
-$ KR_NAME: kubectl get kustomization -n flux-system -o custom-columns=:metadata.name --no-headers
+$ NAMESPACE: kubectl get ns --column 1 --header-lines 1 --delimiter '\s\s+'
+$ HR_NAME: kubectl get helmrelease -n <NAMESPACE> --column 1 --header-lines 1 --delimiter '\s\s+'
+$ KR_NAME: kubectl get kustomization -n flux-system --column 1 --header-lines 1 --delimiter '\s\s+'

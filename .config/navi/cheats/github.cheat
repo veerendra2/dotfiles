@@ -7,5 +7,5 @@ gh workflow list
 gh workflow run '<WORKFLOW>' --ref <FEAT_BRANCH>
 
 
-$ WORKFLOW: gh workflow list --json name --jq '.[].name'
+$ WORKFLOW: gh workflow list --- --column 1 --header-lines 1 --delimiter '\s\s+'
 $ FEAT_BRANCH: gh api repos/{owner}/{repo}/git/refs/heads --jq '.[].ref | split("/") | .[-1]'

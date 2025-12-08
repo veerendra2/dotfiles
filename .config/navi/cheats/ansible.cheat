@@ -2,3 +2,37 @@
 
 # List hosts and tags
 ansible-playbook <PLAYBOOK_FILE> --list-tags --list-hosts
+
+# Install a single collection
+ansible-galaxy collection install <COLLECTION_NAME>
+
+# List all installed collections
+ansible-galaxy collection list
+
+# Install a list of collections
+ansible-galaxy collection install -r requirements.yml
+
+# List all installed roles
+ansible-galaxy role list
+
+% ansible Ad-hoc commands
+
+# Test connectivity with ping module
+ansible <INVENTORY_GROUP> -m ping
+
+# Run shell commands with shell module
+ansible <INVENTORY_GROUP> -m shell -a "<SHELL_COMMAND>"
+
+# Manage service with service module ()
+ansible <INVENTORY_GROUP> -m service -a "name=<SERVICE> state=<SERVICE_STATE>" -b
+
+# Reboot servers
+ansible <INVENTORY_GROUP> -m reboot -b
+
+# Install a package
+ansible <INVENTORY_GROUP> -m ansible.builtin.apt -a "name=<PKG_NAME> state=<PKG_STATE>" -b -K
+
+$ SERVICE_STATE: echo -e "absent\nstarted\nstopped\nrestarted"
+$ PKG_STATE: echo -e "absent\nbuild-dep\nlatest\npresent"
+$ PLAYBOOK_FILE: ls *.yaml *.yml 2>/dev/null | sort -u
+$ INVENTORY_GROUP: ansible-inventory --list | jq -r "keys | .[]"
