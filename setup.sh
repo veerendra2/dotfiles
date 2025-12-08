@@ -31,6 +31,7 @@ case "$ACTION" in
     done
     stow -D -t "${HOME}/.config" --no-folding .config
     stow -D -t "${HOME}/.vim" --no-folding .vim
+    stow -D -t "${HOME}/.ssh" --no-folding .ssh
     echo "[.] Dotfiles uninstalled!"
     exit 0
     ;;
@@ -42,6 +43,7 @@ case "$ACTION" in
     done
     stow -R -t "${HOME}/.config" --no-folding .config
     stow -R -t "${HOME}/.vim" --no-folding .vim
+    stow -R -t "${HOME}/.ssh" --no-folding .ssh
     echo "[*] Dotfiles re-stowed!"
     exit 0
     ;;
@@ -49,10 +51,10 @@ case "$ACTION" in
   "-i"|"--install")
     case "$(uname -s)" in
       "Darwin")
-        brew install stow openssl starship navi font-commit-mono-nerd-font
+        brew install stow openssl starship navi fd fzf font-commit-mono-nerd-font
         ;;
       "Linux")
-        sudo apt-get update && sudo apt-get install -y stow curl feh xclip openssl
+        sudo apt-get update && sudo apt-get install -y stow fd-find fzf curl feh xclip openssl
         # Install starship
         curl -sS https://starship.rs/install.sh | sh
 
@@ -61,7 +63,7 @@ case "$ACTION" in
         ;;
     esac
 
-    mkdir -p "${HOME}"/{projects,.config,.vim}
+    mkdir -p "${HOME}"/{projects,.config,.vim,.ssh,.ssh/config.d}
 
     pushd "${HOME}/projects" > /dev/null
 
@@ -86,6 +88,7 @@ case "$ACTION" in
     done
     stow -t "${HOME}/.config" --no-folding .config
     stow -t "${HOME}/.vim" --no-folding .vim
+    stow -t "${HOME}/.ssh" --no-folding .ssh
     echo "[*] Dotfiles installed!"
     ;;
 

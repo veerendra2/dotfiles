@@ -1,0 +1,4 @@
+% rsync
+
+# Sync/copy files/dirs to ssh remote host
+rsync -zvhe ssh <SRC> <SSH_USER>@<SSH_HOST>:<DEST>

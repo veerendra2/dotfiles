@@ -1,0 +1,11 @@
+% gh github cli
+
+# List workflows in repository (You have to be in github repository)
+gh workflow list
+
+# Trigger/run Gituhb 'workflow_dispatch' workflow (Only workflows contains 'workflow_dispatch' trigger)
+gh workflow run '<WORKFLOW>' --ref <FEAT_BRANCH>
+
+
+$ WORKFLOW: gh workflow list --json name --jq '.[].name'
+$ FEAT_BRANCH: gh api repos/{owner}/{repo}/git/refs/heads --jq '.[].ref | split("/") | .[-1]'
