@@ -1,0 +1,15 @@
+% gnu screen, screen
+
+# List all sessions
+screen -ls
+
+# Detach the elsewhere running screen (and reattach here).
+screen -r <SESSION_IDS>
+
+# Attach to a not detached screen. (Multi display mode)
+screen -x <SESSION_IDS>
+
+# Remove/kill a screen
+screen -XS <SESSION_IDS> quit
+
+$ SESSION_IDS: screen -ls | sed '1d;$d' | awk '{print $1,$2}' --- --column 1 --delimiter '\s'
