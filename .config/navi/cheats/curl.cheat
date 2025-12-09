@@ -2,3 +2,13 @@
 
 # Post JSON file to URL
 curl -X POST -H "Content-Type: application/json" -d @<PATH> <URL>
+
+# Http POST method
+curl --request POST --data "<KEY>: <VALUE>" <URL>
+
+# POST json data
+curl -X POST -H "Content-Type: application/json" -d '{"<KEY>":"<VALUE>"}' <URL>
+
+# DELETE method
+curl -X DELETE <URL>
+
