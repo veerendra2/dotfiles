@@ -12,5 +12,5 @@ az vm list-skus --location <REGION> --all true --resource-type virtualMachines -
 $ SUBSCRIPTION_NAME: az account list --query "[].name" -o tsv
 $ CLUSTER_NAME: az aks list --query "[].name" -o tsv
 $ RESOURCE_GROUP_NAME: az group list --query "[].name" -o tsv
-$ NODEPOOL_NAME: az aks nodepool list --cluster-name <CLUSTER_NAME> --resource-group <RESOURCE_GROUP> --query "[].name" -o tsv
+$ NODEPOOL_NAME: az aks nodepool list --cluster-name <CLUSTER_NAME> --resource-group <RESOURCE_GROUP_NAME> --query "[].name" -o tsv
 $ REGION: az account list-locations --query '[].name' -o tsv

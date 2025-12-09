@@ -57,7 +57,6 @@ case "$ACTION" in
         sudo apt-get update && sudo apt-get install -y stow fd-find fzf curl feh xclip openssl
         # Install starship
         curl -sS https://starship.rs/install.sh | sh
-
         # Install navi
         bash <(curl -sL https://raw.githubusercontent.com/denisidoro/navi/master/scripts/install)
         ;;
