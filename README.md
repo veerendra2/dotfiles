@@ -7,7 +7,7 @@
 
 <details>
 
-<summary>Prerequire Step For MacOS</summary>
+<summary>Prerequisite Step For MacOS</summary>
 
 - Install [HomeBrew](https://brew.sh/)
 
