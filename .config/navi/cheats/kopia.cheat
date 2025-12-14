@@ -1,6 +1,6 @@
 % kopia
 
-# Repository status
+# Repository status (Also display repository token and how to connect)
 kopia repository status -t -s
 
 # Connect to repository with repository token
