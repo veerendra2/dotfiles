@@ -12,5 +12,20 @@ kopia snapshot list --all
 # Restore a snapshot
 kopia restore <SNAPSHOT_ID> <PATH_TO_RESTORE>
 
+# Create snapshot
+kopia snapshot create <SOURCE>
+
 # Connect to S3
 kopia repository connect s3 --endpoint=<ENDPOINT> --prefix=<PREFIX> --bucket=<BUCKET> --access-key=<ACCESS_KEY> --secret-access-key=<SECRET_ACCESS_KEY>
+
+# Verify snapshot
+kopia snapshot verify --verify-files-percent=0.1 --file-parallelism=10 --parallel=10
+
+# Fix invalid
+kopia snapshot fix invalid-files
+
+# Run full maintenance
+kopia maintenance run --full
+
+
+$ SNAPSHOT_ID: kopia snapshot list --all | sed 's/^[ \t]*//' --- --column 4 --header-lines 1 --delimiter '\s'
