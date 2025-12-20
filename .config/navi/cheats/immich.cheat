@@ -1,0 +1,21 @@
+% immich
+
+;https://docs.immich.app/administration/server-commands/
+
+# Reset Admin Password
+immich-admin reset-admin-password
+
+# Disable Password Login
+immich-admin disable-password
+
+# Enable Password Login
+immich-admin enable-password
+
+# Disable Maintenance Mode
+immich-admin disable-maintenance
+
+# Enable Maintenance Mode
+immich-admin enable-maintenance
+
+# List Users
+immich-admin list-users
