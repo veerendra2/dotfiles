@@ -8,3 +8,6 @@ export BUILDKIT_PROGRESS=plain
 
 # Show full output
 docker build --progress=plain --no-cache -t tag .
+
+# Docker compose config
+docker compose config --no-normalize --no-interpolate --output compose.production.yml
