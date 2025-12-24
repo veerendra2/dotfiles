@@ -8,3 +8,7 @@ source env/bin/activate
 
 # Deactivate virtual environment
 deactivate
+
+% direnv
+# Create and load virtual environment with direnv
+echo "layout python3" > .envrc
