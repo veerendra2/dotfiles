@@ -32,8 +32,7 @@ alias pubip="dig +short txt ch whoami.cloudflare @1.0.0.1 | tr -d '\"'"
 # Local address
 alias localip='ip r | grep '^default' | awk '\''{print $9, $5}'\'''
 
-# Python
-alias python="python3"
+# Pythona
 alias pyserver="python3 -m http.server"
 
 # Vagrant

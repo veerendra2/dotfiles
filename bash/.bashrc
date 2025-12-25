@@ -86,3 +86,7 @@ fi
 if hash direnv 2>/dev/null; then
   eval "$(navi widget bash)"
 fi
+
+if hash pyenv 2>/dev/null; then
+  eval "$(pyenv init - bash)"
+fi

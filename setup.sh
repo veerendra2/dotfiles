@@ -51,14 +51,26 @@ case "$ACTION" in
   "-i"|"--install")
     case "$(uname -s)" in
       "Darwin")
-        brew install stow openssl starship navi fd fzf font-commit-mono-nerd-font
+        brew install stow openssl starship navi fd fzf font-commit-mono-nerd-font pyenv
+        # Python build dependencies - pyenv
+        # https://github.com/pyenv/pyenv/wiki#suggested-build-environment
+        brew install readline sqlite3 xz tcl-tk@8 libb2 zstd zlib pkgconfig
         ;;
       "Linux")
-        sudo apt-get update && sudo apt-get install -y stow fd-find fzf curl feh xclip openssl
+        sudo apt-get update
+        sudo apt-get install -y stow fd-find fzf curl feh xclip openssl
+        # Python build dependencies - pyenv
+        # https://github.com/pyenv/pyenv/wiki#suggested-build-environment
+        sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
+            libbz2-dev libreadline-dev libsqlite3-dev curl git \
+            libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev \
+            libffi-dev liblzma-dev
         # Install starship
-        curl -sS https://starship.rs/install.sh | sh
+        curl -fsSL https://starship.rs/install.sh | sh
         # Install navi
-        bash <(curl -sL https://raw.githubusercontent.com/denisidoro/navi/master/scripts/install)
+        curl -fsSL https://raw.githubusercontent.com/denisidoro/navi/master/scripts/install | bash
+        # Install pyenv
+        curl -fsSL https://pyenv.run | bash
         ;;
     esac
 

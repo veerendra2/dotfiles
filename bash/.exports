@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 # Prepends the given path, prevents adding same path to $PATH
-# when spawning bash in bash
+# when spawning bash in bash.
+# Prepends the given path to $PATH, giving priority to selected bin paths.
+# Note: the last path in this file is added first (highest priority)
 prepend_path() {
   case ":$PATH:" in
     *":$1:"*) ;;
@@ -9,16 +11,26 @@ prepend_path() {
   esac
 }
 
-# Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=50000000;
 export HISTFILESIZE=$HISTSIZE;
 export HISTCONTROL=ignoredups;
-
 export STARSHIP_CONFIG="${HOME}/.config/starship/starship.toml"
 export GOPATH="${HOME}/go"
 export NAVI_CONFIG="${HOME}/.config/navi/config.yaml"
 export EDITOR=vim
 
+# Setup pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+if [[ -d $PYENV_ROOT/bin ]]; then
+  prepend_path "$PYENV_ROOT/bin"
+fi
+
+prepend_path "${HOME}/.krew/bin"
+prepend_path "${HOME}/go/bin"
+prepend_path "${HOME}/.cargo/bin"
+prepend_path "${HOME}/.local/bin"
+
+# Setup homebrew
 if [ "$(uname -s)" == "Darwin" ]; then
   # apple silicon
   if [ "$(uname -m)" == "arm64" ]; then
@@ -34,10 +46,5 @@ if [ "$(uname -s)" == "Darwin" ]; then
   export LC_ALL=en_US.UTF-8
   export LC_CTYPE=en_US.UTF-8
 fi
-
-prepend_path "${HOME}/.local/bin"
-prepend_path "${HOME}/go/bin"
-prepend_path "${HOME}/.krew/bin"
-prepend_path "${HOME}/.cargo/bin"
 
 export PATH
