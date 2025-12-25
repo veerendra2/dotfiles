@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-# Prepends the given path, prevents adding same path to $PATH
-# when spawning bash in bash.
-# Prepends the given path to $PATH, giving priority to selected bin paths.
+# Prepends the given path to $PATH, avoiding duplicates.
 # Note: the last path in this file is added first (highest priority)
 prepend_path() {
   case ":$PATH:" in
