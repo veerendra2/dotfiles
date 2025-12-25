@@ -83,7 +83,7 @@ if hash direnv 2>/dev/null; then
 fi
 
 # navi (https://github.com/denisidoro/navi) completion
-if hash direnv 2>/dev/null; then
+if hash navi 2>/dev/null; then
   eval "$(navi widget bash)"
 fi
 
