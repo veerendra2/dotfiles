@@ -10,5 +10,33 @@ source env/bin/activate
 deactivate
 
 % direnv
+
 # Create and load virtual environment with direnv
 echo "layout python3" > .envrc
+
+# Create and load virtual environment with direnv and pyenv
+echo "layout pyenv <PYTHON_VERSION>" > .envrc
+
+% pyenv
+
+# List installed versions
+pyenv versions
+
+# List available versions
+pyenv install -l
+
+# Install a Python version
+pyenv install <PYENV_PY_VERSIONS>
+
+# Select Python version just for current shell session
+pyenv shell <PYENV_PY_INSTALLED_VERSIONS>
+
+# Select Python version just for the current directory (or its subdirectories):
+pyenv local <PYENV_PY_INSTALLED_VERSIONS>
+
+# Select Python version globally
+pyenv global <PYENV_PY_INSTALLED_VERSIONS>
+
+
+$ PYENV_PY_VERSIONS: pyenv install -l | sed 's/^  //' --- --column 1 --header-lines 1
+$ PYENV_PY_INSTALLED_VERSIONS: pyenv versions | tail -n+2 | sed 's/^  //' --- --column 1
