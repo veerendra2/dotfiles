@@ -32,6 +32,9 @@ ansible <INVENTORY_GROUP> -m reboot -b
 # Install a package
 ansible <INVENTORY_GROUP> -m ansible.builtin.apt -a "name=<PKG_NAME> state=<PKG_STATE>" -b -K
 
+# Dump ansible config
+ansible-config dump
+
 $ SERVICE_STATE: echo -e "absent\nstarted\nstopped\nrestarted"
 $ PKG_STATE: echo -e "absent\nbuild-dep\nlatest\npresent"
 $ PLAYBOOK_FILE: ls *.yaml *.yml 2>/dev/null | sort -u

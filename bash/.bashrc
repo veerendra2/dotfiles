@@ -55,8 +55,6 @@ unset file
 set_win_title(){
 	echo -ne "\033]0; ${PWD} \007"
 }
-starship_precmd_user_func="set_win_title"
-eval "$(starship init bash)"
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config
 # ignoring wildcards
@@ -66,9 +64,14 @@ eval "$(starship init bash)"
 	grep -v "[?*]" | cut -d " " -f2 | \
 	tr ' ' '\n')" scp sftp ssh
 
-# source kubectl bash completion
+# starship prompt
+if hash starship 2>/dev/null; then
+	starship_precmd_user_func="set_win_title"
+	eval "$(starship init bash)"
+fi
+
+# kubectl completion
 if hash kubectl 2>/dev/null; then
-	# shellcheck source=/dev/null
 	source <(kubectl completion bash)
 fi
 
@@ -82,11 +85,17 @@ if hash direnv 2>/dev/null; then
   eval "$(direnv hook bash)"
 fi
 
-# navi (https://github.com/denisidoro/navi) completion
+# navi shell widget - https://github.com/denisidoro/navi
 if hash navi 2>/dev/null; then
   eval "$(navi widget bash)"
 fi
 
+# pyenv shell integration
 if hash pyenv 2>/dev/null; then
   eval "$(pyenv init - bash)"
+fi
+
+# Set up fzf key bindings and fuzzy completion
+if hash fzf 2>/dev/null; then
+  eval "$(fzf --bash)"
 fi

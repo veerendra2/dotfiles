@@ -57,16 +57,17 @@ case "$ACTION" in
         brew install readline sqlite3 xz tcl-tk@8 libb2 zstd zlib pkgconfig
         ;;
       "Linux")
-        sudo apt-get update
-        sudo apt-get install -y stow fd-find fzf curl feh xclip openssl
+        sudo -v
+        apt-get update
+        apt-get install -y stow fd-find fzf curl feh xclip openssl
         # Python build dependencies - pyenv
         # https://github.com/pyenv/pyenv/wiki#suggested-build-environment
-        sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
+        apt-get install -y make build-essential libssl-dev zlib1g-dev \
             libbz2-dev libreadline-dev libsqlite3-dev \
             libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev \
             libffi-dev liblzma-dev
         # Install starship
-        curl -fsSL https://starship.rs/install.sh | sh
+        curl -fsSL https://starship.rs/install.sh | sh -s -- --yes
         # Install navi
         curl -fsSL https://raw.githubusercontent.com/denisidoro/navi/master/scripts/install | bash
         # Install pyenv
