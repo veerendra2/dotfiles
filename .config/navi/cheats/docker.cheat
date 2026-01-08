@@ -11,3 +11,6 @@ docker build --progress=plain --no-cache -t tag .
 
 # Docker compose config
 docker compose config --no-normalize --no-interpolate --output compose.production.yml
+
+# Add current user to docker group
+sudo usermod -aG docker $USER

@@ -26,6 +26,19 @@ helm push <CHART_TGZ> <OCI_REGISTRY>
 # Helm pull OCI registry
 helm pull <OCI_REGISTRY> --version <CHART_VERSION>
 
+# List helm releases
+helm list -n <NAMESPACE>
+
+# Get helm release info
+helm get -n <NAMESPACE> all <HELM_RELEASE>
+
+# Get helm release manifests
+helm get manifest -n <NAMESPACE> all <HELM_RELEASE>
+
+# Get helm release history
+helm history -n <NAMESPACE> all <HELM_RELEASE>
+
 $ NAMESPACE: kubectl get ns --- --column 1 --header-lines 1 --delimiter '\s\s+'
 $ HR_NAME: kubectl get helmrelease -n <NAMESPACE> --- --column 1 --header-lines 1 --delimiter '\s\s+'
 $ LOCAL_CHART_LOCATION: fd -t d . ~ | fzf --preview 'ls -la {}'
+$ HELM_RELEASE: helm list --- --column 1 --header-lines 1
