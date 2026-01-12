@@ -2,3 +2,11 @@
 
 # Check kafka version
 bin/kafka-topics.sh --version
+
+
+# Strimzi Kafak rolling update/restart strimzipodset
+kubectl annotate -n <NAMESPACE> strimzipodset <STRIMZI_PODSET> strimzi.io/manual-rolling-update="true"
+
+
+$ NAMESPACE: kubectl get ns --- --column 1 --header-lines 1
+$ STRIMZI_PODSET: kubectl get -n <NAMESPACE> strimzipodset --- --column 1 --header-lines 1
