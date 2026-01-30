@@ -36,3 +36,6 @@ db.adminCommand({ getParameter: 1, featureCompatibilityVersion: 1 })
 
 # Set featureCompatibilityVersion
 db.adminCommand({ setFeatureCompatibilityVersion: "<VERSION>", confirm: true})
+
+# List users
+db.system.users.find().pretty()
