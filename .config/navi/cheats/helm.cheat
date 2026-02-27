@@ -20,11 +20,11 @@ helm registry login <REGISTRY_URL>
 
 ; Example: helm push mongodb-16.5.22.tgz oci://registry-1.docker.io/bitnamicharts
 # Helm push OCI registry
-helm push <CHART_TGZ> <OCI_REGISTRY>
+helm push <CHART_TGZ> oci://<OCI_REGISTRY>
 
 ; Example: helm pull oci://registry-1.docker.io/bitnamicharts/mongodb --version 16.2.1
 # Helm pull OCI registry
-helm pull <OCI_REGISTRY> --version <CHART_VERSION>
+helm pull oci://<OCI_REGISTRY> --version <CHART_VERSION>
 
 # List helm releases
 helm list -n <NAMESPACE>
@@ -37,6 +37,9 @@ helm get manifest -n <NAMESPACE> all <HELM_RELEASE>
 
 # Get helm release history
 helm history -n <NAMESPACE> all <HELM_RELEASE>
+
+# Install/Upgrade helm chart
+helm upgrade --install <RELEASE_NAME> <CHART_NAME_OR_LOCATION> --namespace <NAMESPACE>
 
 $ NAMESPACE: kubectl get ns --- --column 1 --header-lines 1 --delimiter '\s\s+'
 $ HR_NAME: kubectl get helmrelease -n <NAMESPACE> --- --column 1 --header-lines 1 --delimiter '\s\s+'
