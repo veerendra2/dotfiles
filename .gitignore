@@ -7,3 +7,15 @@ extra.cheat
 id_rsa
 id_rsa.pub
 authorized_keys
+
+.gemini/*
+!.gemini/settings.json
+
+.codex/*
+!.codex/config.toml
+
+.config/opencode/*
+!.config/opencode/opencode.json
+
+.ssh/*
+!.ssh/config

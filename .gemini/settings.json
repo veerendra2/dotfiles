@@ -23,6 +23,9 @@
     "otlpEndpoint": "http://localhost:4317",
     "logPrompts": true
   },
+  "experimental": {
+    "skills": true
+  },
   "context": {
     "fileName": [
       "CONTEXT.md",

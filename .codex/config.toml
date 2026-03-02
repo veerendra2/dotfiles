@@ -1,4 +1,6 @@
 # https://developers.openai.com/codex/config-basic
+personality = "pragmatic"
+
 project_doc_fallback_filenames = [
   "GEMINI.md",
   "CLAUDE.md",

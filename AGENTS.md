@@ -25,8 +25,10 @@ each package directory into the appropriate target directory.
 | `.codex/`   | `~/.codex`  | `config.toml` — uses `--no-folding` (currently install action only)          |
 | `.gemini/`  | `~/.gemini` | `settings.json` — uses `--no-folding` (currently install action only)        |
 
-The `--no-folding` flag is critical for `.config/`, `.vim/`, and `.ssh/`: it symlinks
-individual files rather than whole directories, so non-tracked files can coexist.
+The `--no-folding` flag is critical for `.config/`, `.vim/`, `.ssh/`, `.codex/`, and
+`.gemini/`: it symlinks individual files rather than whole directories, so non-tracked
+files (e.g., runtime state written by the CLI tools) can coexist without being picked
+up by git.
 
 `setup.sh` currently stows `.codex/` and `.gemini/` only during `--install` (`-i`).
 If those packages change, update the `--re-stow` (`-r`) and `--delete` (`-d`) branches
@@ -188,6 +190,22 @@ settings. They are created empty by `setup.sh`:
   `[includeIf "gitdir:~/projects/office/"]`; put office email/credentials here.
 
 **Never commit secrets or machine-specific credentials to the repo.**
+
+### Per-directory gitignore rules
+
+Several tool directories are partially tracked — only specific config files are committed;
+everything else the tool writes at runtime is ignored:
+
+| Directory            | Tracked file          | Ignored examples                                      |
+| -------------------- | --------------------- | ----------------------------------------------------- |
+| `.gemini/`           | `settings.json`       | `google_accounts.json`, `history`, `state.json`, etc. |
+| `.codex/`            | `config.toml`         | any runtime state Codex writes                        |
+| `.config/opencode/`  | `opencode.json`       | session data, caches, logs                            |
+| `.ssh/`              | `config`              | `known_hosts`, `id_*`, `authorized_keys`, etc.        |
+
+The pattern used in `.gitignore` is `<dir>/*` to ignore all contents, then
+`!<dir>/<file>` to un-ignore the single tracked file. When adding a new partially-tracked
+directory, follow the same pattern.
 
 ---
 
