@@ -1,0 +1,39 @@
+// https://geminicli.com/docs/reference/configuration/
+{
+  "general": {
+    "vimMode": true,
+    "preferredEditor": "code",
+    "sessionRetention": {
+      "enabled": true,
+      "maxAge": "30d",
+      "maxCount": 100
+    }
+  },
+  "ui": {
+    "theme": "Solarized Dark",
+    "hideBanner": true,
+    "hideTips": false
+  },
+  "privacy": {
+    "usageStatisticsEnabled": false
+  },
+  "telemetry": {
+    "enabled": false,
+    "target": "local",
+    "otlpEndpoint": "http://localhost:4317",
+    "logPrompts": true
+  },
+  "context": {
+    "fileName": [
+      "CONTEXT.md",
+      "GEMINI.md",
+      "AGENTS.md",
+      "CLAUDE.md",
+      "copilot-instructions.md"
+    ],
+    "loadFromIncludeDirectories": true,
+    "fileFiltering": {
+      "respectGitIgnore": false
+    }
+  }
+}

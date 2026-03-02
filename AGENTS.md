@@ -13,18 +13,24 @@ each package directory into the appropriate target directory.
 
 ### Stow Package Layout
 
-| Package dir | Stow target | Notes                                                             |
-| ----------- | ----------- | ----------------------------------------------------------------- |
-| `bash/`     | `~`         | `.aliases`, `.bash_profile`, `.bashrc`, `.exports`, `.functions`  |
-| `curl/`     | `~`         | `.curlrc`                                                         |
-| `git/`      | `~`         | `.gitconfig`, `.extra-gitconfig`                                  |
-| `screen/`   | `~`         | `.screenrc`                                                       |
-| `.config/`  | `~/.config` | `direnv/`, `ghostty/`, `navi/`, `starship/` — uses `--no-folding` |
-| `.vim/`     | `~/.vim`    | `colors/`, `vimrc` — uses `--no-folding`                          |
-| `.ssh/`     | `~/.ssh`    | `config` — uses `--no-folding`                                    |
+| Package dir | Stow target | Notes                                                                        |
+| ----------- | ----------- | ---------------------------------------------------------------------------- |
+| `bash/`     | `~`         | `.aliases`, `.bash_profile`, `.bashrc`, `.exports`, `.functions`             |
+| `curl/`     | `~`         | `.curlrc`                                                                    |
+| `git/`      | `~`         | `.gitconfig`, `.extra-gitconfig`                                             |
+| `screen/`   | `~`         | `.screenrc`                                                                  |
+| `.config/`  | `~/.config` | `direnv/`, `ghostty/`, `navi/`, `opencode/`, `starship/` — uses `--no-folding` |
+| `.vim/`     | `~/.vim`    | `colors/`, `vimrc` — uses `--no-folding`                                     |
+| `.ssh/`     | `~/.ssh`    | `config` — uses `--no-folding`                                               |
+| `.codex/`   | `~/.codex`  | `config.toml` — uses `--no-folding` (currently install action only)          |
+| `.gemini/`  | `~/.gemini` | `settings.json` — uses `--no-folding` (currently install action only)        |
 
 The `--no-folding` flag is critical for `.config/`, `.vim/`, and `.ssh/`: it symlinks
 individual files rather than whole directories, so non-tracked files can coexist.
+
+`setup.sh` currently stows `.codex/` and `.gemini/` only during `--install` (`-i`).
+If those packages change, update the `--re-stow` (`-r`) and `--delete` (`-d`) branches
+as well to keep behavior symmetric.
 
 ---
 
@@ -72,16 +78,17 @@ shellcheck bash/.aliases
 
 ## Languages and File Formats
 
-| Language / Format | Locations                                                      |
-| ----------------- | -------------------------------------------------------------- |
-| Bash              | `setup.sh`, `bash/.*` (all shell dotfiles)                     |
-| Vim Script        | `.vim/vimrc`, `.vim/colors/monokai.vim`                        |
-| TOML              | `.config/starship/starship.toml`, `.config/direnv/direnv.toml` |
-| YAML              | `.config/navi/config.yaml`                                     |
-| Navi cheat format | `.config/navi/cheats/*.cheat` (39 files)                       |
-| Ghostty config    | `.config/ghostty/config` (key=value)                           |
-| Git config INI    | `git/.gitconfig`, `git/.extra-gitconfig`                       |
-| SSH config        | `.ssh/config`                                                  |
+| Language / Format | Locations                                                                 |
+| ----------------- | ------------------------------------------------------------------------- |
+| Bash              | `setup.sh`, `bash/.*` (all shell dotfiles)                               |
+| Vim Script        | `.vim/vimrc`, `.vim/colors/monokai.vim`                                  |
+| TOML              | `.config/starship/starship.toml`, `.config/direnv/direnv.toml`, `.codex/config.toml` |
+| YAML              | `.config/navi/config.yaml`                                                |
+| JSON              | `.config/opencode/opencode.json`, `.gemini/settings.json`                |
+| Navi cheat format | `.config/navi/cheats/*.cheat` (currently 39 files)                       |
+| Ghostty config    | `.config/ghostty/config` (key=value)                                     |
+| Git config INI    | `git/.gitconfig`, `git/.extra-gitconfig`                                 |
+| SSH config        | `.ssh/config`                                                             |
 
 ---
 

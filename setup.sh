@@ -75,7 +75,7 @@ case "$ACTION" in
         ;;
     esac
 
-    mkdir -p "${HOME}"/{projects,.config,.vim,.ssh,.ssh/config.d}
+    mkdir -p "${HOME}"/{projects,.config,.vim,.ssh,.ssh/config.d,.codex,.gemini}
 
     pushd "${HOME}/projects" > /dev/null
 
@@ -101,6 +101,8 @@ case "$ACTION" in
     stow -t "${HOME}/.config" --no-folding .config
     stow -t "${HOME}/.vim" --no-folding .vim
     stow -t "${HOME}/.ssh" --no-folding .ssh
+    stow -t "${HOME}/.codex" --no-folding .codex
+    stow -t "${HOME}/.gemini" --no-folding .gemini
     echo "[*] Dotfiles installed!"
     ;;
 
