@@ -8,10 +8,10 @@
     "webfetch": "allow",
     "websearch": "allow",
     "question": "allow",
-    "theme": "one-dark",
-    "instructions": [
-      "GEMINI.md",
-      "copilot-instructions.md",
-    ]
-  }
+  },
+  "instructions": [
+    "GEMINI.md",
+    "CLAUDE.md",
+    "copilot-instructions.md",
+  ]
 }
