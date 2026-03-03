@@ -32,6 +32,8 @@ case "$ACTION" in
     stow -D -t "${HOME}/.config" --no-folding .config
     stow -D -t "${HOME}/.vim" --no-folding .vim
     stow -D -t "${HOME}/.ssh" --no-folding .ssh
+    stow -D -t "${HOME}/.codex" --no-folding .codex
+    stow -D -t "${HOME}/.gemini" --no-folding .gemini
     echo "[.] Dotfiles uninstalled!"
     exit 0
     ;;
@@ -44,6 +46,8 @@ case "$ACTION" in
     stow -R -t "${HOME}/.config" --no-folding .config
     stow -R -t "${HOME}/.vim" --no-folding .vim
     stow -R -t "${HOME}/.ssh" --no-folding .ssh
+    stow -R -t "${HOME}/.codex" --no-folding .codex
+    stow -R -t "${HOME}/.gemini" --no-folding .gemini
     echo "[*] Dotfiles re-stowed!"
     exit 0
     ;;
