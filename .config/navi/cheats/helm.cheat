@@ -3,7 +3,7 @@
 # Download a Helm chart and extract it
 helm fetch <HELM_CHART> --version <HELM_CHART_VERSION> --untar
 
-# Search for a Helm chart in a repository
+# Search/list Helm charts in a repository
 helm search repo <HELM_CHART> --version <HELM_CHART_VERSION>
 
 # Render a Helm chart locally
