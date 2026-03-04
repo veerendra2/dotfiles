@@ -38,5 +38,10 @@
     "fileFiltering": {
       "respectGitIgnore": false
     }
+  },
+  "security": {
+    "auth": {
+      "selectedType": "gemini-api-key"
+    }
   }
 }
