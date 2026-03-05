@@ -1,0 +1,29 @@
+// https://opencode.ai/docs/config/
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "edit": "allow",
+    "list": "allow",
+    "grep": "allow",
+    "read": {
+      "*": "allow",
+      "*.env*": "deny",
+    },
+    "bash": {
+      "*": "ask",
+      "git *": "allow",
+      "npm *": "allow",
+      "sed *": "allow",
+      "awk *": "allow",
+      "python *": "ask"
+    },
+    "webfetch": "allow",
+    "websearch": "allow",
+    "question": "allow",
+  },
+  "instructions": [
+    "GEMINI.md",
+    "CLAUDE.md",
+    "copilot-instructions.md",
+  ]
+}

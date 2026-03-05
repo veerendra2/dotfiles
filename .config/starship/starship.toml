@@ -58,7 +58,7 @@ truncation_symbol = '…/'
 'projects' = ' '
 
 [kubernetes]
-format = '[$symbol$context \($namespace\)]($style) '
+format = '[$symbol$context\($namespace\)]($style) '
 symbol = "󱃾 "
 disabled = false
 contexts = [
@@ -79,8 +79,7 @@ style = 'color_red_1'
 format = '([$all_status$ahead_behind]($style) )'
 
 [python]
-format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
-pyenv_prefix = ''
+format = '[${symbol}${pyenv_prefix}(${version})(\($virtualenv\) )]($style)'
 pyenv_version_name = true
 style = 'teal'
 symbol = ' '
