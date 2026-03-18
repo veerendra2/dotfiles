@@ -22,6 +22,8 @@ export FZF_CTRL_R_OPTS="
   --color header:italic
   --header 'Press CTRL-Y to copy command into clipboard'"
 
+export K9S_CONFIG_DIR="${HOME}/.config/k9s"
+
 # Setup pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 if [[ -d $PYENV_ROOT/bin ]]; then
