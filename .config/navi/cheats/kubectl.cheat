@@ -45,6 +45,11 @@ kubectl get --raw /apis/apps/v1
 # Merge kubeconfigs
 KUBECONFIG=$(for f in ./kubeconfig/*; do echo -n "${f}:"; done;) kubectl config view --merge --flatten > ~/.kube/config
 
+# Victorialogs(vlselect) port-forward
+kubectl port-forward -n logging svc/vlselect-vlcluster 9471:9471
+
+# Victoriametrics(vmselect) port-forward
+kubectl -n monitoring port-forward svc/vmselect-vmcluster 8481
 
 $ NAMESPACE: kubectl get ns --- --column 1 --header-lines 1 --delimiter '\s\s+'
 $ POD_NAME: kubectl get pods -n <NAMESPACE> --- --column 1 --header-lines 1 --delimiter '\s\s+'

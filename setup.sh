@@ -77,7 +77,7 @@ case "$ACTION" in
         ;;
     esac
 
-    mkdir -p "${HOME}"/{projects,.config,.vim,.ssh,.ssh/config.d,.codex,.gemini}
+    mkdir -p "${HOME}"/{projects,.config,.vim,.ssh,.ssh/config.d,.gemini}
 
     pushd "${HOME}/projects" > /dev/null
 

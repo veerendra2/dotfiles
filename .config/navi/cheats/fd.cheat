@@ -1,0 +1,19 @@
+% fd
+
+# Search file pattern
+fd <FILE_PATTERN> <PATH>
+
+# Search particular file extension
+fd -e <FILE_EXTENSION>
+
+# Search particular file name
+fd -g <FILENAME> <PATH>
+
+# Search hidden files
+fd -H <FILENAME> <PATH>
+
+# Matching the full path (Example: fd -p '**/.git/config')
+fd -p <PATH>
+
+# Find and execute
+fd -e zip -x unzip
