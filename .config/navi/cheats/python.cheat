@@ -15,7 +15,9 @@ deactivate
 echo "layout python3" > .envrc
 
 # Create and load virtual environment with direnv and pyenv
-echo "layout pyenv <PYTHON_VERSION>" > .envrc
+echo "layout pyenv <PYENV_PY_INSTALLED_VERSIONS>" > .envrc
+
+$ PYENV_PY_INSTALLED_VERSIONS: pyenv versions --bare
 
 % pyenv
 
@@ -37,6 +39,5 @@ pyenv local <PYENV_PY_INSTALLED_VERSIONS>
 # Select Python version globally
 pyenv global <PYENV_PY_INSTALLED_VERSIONS>
 
-
 $ PYENV_PY_VERSIONS: pyenv install -l | sed 's/^  //' --- --column 1 --header-lines 1
-$ PYENV_PY_INSTALLED_VERSIONS: pyenv versions | tail -n+2 | sed 's/^  //' --- --column 1
+$ PYENV_PY_INSTALLED_VERSIONS: pyenv versions --bare
