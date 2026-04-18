@@ -1,0 +1,7 @@
+\.aws
+\.azure
+\.git
+\.gitignore
+\.stow-local-ignore
+README\.md
+AGENTS\.md
