@@ -28,19 +28,27 @@ prepend_path "${HOME}/go/bin"
 prepend_path "${HOME}/.cargo/bin"
 prepend_path "${HOME}/.local/bin"
 
-# Setup homebrew
-if [ "$(uname -s)" == "Darwin" ]; then
-  # apple silicon
-  if [ "$(uname -m)" == "arm64" ]; then
+# Platform-specific setup
+if [[ -f /proc/version ]] && grep -qi microsoft /proc/version; then
+  # WSL
+  prepend_path "/home/linuxbrew/.linuxbrew/bin"
+  
+  # Setup NVM
+  export NVM_DIR="$HOME/.nvm"
+  [[ -s "$NVM_DIR/nvm.sh" ]] && \. "$NVM_DIR/nvm.sh"
+  [[ -s "$NVM_DIR/bash_completion" ]] && \. "$NVM_DIR/bash_completion"
+
+elif [[ "$(uname -s)" == "Darwin" ]]; then
+  # macOS
+  if [[ "$(uname -m)" == "arm64" ]]; then
+    # Apple Silicon
     prepend_path "/opt/homebrew/bin"
-  # intel
   else
+    # Intel
     prepend_path "/usr/local/bin"
   fi
-  # Set Homebrew Cask options
-  export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=/Library/Fonts"
 
-  # Set locale variables for iTerm
+  export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=/Library/Fonts"
   export LC_ALL=en_US.UTF-8
   export LC_CTYPE=en_US.UTF-8
 fi

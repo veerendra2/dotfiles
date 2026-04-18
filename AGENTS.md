@@ -34,6 +34,23 @@ up by git.
 If those packages change, update the `--re-stow` (`-r`) and `--delete` (`-d`) branches
 as well to keep behavior symmetric.
 
+### Stow Ignore File
+
+The `.stow-local-ignore` file tells Stow which files/directories to ignore **within the
+stow package directories** (e.g., `~/projects/dotfiles/`). It uses Perl regex patterns.
+
+**Important:** `.stow-local-ignore` only ignores files in the source (stow package
+directories). It does NOT prevent Stow from encountering or conflicting with existing
+files in the target directory (e.g., `~`). For conflicts with existing files in the
+target, you must manually backup/remove those files before stowing.
+
+Current ignored patterns:
+- `\.git` — Git metadata
+- `\.gitignore` — Git ignore file
+- `\.stow-local-ignore` — This file itself
+- `README\.md` — Documentation
+- `AGENTS\.md` — This file
+
 ---
 
 ## Setup / Install Commands
