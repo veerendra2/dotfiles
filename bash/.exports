@@ -17,6 +17,13 @@ export GOPATH="${HOME}/go"
 export NAVI_CONFIG="${HOME}/.config/navi/config.yaml"
 export EDITOR=vim
 
+export FZF_CTRL_R_OPTS="
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'"
+
+export K9S_CONFIG_DIR="${HOME}/.config/k9s"
+
 # Setup pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 if [[ -d $PYENV_ROOT/bin ]]; then
