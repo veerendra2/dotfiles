@@ -6,8 +6,8 @@ hotKeys:
     description: XRay Deployments
     command: xray deploy
 
-  # Hitting Shift-2 navigates to your xray deployments
+  # Hitting Shift-2 navigates to your xray statefulsets
   shift-2:
     shortCut: Shift-2
-    description: XRay Deployments
+    description: XRay StatefulSets
     command: xray sts

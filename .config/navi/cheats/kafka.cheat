@@ -3,6 +3,9 @@
 # Check kafka version
 bin/kafka-topics.sh --version
 
+# List topics
+bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+
 
 # Strimzi Kafak rolling update/restart strimzipodset
 kubectl annotate -n <NAMESPACE> strimzipodset <STRIMZI_PODSET> strimzi.io/manual-rolling-update="true"

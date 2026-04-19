@@ -14,3 +14,6 @@ docker compose config --no-normalize --no-interpolate --output compose.productio
 
 # Add current user to docker group
 sudo usermod -aG docker $USER
+
+# Docker Compose Lint
+dclint --config=.dclintrc.yml --recursive <PATH> --fix
