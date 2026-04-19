@@ -30,6 +30,7 @@ if [[ -d $PYENV_ROOT/bin ]]; then
   prepend_path "$PYENV_ROOT/bin"
 fi
 
+prepend_path "${HOME}"/.antigravity/antigravity/bin
 prepend_path "${HOME}/.krew/bin"
 prepend_path "${HOME}/go/bin"
 prepend_path "${HOME}/.cargo/bin"
@@ -39,7 +40,7 @@ prepend_path "${HOME}/.local/bin"
 if [[ -f /proc/version ]] && grep -qi microsoft /proc/version; then
   # WSL
   prepend_path "/home/linuxbrew/.linuxbrew/bin"
-  
+
   # Setup NVM
   export NVM_DIR="$HOME/.nvm"
   [[ -s "$NVM_DIR/nvm.sh" ]] && \. "$NVM_DIR/nvm.sh"
