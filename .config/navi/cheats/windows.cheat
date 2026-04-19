@@ -1,0 +1,7 @@
+% Windows OS
+
+# Install app in different drive
+.\OllamaSetup.exe /DIR=D:\Program Files
+
+# Start WSL service
+sc.exe config wslservice start= demand
