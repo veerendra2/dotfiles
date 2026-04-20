@@ -6,7 +6,7 @@ brew install whosthere
 # A better whois and domain intelligence toolkit (Homebrew)
 brew install retlehs/tap/quien
 
-# Managing networks and troubleshooting network (Windows winget)
+# Managing networks and troubleshooting network (Winget)
 winget install BornToBeRoot.NETworkManager
 
 # Install prebuilt binaries from GitHub (Homebrew)
