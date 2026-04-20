@@ -8,6 +8,7 @@ $shlvl\
 $git_branch\
 $git_status\
 $kubernetes\
+$helm\
 $terraform\
 $python\
 $nodejs\
@@ -67,6 +68,9 @@ contexts = [
   { context_pattern = "^stage.*", style = "color_orange" },
   { context_pattern = "^prod.*", style = "color_red" },
 ]
+
+[helm]
+format = '[ $version](bold white) '
 
 [git_branch]
 format = '[on](white) [$symbol$branch ]($style)'
