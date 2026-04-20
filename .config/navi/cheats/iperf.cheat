@@ -1,0 +1,23 @@
+% iperf
+
+# Start an iperf3 server on the default port (5201)
+iperf3 -s
+
+# Run a client test on a specified port (e.g., port 5001) of the server
+iperf3 -c <SERVER_IP> -p 5001
+
+# Use a specific protocol version (e.g., IPv4) for testing
+iperf3 -c <SERVER_IP> -4
+
+# Use a specific protocol version (e.g., IPv6) for testing
+iperf3 -c <SERVER_IP> -6
+
+# Run a client test with a specified bandwidth limit (e.g., 1Mbps) to a server
+iperf3 -c <SERVER_IP>  -b 1M
+
+# Run a basic iperf3 client test to a server located at [server IP]
+iperf3 -c <SERVER_IP>
+
+# Run a client test to a server using UDP (instead of the default TCP)
+iperf3 -c <SERVER_IP> -u
+

@@ -1,15 +1,42 @@
-// https://opencode.ai/docs/config/
 {
   "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "ollama": {
+      "models": {
+        "gemma4-latest": {
+          "name": "gemma4:latest"
+        }
+      },
+      "name": "Ollama",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://127.0.0.1:11434/v1"
+      }
+    },
+    "llama.cpp": {
+      "name": "Llama.cpp",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://127.0.0.1:12434/v1"
+      },
+      "models": {
+        "gemma4-latest": {
+          "name": "gemma4:latest"
+        }
+      }
+    }
+  },
   "permission": {
     "edit": "allow",
     "list": "allow",
     "grep": "allow",
     "read": {
       "*": "allow",
-      "*.env*": "deny",
+      "*.env*": "deny"
     },
     "bash": {
+      "rm -rf /*": "deny",
+      ":(){:|:&};:": "deny",
       "awk *": "allow",
       "cat *": "allow",
       "cp *": "allow",
@@ -20,14 +47,29 @@
       "npm *": "allow",
       "sed *": "allow",
       "wc *": "allow",
+      "pip*": "ask",
+      "rm *": "ask"
     },
     "webfetch": "allow",
     "websearch": "allow",
-    "question": "allow",
+    "question": "allow"
   },
   "instructions": [
+    "AGENTS.md",
     "GEMINI.md",
     "CLAUDE.md",
-    "copilot-instructions.md",
-  ]
+    "copilot-instructions.md"
+  ],
+  "mcp": {
+    "MCP_DOCKER": {
+      "type": "local",
+      "command": [
+        "docker",
+        "mcp",
+        "gateway",
+        "run"
+      ],
+      "enabled": true
+    }
+  }
 }

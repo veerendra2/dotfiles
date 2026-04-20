@@ -1,3 +1,4 @@
 % scp
 
+# Send files to remote host
 scp path/to/local_file remote_host:path/to/remote_file
