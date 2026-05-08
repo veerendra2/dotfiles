@@ -17,6 +17,16 @@ export GOPATH="${HOME}/go"
 export NAVI_CONFIG="${HOME}/.config/navi/config.yaml"
 export EDITOR=vim
 
+# Disable AI integration for pay-respects
+# https://github.com/iffse/pay-respects#ai-integration
+export _PR_AI_DISABLE=1
+
+# https://donottrack.sh/
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export SAM_CLI_TELEMETRY=0
+export AZURE_CORE_COLLECT_TELEMETRY=0
+export HOMEBREW_NO_ANALYTICS=1
+
 export FZF_CTRL_R_OPTS="
   --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
   --color header:italic
