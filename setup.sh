@@ -53,7 +53,7 @@ case "$ACTION" in
   "-i"|"--install")
     case "$(uname -s)" in
       "Darwin")
-        brew install stow openssl starship navi fd fzf font-commit-mono-nerd-font pyenv
+        brew install stow openssl starship navi fd fzf font-commit-mono-nerd-font pyenv rtk
         # Python build dependencies - pyenv
         # https://github.com/pyenv/pyenv/wiki#suggested-build-environment
         brew install readline sqlite3 xz tcl-tk@8 libb2 zstd zlib pkgconfig

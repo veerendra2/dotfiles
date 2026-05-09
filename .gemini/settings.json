@@ -43,5 +43,18 @@
     "auth": {
       "selectedType": "gemini-api-key"
     }
+  },
+  "hooks": {
+    "BeforeTool": [
+      {
+        "matcher": "run_shell_command",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.gemini/hooks/rtk-hook-gemini.sh"
+          }
+        ]
+      }
+    ]
   }
 }
