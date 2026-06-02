@@ -1,0 +1,31 @@
+[tracking]
+enabled = true
+history_days = 90
+database_path = "~/.config/rtk/history.db"
+
+[display]
+colors = true
+emoji = true
+max_width = 120
+
+[filters]
+ignore_dirs = [
+  ".git",
+  "node_modules",
+  "target",
+  "__pycache__",
+  ".venv",
+  "vendor",
+]
+ignore_files = ["*.lock", "*.min.js", "*.min.css"]
+
+[tee]
+enabled = true
+mode = "failures"
+max_files = 20
+
+[telemetry]
+enabled = false
+
+[hooks]
+exclude_commands = []

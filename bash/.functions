@@ -171,3 +171,28 @@ docker_rm_stopped_imgs(){
 	done
 	docker rmi -f "${images[@]}" 2>&1 || true
 }
+
+# Codex with 9router provider
+# Usage: codex-9r "your prompt"
+# Requires: ROUTER9_API_KEY and ROUTER9_BASE_URL environment variables set in ~/.extra or shell profile
+codex-9r() {
+	if [[ -z "$ROUTER9_API_KEY" ]]; then
+		echo "Error: ROUTER9_API_KEY not set. Add it to ~/.extra or your shell profile."
+		return 1
+	fi
+	if [[ -z "$ROUTER9_BASE_URL" ]]; then
+		echo "Error: ROUTER9_BASE_URL not set. Add it to ~/.extra or your shell profile."
+		return 1
+	fi
+	# 9router is OpenAI-compatible, pass API key via OPENAI_API_KEY env
+	OPENAI_API_KEY="$ROUTER9_API_KEY" command codex \
+		-c model_provider="9router" \
+		-c "model_providers.9router.name=\"9Router\"" \
+		-c "model_providers.9router.base_url=\"$ROUTER9_BASE_URL\"" \
+		-c "model_providers.9router.wire_api=\"responses\"" \
+		-c "plugins.\"browser@openai-bundled\".enabled=true" \
+		-c "plugins.\"documents@openai-primary-runtime\".enabled=true" \
+		-c "plugins.\"spreadsheets@openai-primary-runtime\".enabled=true" \
+		-c "plugins.\"presentations@openai-primary-runtime\".enabled=true" \
+		"$@"
+}

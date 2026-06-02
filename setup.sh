@@ -32,7 +32,8 @@ case "$ACTION" in
     stow -D -t "${HOME}/.config" --no-folding .config
     stow -D -t "${HOME}/.vim" --no-folding .vim
     stow -D -t "${HOME}/.ssh" --no-folding .ssh
-    stow -D -t "${HOME}/.gemini" --no-folding .gemini
+    stow -D -t "${HOME}/" --no-folding
+    stow -D -t "${HOME}/.claude" --no-folding .claude
     echo "[.] Dotfiles uninstalled!"
     exit 0
     ;;
@@ -45,7 +46,7 @@ case "$ACTION" in
     stow -R -t "${HOME}/.config" --no-folding .config
     stow -R -t "${HOME}/.vim" --no-folding .vim
     stow -R -t "${HOME}/.ssh" --no-folding .ssh
-    stow -R -t "${HOME}/.gemini" --no-folding .gemini
+    stow -R -t "${HOME}/.claude" --no-folding .claude
     echo "[*] Dotfiles re-stowed!"
     exit 0
     ;;
@@ -53,7 +54,7 @@ case "$ACTION" in
   "-i"|"--install")
     case "$(uname -s)" in
       "Darwin")
-        brew install stow openssl starship navi fd fzf font-commit-mono-nerd-font pyenv rtk
+        brew install stow openssl starship navi fd fzf font-commit-mono-nerd-font pyenv rtk-ai/tap/rtk
         # Python build dependencies - pyenv
         # https://github.com/pyenv/pyenv/wiki#suggested-build-environment
         brew install readline sqlite3 xz tcl-tk@8 libb2 zstd zlib pkgconfig
@@ -78,7 +79,7 @@ case "$ACTION" in
         ;;
     esac
 
-    mkdir -p "${HOME}"/{projects,.config,.vim,.ssh,.ssh/config.d,.gemini}
+    mkdir -p "${HOME}"/{projects,.config,.vim,.ssh,.ssh/config.d,}
 
     pushd "${HOME}/projects" > /dev/null
 
@@ -104,7 +105,7 @@ case "$ACTION" in
     stow -t "${HOME}/.config" --no-folding .config
     stow -t "${HOME}/.vim" --no-folding .vim
     stow -t "${HOME}/.ssh" --no-folding .ssh
-    stow -t "${HOME}/.gemini" --no-folding .gemini
+    stow -t "${HOME}/.claude" --no-folding .claude
     echo "[*] Dotfiles installed!"
     ;;
 
