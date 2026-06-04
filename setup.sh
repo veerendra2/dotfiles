@@ -32,7 +32,6 @@ case "$ACTION" in
     stow -D -t "${HOME}/.config" --no-folding .config
     stow -D -t "${HOME}/.vim" --no-folding .vim
     stow -D -t "${HOME}/.ssh" --no-folding .ssh
-    stow -D -t "${HOME}/" --no-folding
     stow -D -t "${HOME}/.claude" --no-folding .claude
     echo "[.] Dotfiles uninstalled!"
     exit 0

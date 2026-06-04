@@ -13,26 +13,20 @@ each package directory into the appropriate target directory.
 
 ### Stow Package Layout
 
-| Package dir | Stow target | Notes                                                                        |
-| ----------- | ----------- | ---------------------------------------------------------------------------- |
-| `bash/`     | `~`         | `.aliases`, `.bash_profile`, `.bashrc`, `.exports`, `.functions`             |
-| `curl/`     | `~`         | `.curlrc`                                                                    |
-| `git/`      | `~`         | `.gitconfig`, `.extra-gitconfig`                                             |
-| `screen/`   | `~`         | `.screenrc`                                                                  |
-| `.config/`  | `~/.config` | `direnv/`, `ghostty/`, `navi/`, `opencode/`, `starship/` — uses `--no-folding` |
-| `.vim/`     | `~/.vim`    | `colors/`, `vimrc` — uses `--no-folding`                                     |
-| `.ssh/`     | `~/.ssh`    | `config` — uses `--no-folding`                                               |
-| `.codex/`   | `~/.codex`  | `config.toml` — uses `--no-folding` (currently install action only)          |
-| `.gemini/`  | `~/.gemini` | `settings.json` — uses `--no-folding` (currently install action only)        |
+| Package dir | Stow target | Notes                                                                                                |
+| ----------- | ----------- | ---------------------------------------------------------------------------------------------------- |
+| `bash/`     | `~`         | `.aliases`, `.bash_profile`, `.bashrc`, `.exports`, `.functions`                                     |
+| `curl/`     | `~`         | `.curlrc`                                                                                            |
+| `git/`      | `~`         | `.gitconfig`, `.extra-gitconfig`                                                                     |
+| `screen/`   | `~`         | `.screenrc`                                                                                          |
+| `.config/`  | `~/.config` | `direnv/`, `ghostty/`, `navi/`, `opencode/`, `rtk/`, `starship/` — uses `--no-folding`               |
+| `.vim/`     | `~/.vim`    | `colors/`, `vimrc` — uses `--no-folding`                                                             |
+| `.ssh/`     | `~/.ssh`    | `config` — uses `--no-folding`                                                                       |
+| `.claude/`  | `~/.claude` | `settings.json`, `CLAUDE.md`, `RTK.md`, `coding-standards.md`, `statusline.sh` — uses `--no-folding` |
 
-The `--no-folding` flag is critical for `.config/`, `.vim/`, `.ssh/`, `.codex/`, and
-`.gemini/`: it symlinks individual files rather than whole directories, so non-tracked
-files (e.g., runtime state written by the CLI tools) can coexist without being picked
-up by git.
-
-`setup.sh` currently stows `.codex/` and `.gemini/` only during `--install` (`-i`).
-If those packages change, update the `--re-stow` (`-r`) and `--delete` (`-d`) branches
-as well to keep behavior symmetric.
+The `--no-folding` flag is critical for `.config/`, `.vim/`, `.ssh/`, and `.claude/`: it
+symlinks individual files rather than whole directories, so non-tracked files (e.g., runtime
+state written by the CLI tools) can coexist without being picked up by git.
 
 ### Stow Ignore File
 
@@ -45,6 +39,7 @@ files in the target directory (e.g., `~`). For conflicts with existing files in 
 target, you must manually backup/remove those files before stowing.
 
 Current ignored patterns:
+
 - `\.git` — Git metadata
 - `\.gitignore` — Git ignore file
 - `\.stow-local-ignore` — This file itself
@@ -97,17 +92,18 @@ shellcheck bash/.aliases
 
 ## Languages and File Formats
 
-| Language / Format | Locations                                                                 |
-| ----------------- | ------------------------------------------------------------------------- |
-| Bash              | `setup.sh`, `bash/.*` (all shell dotfiles)                               |
-| Vim Script        | `.vim/vimrc`, `.vim/colors/monokai.vim`                                  |
-| TOML              | `.config/starship/starship.toml`, `.config/direnv/direnv.toml`, `.codex/config.toml` |
-| YAML              | `.config/navi/config.yaml`                                                |
-| JSON              | `.config/opencode/opencode.json`, `.gemini/settings.json`                |
-| Navi cheat format | `.config/navi/cheats/*.cheat` (currently 39 files)                       |
-| Ghostty config    | `.config/ghostty/config` (key=value)                                     |
-| Git config INI    | `git/.gitconfig`, `git/.extra-gitconfig`                                 |
-| SSH config        | `.ssh/config`                                                             |
+| Language / Format | Locations                                                                                 |
+| ----------------- | ----------------------------------------------------------------------------------------- |
+| Bash              | `setup.sh`, `bash/.*` (all shell dotfiles)                                                |
+| Vim Script        | `.vim/vimrc`, `.vim/colors/monokai.vim`                                                   |
+| TOML              | `.config/starship/starship.toml`, `.config/direnv/direnv.toml`, `.config/rtk/config.toml` |
+| YAML              | `.config/navi/config.yaml`                                                                |
+| JSON              | `.config/opencode/opencode.json`, `.claude/settings.json`                                 |
+| Markdown          | `.claude/CLAUDE.md`, `.claude/RTK.md`, `.claude/coding-standards.md`                      |
+| Navi cheat format | `.config/navi/cheats/*.cheat` (currently 39 files)                                        |
+| Ghostty config    | `.config/ghostty/config` (key=value)                                                      |
+| Git config INI    | `git/.gitconfig`, `git/.extra-gitconfig`                                                  |
+| SSH config        | `.ssh/config`                                                                             |
 
 ---
 
@@ -213,12 +209,12 @@ settings. They are created empty by `setup.sh`:
 Several tool directories are partially tracked — only specific config files are committed;
 everything else the tool writes at runtime is ignored:
 
-| Directory            | Tracked file          | Ignored examples                                      |
-| -------------------- | --------------------- | ----------------------------------------------------- |
-| `.gemini/`           | `settings.json`       | `google_accounts.json`, `history`, `state.json`, etc. |
-| `.codex/`            | `config.toml`         | any runtime state Codex writes                        |
-| `.config/opencode/`  | `opencode.json`       | session data, caches, logs                            |
-| `.ssh/`              | `config`              | `known_hosts`, `id_*`, `authorized_keys`, etc.        |
+| Directory           | Tracked files                                | Ignored examples                                             |
+| ------------------- | -------------------------------------------- | ------------------------------------------------------------ |
+| `.claude/`          | `settings.json`, `CLAUDE.md`, `RTK.md`, etc. | `auth.json`, `state_*.sqlite`, `logs_*.sqlite`, session data |
+| `.config/opencode/` | `opencode.json`                              | session data, caches, logs                                   |
+| `.config/rtk/`      | `config.toml`                                | history database, telemetry data                             |
+| `.ssh/`             | `config`                                     | `known_hosts`, `id_*`, `authorized_keys`, etc.               |
 
 The pattern used in `.gitignore` is `<dir>/*` to ignore all contents, then
 `!<dir>/<file>` to un-ignore the single tracked file. When adding a new partially-tracked
