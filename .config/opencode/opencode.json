@@ -24,6 +24,26 @@
           "name": "gemma4:latest"
         }
       }
+    },
+    "9router": {
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "{env:NINE_ROUTER_BASE_URL}",
+        "apiKey": "{env:NINE_ROUTER_API_KEY}"
+      },
+      "models": {
+        "gpt-5.5": {},
+        "gpt-5.4": {},
+        "claude-sonnet-4.6": {},
+        "claude-sonnet-4.5": {},
+        "claude-haiku-4.5": {},
+        "gemini-3.1-pro": {},
+        "gemini-flash-3.5": {},
+        "mmf/mimo-auto": {},
+        "minimax-m2.5": {},
+        "kimi": {},
+        "oc/qwen3.6-plus-free": {}
+      }
     }
   },
   "permission": {
