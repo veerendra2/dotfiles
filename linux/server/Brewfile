@@ -1,0 +1,17 @@
+############################
+#       Development        #
+############################
+
+brew "bitwarden-cli"     # Bitwarden CLI
+brew "go"                # Go compiler and tools
+brew "golangci-lint"     # Go linter runner
+brew "kubecolor"         # Colorized kubectl output
+brew "kubectx"           # Kubernetes context switcher
+brew "kubernetes-cli"    # kubectl
+brew "terraform"         # Infrastructure as code CLI
+
+############################
+#        Utilities         #
+############################
+
+brew "starship"          # Cross-shell prompt

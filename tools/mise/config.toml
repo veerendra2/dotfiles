@@ -1,0 +1,2 @@
+[settings]
+# mise manages shell/config behavior here; packages are installed by apt, snap, or brew.

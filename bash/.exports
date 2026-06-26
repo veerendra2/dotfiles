@@ -34,12 +34,6 @@ export FZF_CTRL_R_OPTS="
 
 export K9S_CONFIG_DIR="${HOME}/.config/k9s"
 
-# Setup pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-if [[ -d $PYENV_ROOT/bin ]]; then
-  prepend_path "$PYENV_ROOT/bin"
-fi
-
 prepend_path "${HOME}"/.antigravity/antigravity/bin
 prepend_path "${HOME}/.krew/bin"
 prepend_path "${HOME}/go/bin"

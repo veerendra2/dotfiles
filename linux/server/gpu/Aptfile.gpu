@@ -1,0 +1,9 @@
+############################
+#           GPU            #
+############################
+
+apt mesa-utils
+apt mesa-va-drivers
+apt mesa-vulkan-drivers
+apt vainfo
+apt vulkan-tools

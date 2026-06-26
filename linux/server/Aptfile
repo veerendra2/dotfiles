@@ -1,0 +1,112 @@
+############################
+#          Repos           #
+############################
+
+# Kopia
+key https://kopia.io/signing-key
+deb "[arch=amd64] http://packages.kopia.io/apt/ stable main"
+
+# mise
+ppa ppa:jdxcode/mise
+
+# MongoDB Shell
+key https://www.mongodb.org/static/pgp/server-8.0.asc
+deb "[arch=amd64,arm64] https://repo.mongodb.org/apt/ubuntu $(lsb_release -cs)/mongodb-org/8.0 multiverse"
+
+############################
+#           Core           #
+############################
+
+apt apt-transport-https
+apt build-essential
+apt ca-certificates
+apt git
+apt make
+apt openssl
+apt ssh
+apt unzip
+apt vim
+
+############################
+#       Development        #
+############################
+
+apt binutils
+apt direnv
+apt jq
+apt libbz2-dev
+apt libffi-dev
+apt liblzma-dev
+apt libncursesw5-dev
+apt libnetfilter-queue-dev
+apt libpcap-dev
+apt libreadline-dev
+apt libsqlite3-dev
+apt libssl-dev
+apt libusb-1.0-0-dev
+apt libxml2-dev
+apt libxmlsec1-dev
+apt mise
+apt mongodb-mongosh
+apt pipx
+apt python3-dev
+apt python3-pip
+apt tk-dev
+apt xz-utils
+apt zlib1g-dev
+
+############################
+#        Utilities         #
+############################
+
+apt fzf
+apt htop
+apt iotop
+apt makepasswd
+apt moreutils
+apt p7zip-full
+apt pv
+apt pwgen
+apt screen
+apt tmux
+apt tree
+
+############################
+#         Security         #
+############################
+
+apt nmap
+apt secure-delete
+apt wipe
+
+############################
+#         Network          #
+############################
+
+apt bridge-utils
+apt conntrack
+apt ethtool
+apt socat
+apt traceroute
+apt wireguard
+
+############################
+#         Storage          #
+############################
+
+apt kopia
+apt rclone
+apt smartmontools
+
+############################
+#     Virtualization       #
+############################
+
+apt postgresql-client
+apt schroot
+
+############################
+#      Observability       #
+############################
+
+apt sysstat
