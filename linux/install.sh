@@ -13,21 +13,7 @@ install_apt_bundle() {
     return
   fi
 
-  local version arch
-  version="$(curl -fsSL https://api.github.com/repos/apt-bundle/apt-bundle/releases/latest \
-    | grep tag_name \
-    | cut -d '"' -f4)"
-  arch="$(dpkg --print-architecture)"
-
-  case "$arch" in
-    amd64) arch="x86_64" ;;
-    arm64) arch="aarch64" ;;
-  esac
-
-  curl -fLo /tmp/apt-bundle \
-    "https://github.com/apt-bundle/apt-bundle/releases/download/$version/apt-bundle-linux-$arch"
-  chmod +x /tmp/apt-bundle
-  sudo mv /tmp/apt-bundle /usr/local/bin/apt-bundle
+  curl -fsSL https://raw.githubusercontent.com/apt-bundle/apt-bundle/main/install.sh | sudo bash
 }
 
 install_aptfile() {
