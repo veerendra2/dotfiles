@@ -68,6 +68,20 @@ install_brewfile() {
 
   if [ -f "$brewfile" ]; then
     install_homebrew
+    
+    # Pre-emptively trust any taps defined in the Brewfile to prevent interactive aborts
+    if command -v brew >/dev/null 2>&1; then
+      local taps
+      taps="$(grep -E '^tap ' "$brewfile" | cut -d '"' -f2 || true)"
+      if [ -n "$taps" ]; then
+        while IFS= read -r tap; do
+          [ -z "$tap" ] && continue
+          brew tap "$tap" || true
+          brew trust "$tap" 2>/dev/null || true
+        done <<< "$taps"
+      fi
+    fi
+
     brew bundle --file "$brewfile"
   fi
 }
