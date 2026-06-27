@@ -33,7 +33,7 @@ $ chsh -s $(brew --prefix)/bin/bash
 </details>
 
 ```bash
-curl https://raw.githubusercontent.com/veerendra2/dotfiles/master/setup.sh | bash
+curl https://raw.githubusercontent.com/veerendra2/dotfiles/master/bootstrap | bash
 ```
 
 ## navi
