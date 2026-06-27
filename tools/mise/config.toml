@@ -1,2 +1,8 @@
 [settings]
-# mise manages shell/config behavior here; packages are installed by apt, snap, or brew.
+python_backend = "uv"
+
+[tools]
+python = "3.14"
+"pipx:ansible" = "latest"
+"pipx:tldr" = "latest"
+"pipx:claude-chat-to-md" = "latest"

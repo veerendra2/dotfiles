@@ -29,6 +29,12 @@ if command -v mise >/dev/null 2>&1; then
   mise trust "$ROOT_DIR/mise.toml"
   mise dotfiles apply --yes
   echo "[+] Dotfiles applied successfully!"
+  
+  echo "[*] Installing global runtimes and tools via mise..."
+  # Load the newly symlinked config.toml paths
+  export PATH="${HOME}/.local/share/mise/shims:${PATH}"
+  mise install --global
+  echo "[+] All global tools installed successfully!"
 else
   # If on Linux and Homebrew was just installed, evaluate its env to find mise
   if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
@@ -38,6 +44,11 @@ else
       mise trust "$ROOT_DIR/mise.toml"
       mise dotfiles apply --yes
       echo "[+] Dotfiles applied successfully!"
+      
+      echo "[*] Installing global runtimes and tools via mise..."
+      export PATH="${HOME}/.local/share/mise/shims:${PATH}"
+      mise install --global
+      echo "[+] All global tools installed successfully!"
       exit 0
     fi
   fi

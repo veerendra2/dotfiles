@@ -157,7 +157,6 @@ esac
 install_apt_bundle
 install_aptfile "$ROOT_DIR/server/Aptfile"
 install_brewfile "$ROOT_DIR/server/Brewfile"
-"$ROOT_DIR/../bin/setup-python.sh"
 
 if [ "$PROFILE" = "desktop" ]; then
   install_aptfile "$ROOT_DIR/desktop/Aptfile"

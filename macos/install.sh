@@ -8,5 +8,3 @@ if ! command -v brew >/dev/null 2>&1; then
 fi
 
 brew bundle --file "$ROOT_DIR/Brewfile"
-
-"$ROOT_DIR/../bin/setup-python.sh"
