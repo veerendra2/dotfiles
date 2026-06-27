@@ -10,7 +10,7 @@ touch "${HOME}/.extra-gitconfig"
 
 case "$(uname -s)" in
   Darwin)
-    echo "[*] Detected macOS. Running macOS installation..."
+    echo "[*] Running macOS installation..."
     "$ROOT_DIR/macos/install.sh"
     ;;
   Linux)
