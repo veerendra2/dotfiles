@@ -2,11 +2,31 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROFILE="${1:-server}"
+PROFILE="${1:-}"
 
 usage() {
   printf 'Usage: %s [server|desktop]\n' "${0##*/}"
 }
+
+detect_profile() {
+  if [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]; then
+    echo "desktop"
+    return
+  fi
+
+  if command -v dpkg >/dev/null 2>&1; then
+    if dpkg -l | grep -E -q 'ubuntu-desktop|kubuntu-desktop|lubuntu-desktop|xubuntu-desktop|gnome-shell|gdm3|lightdm|xfce4|kde-plasma' 2>/dev/null; then
+      echo "desktop"
+      return
+    fi
+  fi
+
+  echo "server"
+}
+
+if [ -z "$PROFILE" ]; then
+  PROFILE="$(detect_profile)"
+fi
 
 install_apt_bundle() {
   if command -v apt-bundle >/dev/null 2>&1; then
