@@ -11,6 +11,7 @@ brew "hashicorp/tap/terraform" # Terraform CLI (HashiCorp Tap for ARM64 Linux su
 brew "kubecolor"         # Colorized kubectl output
 brew "kubectx"           # Kubernetes context switcher
 brew "kubernetes-cli"    # kubectl
+brew "uv"                # Python package manager
 
 ############################
 #        Utilities         #

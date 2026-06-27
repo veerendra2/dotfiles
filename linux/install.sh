@@ -106,30 +106,6 @@ install_brewfile() {
   fi
 }
 
-install_pipxfile() {
-  local pipxfile="$1"
-
-  if [ ! -f "$pipxfile" ]; then
-    return
-  fi
-
-  if command -v pipx >/dev/null 2>&1; then
-    # Force pipx to configure its directories
-    pipx ensurepath --force >/dev/null 2>&1
-    # Prepend pipx binary path directly to the running installer process
-    export PATH="${HOME}/.local/bin:${PATH}"
-
-    while IFS= read -r line || [ -n "$line" ]; do
-      case "$line" in
-        ''|'#'*) continue ;;
-      esac
-
-      # shellcheck disable=SC2086
-      pipx install $line --force || true
-    done < "$pipxfile"
-  fi
-}
-
 detect_gpu_vendors() {
   if ! command -v lspci >/dev/null 2>&1; then
     return
@@ -181,7 +157,7 @@ esac
 install_apt_bundle
 install_aptfile "$ROOT_DIR/server/Aptfile"
 install_brewfile "$ROOT_DIR/server/Brewfile"
-install_pipxfile "$ROOT_DIR/../tools/Pipxfile"
+"$ROOT_DIR/../bin/setup-python.sh"
 
 if [ "$PROFILE" = "desktop" ]; then
   install_aptfile "$ROOT_DIR/desktop/Aptfile"

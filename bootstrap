@@ -14,7 +14,7 @@ case "$(uname -s)" in
     "$ROOT_DIR/macos/install.sh"
     ;;
   Linux)
-    echo "[*] Detected Linux. Running Linux installation..."
+    echo "[*] Running Linux installation..."
     "$ROOT_DIR/linux/install.sh"
     ;;
   *)
