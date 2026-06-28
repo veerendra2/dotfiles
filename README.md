@@ -1,7 +1,7 @@
 <h1 align="center">Dotfiles</h1>
 
 <p align="center">
-  <img src="assets/banner.png" alt="Dotfiles Banner" width="600px" />
+  <img src="assets/image.png" alt="Dotfiles Banner" width="250px" />
 </p>
 
 <p align="center">

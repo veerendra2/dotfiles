@@ -1,6 +1,3 @@
-[settings]
-python_backend = "uv"
-
 [tools]
 python = { version = "3.14", postinstall = "uv pip install --python $MISE_TOOL_INSTALL_PATH/bin/python requests beautifulsoup4 jmespath loguru jc rich" }
 "pipx:ansible" = "latest"
