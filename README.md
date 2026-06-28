@@ -1,46 +1,67 @@
-# Dotfiles
+<h1 align="center">Dotfiles</h1>
 
-![GitHub Repo stars](https://img.shields.io/github/stars/veerendra2/dotfiles?style=flat-square)
-![GitHub forks](https://img.shields.io/github/forks/veerendra2/dotfiles?style=flat-square)
+<p align="center">
+  <img src="assets/banner.png" alt="Dotfiles Banner" width="600px" />
+</p>
 
-## Install
+<p align="center">
+  <!-- GitHub Badges -->
+  <img src="https://img.shields.io/github/stars/veerendra2/dotfiles?style=flat-square&color=F1C40F" alt="GitHub Repo stars" />
+  <img src="https://img.shields.io/github/forks/veerendra2/dotfiles?style=flat-square&color=3498DB" alt="GitHub forks" />
 
-<details>
+  <!-- Operating System Badges -->
+  <img src="https://img.shields.io/badge/OS-Ubuntu-E95420?style=flat-square&logo=ubuntu&logoColor=white" alt="Ubuntu" />
+  <img src="https://img.shields.io/badge/OS-macOS-000000?style=flat-square&logo=apple&logoColor=white" alt="macOS" />
+  <img src="https://img.shields.io/badge/OS-Windows-0078D4?style=flat-square&logo=windows&logoColor=white" alt="Windows" />
 
-<summary>Prerequisite Step For MacOS</summary>
+  <!-- Package Manager Badges -->
+  <img src="https://img.shields.io/badge/Install-Homebrew-F1C40F?style=flat-square&logo=homebrew&logoColor=black" alt="Homebrew" />
+  <img src="https://img.shields.io/badge/Install-APT-121011?style=flat-square&logo=debian&logoColor=red" alt="APT" />
+  <img src="https://img.shields.io/badge/Install-Snap-820D3F?style=flat-square&logo=snapcraft&logoColor=white" alt="Snap" />
+  <img src="https://img.shields.io/badge/Install-Winget-0078D4?style=flat-square&logo=windows&logoColor=white" alt="Winget" />
+</p>
 
-- Install [HomeBrew](https://brew.sh/)
+---
+
+## Package Management
+
+This monorepo manages packages and configurations declaratively:
+
+- Linux (Ubuntu):
+  - [`apt-bundle`](https://github.com/apt-bundle/apt-bundle)
+  - [`homebrew`](https://brew.sh/)
+  - [`snap`](https://snapcraft.io/docs/)
+- macOS:
+  - [`homebrew`](https://brew.sh/)
+- Windows:
+  - [`winget`](https://learn.microsoft.com/en-gb/windows/package-manager/)
+
+---
+
+## Dotfiles Management
+
+Dotfiles are managed declaratively via [`mise`](https://mise.jdx.dev/)'s [`dotfiles`](https://mise.jdx.dev/dotfiles.html) feature
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+mise dotfiles apply --yes
 ```
 
-- Make sure `$(brew --prefix)/bin` path set in `$PATH`
+---
+
+## One-Line Installation
 
 ```bash
-brew --prefix
-/opt/homebrew
-export PATH=$(brew --prefix)/bin:$PATH
+curl -fsSL https://raw.githubusercontent.com/veerendra2/dotfiles/master/bootstrap | bash
 ```
 
-- Change default `shell` to `bash`
+---
 
-```bash
-$ bash -c 'echo $(brew --prefix)/bin/bash | sudo tee -a /etc/shells'
-$ chsh -s $(brew --prefix)/bin/bash
-```
+## Custom Cheat Sheets via `navi`
 
-</details>
+This setup integrates [`navi`](https://github.com/denisidoro/navi), an interactive, keyboard-driven cheat sheet browser.
 
-```bash
-curl https://raw.githubusercontent.com/veerendra2/dotfiles/master/bootstrap | bash
-```
-
-## navi
-
-> https://github.com/denisidoro/navi
-
-Press `Ctrl+g` to launch navi as [shell widget](https://github.com/denisidoro/navi/blob/master/docs/widgets/README.md)
+- Press `Ctrl+g` to launch navi as [shell widget](https://github.com/denisidoro/navi/blob/master/docs/widgets/README.md)
+- Cheat sheets are located under `tools/navi/cheats/` and are automatically symlinked to `~/.config/navi/cheats` by `mise`.
 
 To manage cheatsheet repositories
 
