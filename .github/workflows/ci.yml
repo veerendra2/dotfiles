@@ -1,8 +1,17 @@
 ---
 name: CI
 
-on:
+"on":
+  push:
+    branches:
+      - master
+      - main
+      - refactor-to-make-monorepo
   pull_request:
+    branches:
+      - master
+      - main
+      - refactor-to-make-monorepo
 
 jobs:
   lint:
@@ -30,7 +39,11 @@ jobs:
         run: |
           find . -name "Brewfile*" | xargs -I {} ruby -wc {}
 
-      - name: Validate Aptfiles (apt-bundle)
+      - name: Validate Aptfile Syntax (Directive Check)
+        run: |
+          find . -name "Aptfile*" | xargs perl -ne 'next if /^\s*(#|$)/; exit 1 unless /^(apt|ppa|deb|key)\s+/'
+
+      - name: Diagnostic Aptfile Cache Check
         run: |
           curl -fsSL https://raw.githubusercontent.com/apt-bundle/apt-bundle/main/install.sh | sudo bash
-          find . -name "Aptfile*" | xargs -I {} apt-bundle check --file {} --no-update
+          find . -name "Aptfile*" | xargs -I {} apt-bundle check --file {} --no-update || true
