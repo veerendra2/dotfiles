@@ -40,7 +40,8 @@ This monorepo manages packages and configurations declaratively:
 
 ## Dotfiles Management
 
-Dotfiles are managed declaratively via [`mise`](https://mise.jdx.dev/)'s [`dotfiles`](https://mise.jdx.dev/dotfiles.html) feature
+Dotfiles are managed declaratively via [`mise`](https://mise.jdx.dev/)'s
+[`dotfiles`](https://mise.jdx.dev/dotfiles.html) feature
 
 ```bash
 mise dotfiles apply --yes
@@ -58,10 +59,13 @@ curl -fsSL https://raw.githubusercontent.com/veerendra2/dotfiles/master/bootstra
 
 ## Custom Cheat Sheets via `navi`
 
-This setup integrates [`navi`](https://github.com/denisidoro/navi), an interactive, keyboard-driven cheat sheet browser.
+This setup integrates [`navi`](https://github.com/denisidoro/navi), an
+interactive, keyboard-driven cheat sheet browser.
 
-- Press `Ctrl+g` to launch navi as [shell widget](https://github.com/denisidoro/navi/blob/master/docs/widgets/README.md)
-- Cheat sheets are located under `tools/navi/cheats/` and are automatically symlinked to `~/.config/navi/cheats` by `mise`.
+- Press `Ctrl+g` to launch navi as
+  [shell widget](https://github.com/denisidoro/navi/blob/master/docs/widgets/README.md)
+- Cheat sheets are located under `tools/navi/cheats/` and are automatically
+  symlinked to `~/.config/navi/cheats` by `mise`.
 
 To manage cheatsheet repositories
 
