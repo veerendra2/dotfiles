@@ -1,79 +1,48 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Find repository root directory
-BIN_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TARGET_DIR="${HOME}/projects/dotfiles"
 
-# Dual-Mode Check: If running standalone (e.g. via curl | bash), clone first
-if [ ! -d "$BIN_DIR/linux" ] && [ ! -d "$BIN_DIR/macos" ]; then
+# 1. Dual-Mode Check: If running standalone (e.g. via curl | bash), clone first
+if [ ! -d "$ROOT_DIR/linux" ] && [ ! -d "$ROOT_DIR/macos" ]; then
   echo "[*] Bootstrapping: Creating directory infrastructure..."
-  mkdir -p "${HOME}/projects"
-  mkdir -p "${HOME}/.ssh"
-
-  # Scan github keys to prevent interactive ssh confirmation blocks
+  mkdir -p "${HOME}/projects" "${HOME}/.ssh"
   ssh-keyscan github.com >> "${HOME}/.ssh/known_hosts" 2>/dev/null || true
 
-  if [ ! -d "${HOME}/projects/dotfiles" ]; then
+  if [ ! -d "$TARGET_DIR" ]; then
     echo "[*] Cloning dotfiles repository..."
-    git clone https://github.com/veerendra2/dotfiles.git "${HOME}/projects/dotfiles"
+    git clone https://github.com/veerendra2/dotfiles.git "$TARGET_DIR"
   else
     echo "[*] Repository already exists. Pulling latest changes..."
-    git -C "${HOME}/projects/dotfiles" pull
+    git -C "$TARGET_DIR" pull
   fi
 
-  # Chain execution to the cloned local bootstrap script
-  exec "${HOME}/projects/dotfiles/bootstrap" "$@"
+  exec "$TARGET_DIR/bootstrap" "$@"
 fi
 
-ROOT_DIR="$BIN_DIR"
+mkdir -p "${HOME}"/{projects,.config,.ssh/config.d}
 
-# Ensure local path infrastructure is present
-mkdir -p "${HOME}"/{projects,.config,.ssh,.ssh/config.d}
-touch "${HOME}/.extra"
-touch "${HOME}/.extra-gitconfig"
+if [ "$(uname -s)" = "Darwin" ]; then
+  echo "[*] Running macOS installation..."
+  "$ROOT_DIR/macos/install.sh"
 
-case "$(uname -s)" in
-  Darwin)
-    echo "[*] Running macOS installation..."
-    "$ROOT_DIR/macos/install.sh"
-    ;;
-  Linux)
-    echo "[*] Running Linux installation..."
-    "$ROOT_DIR/linux/install.sh"
-    ;;
-  *)
-    printf 'Error: Unsupported OS: %s\n' "$(uname -s)" >&2
-    exit 1
-    ;;
-  esac
+elif [ "$(uname -s)" = "Linux" ]; then
+  echo "[*] Running Linux installation..."
+  "$ROOT_DIR/linux/install.sh"
 
-# Configure dotfiles using mise
+else
+  echo "Error: Unsupported OS" >&2
+  exit 1
+fi
+
+# 4. Configure Dotfiles and Global Tools via Mise
 if command -v mise >/dev/null 2>&1; then
-  echo "[*] Trusting and applying mise dotfiles..."
+  echo "[*] Applying and installing mise dotfiles/runtimes..."
   mise trust "$ROOT_DIR/mise.toml"
   mise dotfiles apply --yes
-  echo "[+] Dotfiles applied successfully!"
-
-  echo "[*] Installing global runtimes and tools via mise..."
   mise install --global
   echo "[+] All global tools installed successfully!"
 else
-  # If on Linux and Homebrew was just installed, evaluate its env to find mise
-  if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
-
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-    if command -v mise >/dev/null 2>&1; then
-      echo "[*] Trusting and applying mise dotfiles..."
-      mise trust "$ROOT_DIR/mise.toml"
-      mise dotfiles apply --yes
-      echo "[+] Dotfiles applied successfully!"
-
-      echo "[*] Installing global runtimes and tools via mise..."
-      mise install --global
-      echo "[+] All global tools installed successfully!"
-      exit 0
-    fi
-  fi
-  echo "[!] mise not found. Please ensure it is in your PATH and run 'mise dotfiles apply --yes' manually."
+  echo "[!] mise not found. Run 'mise dotfiles apply --yes' manually after installation." >&2
 fi

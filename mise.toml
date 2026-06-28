@@ -17,6 +17,7 @@ dotfiles.default_mode = "symlink"
 
 "~/.curlrc" = "tools/curl/.curlrc"
 "~/.gitconfig" = "tools/git/.gitconfig"
+"~/.extra-gitconfig" = "tools/git/.extra-gitconfig"
 "~/.screenrc" = "tools/screen/.screenrc"
 "~/.ssh/config" = "tools/ssh/config"
 

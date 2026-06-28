@@ -1,6 +1,0 @@
-############################
-#           Intel          #
-############################
-
-apt intel-gpu-tools
-apt intel-media-va-driver

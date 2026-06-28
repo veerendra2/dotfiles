@@ -2,44 +2,16 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROFILE="${1:-}"
-
-usage() {
-  printf 'Usage: %s [server|desktop]\n' "${0##*/}"
-}
-
-detect_profile() {
-  if [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]; then
-    echo "desktop"
-    return
-  fi
-
-  if command -v dpkg >/dev/null 2>&1; then
-    if dpkg -l | grep -E -q 'ubuntu-desktop|kubuntu-desktop|lubuntu-desktop|xubuntu-desktop|gnome-shell|gdm3|lightdm|xfce4|kde-plasma' 2>/dev/null; then
-      echo "desktop"
-      return
-    fi
-  fi
-
-  echo "server"
-}
-
-if [ -z "$PROFILE" ]; then
-  PROFILE="$(detect_profile)"
-fi
-
-install_apt_bundle() {
-  if command -v apt-bundle >/dev/null 2>&1; then
-    return
-  fi
-
-  curl -fsSL https://raw.githubusercontent.com/apt-bundle/apt-bundle/main/install.sh | sudo bash
-}
 
 install_aptfile() {
   local aptfile="$1"
 
   if [ -f "$aptfile" ]; then
+    if ! command -v apt-bundle >/dev/null 2>&1; then
+      echo "[*] Installing apt-bundle"
+      curl -fsSL https://raw.githubusercontent.com/apt-bundle/apt-bundle/main/install.sh | sudo bash
+    fi
+
     sudo apt-bundle --file "$aptfile"
   fi
 }
@@ -52,8 +24,8 @@ install_snapfile() {
   fi
 
   if ! command -v snap >/dev/null 2>&1; then
-    sudo apt-get update
-    sudo apt-get install -y snapd
+    echo "[.] snap cli not found"
+    return
   fi
 
   while IFS= read -r line || [ -n "$line" ]; do
@@ -70,95 +42,34 @@ install_snapfile() {
   done < "$snapfile"
 }
 
-install_homebrew() {
-  if command -v brew >/dev/null 2>&1; then
-    return
-  fi
-
-  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  
-  # Evaluate Homebrew shell environment for the current process
-  if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  fi
-}
-
 install_brewfile() {
   local brewfile="$1"
 
   if [ -f "$brewfile" ]; then
-    install_homebrew
-    
-    # Pre-emptively trust any taps defined in the Brewfile to prevent interactive aborts
-    if command -v brew >/dev/null 2>&1; then
-      local taps
-      taps="$(grep -E '^tap ' "$brewfile" | cut -d '"' -f2 || true)"
-      if [ -n "$taps" ]; then
-        while IFS= read -r tap; do
-          [ -z "$tap" ] && continue
-          brew tap "$tap" || true
-          brew trust "$tap" 2>/dev/null || true
-        done <<< "$taps"
-      fi
+    if ! command -v brew >/dev/null 2>&1; then
+      NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
 
     brew bundle --file "$brewfile"
   fi
 }
 
-detect_gpu_vendors() {
+install_gpu_packages() {
   if ! command -v lspci >/dev/null 2>&1; then
     return
   fi
 
-  local devices
-  devices="$(lspci | grep -Ei 'vga|3d|2d' || true)"
-
-  if printf '%s\n' "$devices" | grep -qi nvidia; then
-    printf '%s\n' nvidia
-  fi
-
-  if printf '%s\n' "$devices" | grep -Eqi 'amd|ati'; then
-    printf '%s\n' amd
-  fi
-
-  if printf '%s\n' "$devices" | grep -qi intel; then
-    printf '%s\n' intel
+  if lspci | grep -Ei 'vga|3d|2d' | grep -qi nvidia; then
+    echo "[*] NVIDIA GPU detected. Installing drivers..."
+    sudo apt-get update && sudo apt-get install -y ubuntu-drivers-common
+    sudo ubuntu-drivers autoinstall
   fi
 }
 
-install_gpu_packages() {
-  local vendors vendor
-  vendors="$(detect_gpu_vendors)"
+install_aptfile "$ROOT_DIR/headless/Aptfile"
+install_brewfile "$ROOT_DIR/headless/Brewfile"
 
-  if [ -z "$vendors" ]; then
-    return
-  fi
-
-  install_aptfile "$ROOT_DIR/server/gpu/Aptfile.gpu"
-
-  while IFS= read -r vendor; do
-    install_aptfile "$ROOT_DIR/server/gpu/Aptfile.$vendor"
-
-    if [ "$vendor" = "nvidia" ] && command -v ubuntu-drivers >/dev/null 2>&1; then
-      sudo ubuntu-drivers autoinstall
-    fi
-  done <<< "$vendors"
-}
-
-case "$PROFILE" in
-  server|desktop) ;;
-  *)
-    usage >&2
-    exit 2
-    ;;
-esac
-
-install_apt_bundle
-install_aptfile "$ROOT_DIR/server/Aptfile"
-install_brewfile "$ROOT_DIR/server/Brewfile"
-
-if [ "$PROFILE" = "desktop" ]; then
+if dpkg -l | grep -q 'ubuntu-desktop' 2>/dev/null; then
   install_aptfile "$ROOT_DIR/desktop/Aptfile"
   install_gpu_packages
   install_brewfile "$ROOT_DIR/desktop/Brewfile"

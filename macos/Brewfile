@@ -37,7 +37,6 @@ brew "zstd"              # Zstandard compression library
 
 brew "direnv"            # Directory-based environment loader
 brew "fzf"               # Fuzzy finder
-brew "mise"              # Runtime and tool version manager
 brew "starship"          # Cross-shell prompt
 brew "tmux"              # Terminal multiplexer
 
