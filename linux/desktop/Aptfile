@@ -39,3 +39,9 @@ apt gnome-shell-extension-appindicator
 ############################
 
 apt virtualbox-7.1
+
+############################
+#         Storage          #
+############################
+
+apt kopia-ui

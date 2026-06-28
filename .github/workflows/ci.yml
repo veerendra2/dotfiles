@@ -1,0 +1,40 @@
+---
+name: CI
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+jobs:
+  lint:
+    name: Lint Dotfiles
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Lint YAML (yamllint)
+        run: |
+          pip install yamllint
+          yamllint .
+
+      - name: Lint JSON (jq)
+        run: |
+          find . -name "*.json" -not -path "*/.*" -not -path "*/node_modules/*" | xargs -I {} jq empty {}
+
+      - name: Lint TOML (Taplo)
+        uses: tamasfe/taplo-actions@v0.8
+        with:
+          args: lint
+
+      - name: Validate Brewfiles (Ruby syntax check)
+        run: |
+          find . -name "Brewfile*" | xargs -I {} ruby -wc {}
+
+      - name: Validate Aptfiles (apt-bundle)
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/apt-bundle/apt-bundle/main/install.sh | sudo bash
+          find . -name "Aptfile*" | xargs -I {} apt-bundle check --file {} --no-update

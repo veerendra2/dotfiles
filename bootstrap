@@ -1,7 +1,31 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Find repository root directory
+BIN_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Dual-Mode Check: If running standalone (e.g. via curl | bash), clone first
+if [ ! -d "$BIN_DIR/linux" ] && [ ! -d "$BIN_DIR/macos" ]; then
+  echo "[*] Bootstrapping: Creating directory infrastructure..."
+  mkdir -p "${HOME}/projects"
+  mkdir -p "${HOME}/.ssh"
+
+  # Scan github keys to prevent interactive ssh confirmation blocks
+  ssh-keyscan github.com >> "${HOME}/.ssh/known_hosts" 2>/dev/null || true
+
+  if [ ! -d "${HOME}/projects/dotfiles" ]; then
+    echo "[*] Cloning dotfiles repository..."
+    git clone https://github.com/veerendra2/dotfiles.git "${HOME}/projects/dotfiles"
+  else
+    echo "[*] Repository already exists. Pulling latest changes..."
+    git -C "${HOME}/projects/dotfiles" pull
+  fi
+
+  # Chain execution to the cloned local bootstrap script
+  exec "${HOME}/projects/dotfiles/bootstrap" "$@"
+fi
+
+ROOT_DIR="$BIN_DIR"
 
 # Ensure local path infrastructure is present
 mkdir -p "${HOME}"/{projects,.config,.ssh,.ssh/config.d}
@@ -29,24 +53,23 @@ if command -v mise >/dev/null 2>&1; then
   mise trust "$ROOT_DIR/mise.toml"
   mise dotfiles apply --yes
   echo "[+] Dotfiles applied successfully!"
-  
+
   echo "[*] Installing global runtimes and tools via mise..."
-  # Load the newly symlinked config.toml paths
-  export PATH="${HOME}/.local/share/mise/shims:${PATH}"
   mise install --global
   echo "[+] All global tools installed successfully!"
 else
   # If on Linux and Homebrew was just installed, evaluate its env to find mise
   if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
+
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
     if command -v mise >/dev/null 2>&1; then
       echo "[*] Trusting and applying mise dotfiles..."
       mise trust "$ROOT_DIR/mise.toml"
       mise dotfiles apply --yes
       echo "[+] Dotfiles applied successfully!"
-      
+
       echo "[*] Installing global runtimes and tools via mise..."
-      export PATH="${HOME}/.local/share/mise/shims:${PATH}"
       mise install --global
       echo "[+] All global tools installed successfully!"
       exit 0
