@@ -23,63 +23,68 @@
 
 ---
 
-## Package Management
+## 📦 Package Management
 
-This monorepo manages packages and configurations declaratively:
+Monorepo declarative package mapping:
 
-- Linux (Ubuntu):
+- **Linux (Ubuntu)**:
   - [`apt-bundle`](https://github.com/apt-bundle/apt-bundle)
   - [`homebrew`](https://brew.sh/)
   - [`snap`](https://snapcraft.io/docs/)
-- macOS:
+- **macOS**:
   - [`homebrew`](https://brew.sh/)
-- Windows:
+- **Windows**:
   - [`winget`](https://learn.microsoft.com/en-gb/windows/package-manager/)
 
 ---
 
-## Dotfiles Management
+## ⚙️ Dotfiles Management
 
-Dotfiles are managed declaratively via [`mise`](https://mise.jdx.dev/)'s
-[`dotfiles`](https://mise.jdx.dev/dotfiles.html) feature
+Apply dotfiles via [`mise`](https://mise.jdx.dev/):
 
 ```bash
 mise dotfiles apply --yes
 ```
 
+Uninstall dotfiles via custom uninstaller companion:
+
+```bash
+# Install uninstaller
+brew install veerendra2/tap/mise-dotfiles-uninstall
+
+# Uninstall symlinks
+mise-dotfiles-uninstall -c mise.toml
+```
+
+See [`veerendra2/mise-dotfiles-uninstall`](https://github.com/veerendra2/mise-dotfiles-uninstall) for binaries and details.
+
 ---
 
-## One-Line Installation
+## 🚀 Installation
+
+### macOS & Linux
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/veerendra2/dotfiles/master/bootstrap | bash
 ```
 
+### Windows
+
+```powershell
+irm https://raw.githubusercontent.com/veerendra2/dotfiles/refactor-to-make-monorepo/windows/install.ps1 | iex
+```
+
 ---
 
-## Custom Cheat Sheets via `navi`
+## 💡 Custom Cheat Sheets via `navi`
 
-This setup integrates [`navi`](https://github.com/denisidoro/navi), an
-interactive, keyboard-driven cheat sheet browser.
+Terminal cheatsheet integration:
 
-- Press `Ctrl+g` to launch navi as
-  [shell widget](https://github.com/denisidoro/navi/blob/master/docs/widgets/README.md)
-- Cheat sheets are located under `tools/navi/cheats/` and are automatically
-  symlinked to `~/.config/navi/cheats` by `mise`.
+- Press `Ctrl+g` to launch navi as [shell widget](https://github.com/denisidoro/navi/blob/master/docs/widgets/README.md)
+- Custom sheets are at `tools/navi/cheats/` and are automatically symlinked to `~/.config/navi/cheats`.
 
-To manage cheatsheet repositories
+Manage cheatsheet repositories:
 
 ```bash
 navi repo
-Manages cheatsheet repositories
-
-Usage: navi repo <COMMAND>
-
-Commands:
-  add     Imports cheatsheets from a repo
-  browse  Browses for featured cheatsheet repos
-  help    Print this message or the help of the given subcommand(s)
-
-Options:
-  -h, --help  Print help
 ```

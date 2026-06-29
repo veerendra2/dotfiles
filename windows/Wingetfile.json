@@ -47,6 +47,9 @@
 					"PackageIdentifier": "Apple.Bonjour"
 				},
 				{
+					"PackageIdentifier": "astral-sh.uv"
+				},
+				{
 					"PackageIdentifier": "WinDirStat.WinDirStat"
 				},
 				{
@@ -114,6 +117,9 @@
 				},
 				{
 					"PackageIdentifier": "Telegram.TelegramDesktop"
+				},
+				{
+					"PackageIdentifier": "Python.Pipx"
 				},
 				{
 					"PackageIdentifier": "Python.Python.3.14"
