@@ -10,6 +10,8 @@ if [ ! -d "${ROOT_DIR}/linux" ] && [ ! -d "${ROOT_DIR}/macos" ]; then
   mkdir -p "${HOME}/projects" "${HOME}/.ssh"
   ssh-keyscan github.com >> "${HOME}/.ssh/known_hosts" 2>/dev/null || true
 
+  sudo apt-get update && sudo apt-get install git -y
+
   if [ ! -d "$TARGET_DIR" ]; then
     echo "[*] Cloning dotfiles repository..."
     git clone https://github.com/veerendra2/dotfiles.git "$TARGET_DIR"
