@@ -3,21 +3,20 @@ set -euo pipefail
 
 ROOT_DIR="$(dirname -- "$( readlink -f -- "$0"; )";)"
 TARGET_DIR="${HOME}/projects/dotfiles"
+BRANCH="refactor-to-make-monorepo"
 
-# Check if running standalone (e.g. via curl | bash), clone first
+# Check if running standalone (e.g. via curl | bash), download tarball first
 if [ ! -d "${ROOT_DIR}/linux" ] && [ ! -d "${ROOT_DIR}/macos" ]; then
   echo "[*] Bootstrapping: Creating directory infrastructure..."
-  mkdir -p "${HOME}/projects" "${HOME}/.ssh"
-  ssh-keyscan github.com >> "${HOME}/.ssh/known_hosts" 2>/dev/null || true
-
-  sudo apt-get update && sudo apt-get install git -y
+  mkdir -p "${HOME}/projects"
 
   if [ ! -d "$TARGET_DIR" ]; then
-    echo "[*] Cloning dotfiles repository..."
-    git clone https://github.com/veerendra2/dotfiles.git "$TARGET_DIR"
+    echo "[*] Downloading dotfiles repository..."
+    TARBALL_URL="https://github.com/veerendra2/dotfiles/archive/refs/heads/${BRANCH}.tar.gz"
+    curl -fsSL "$TARBALL_URL" | tar -xz -C "${HOME}/projects"
+    mv "${HOME}/projects/dotfiles-${BRANCH}" "$TARGET_DIR"
   else
-    echo "[*] Repository already exists. Pulling latest changes..."
-    git -C "$TARGET_DIR" pull
+    echo "[*] Repository already exists. Skipping download..."
   fi
 
   exec "$TARGET_DIR/bootstrap" "$@"
@@ -27,10 +26,11 @@ mkdir -p "${HOME}"/{projects,.config,.ssh/config.d}
 chmod 700 "${HOME}/.ssh"
 
 curl -fsSL https://github.com/veerendra2.keys >> "${HOME}/.ssh/authorized_keys"
+chmod 600 "${HOME}/.ssh/authorized_keys"
+
 if command -v ssh-keyscan >/dev/null 2>&1; then
   ssh-keyscan github.com gitlab.com >> "${HOME}/.ssh/known_hosts" 2>/dev/null || true
 fi
-chmod 600 "${HOME}/.ssh/authorized_keys"
 
 if [ "$(uname -s)" = "Darwin" ]; then
   echo "[*] Running macOS installation..."
@@ -48,6 +48,22 @@ else
   exit 1
 fi
 
+# Convert to git repo if not already one (git is now available after platform install)
+if [ ! -d "${ROOT_DIR}/.git" ]; then
+  echo "[*] Converting to git repository..."
+  git -C "${ROOT_DIR}" init
+  git -C "${ROOT_DIR}" remote add origin git@github.com:veerendra2/dotfiles.git
+  git -C "${ROOT_DIR}" fetch origin "${BRANCH}"
+  git -C "${ROOT_DIR}" checkout -b "${BRANCH}" --track "origin/${BRANCH}"
+else
+  # Already a git repo - ensure remote uses SSH
+  CURRENT_REMOTE=$(git -C "${ROOT_DIR}" remote get-url origin 2>/dev/null || echo "")
+  if [[ "$CURRENT_REMOTE" == https://* ]]; then
+    echo "[*] Converting remote URL from HTTPS to SSH..."
+    git -C "${ROOT_DIR}" remote set-url origin git@github.com:veerendra2/dotfiles.git
+  fi
+fi
+
 if command -v mise >/dev/null 2>&1; then
   echo "[*] Applying and installing mise dotfiles/runtimes..."
   mise settings experimental=true
@@ -57,4 +73,22 @@ if command -v mise >/dev/null 2>&1; then
   echo "[+] All global tools installed successfully!"
 else
   echo "[!] mise not found. Run 'mise dotfiles apply --yes' manually after installation." >&2
+fi
+
+# SSH key setup
+if [ ! -f "${HOME}/.ssh/id_ed25519" ] && [ ! -f "${HOME}/.ssh/id_rsa" ]; then
+  echo "[*] Generating SSH key..."
+  ssh-keygen -t ed25519 -C "$(whoami)@$(hostname)" -f "${HOME}/.ssh/id_ed25519" -N ""
+
+  echo ""
+  echo "[!] SSH key generated. Add your public key to GitHub:"
+  echo "    https://github.com/settings/ssh/new"
+  echo ""
+  echo "Copy your public key with:"
+  if [ "$(uname -s)" = "Darwin" ]; then
+    echo "    cat ~/.ssh/id_ed25519.pub | pbcopy"
+  else
+    echo "    cat ~/.ssh/id_ed25519.pub"
+  fi
+  echo ""
 fi

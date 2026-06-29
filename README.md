@@ -46,8 +46,10 @@ Apply dotfiles via [`mise`](https://mise.jdx.dev/):
 # Enable experimental feature for dotfiles
 mise settings experimental=true
 
+# Trust the mise config
+mise trust --yes mise.toml
 
-
+# Apply
 mise dotfiles apply --yes
 ```
 
