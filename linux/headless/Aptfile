@@ -4,7 +4,7 @@
 
 # Kopia
 key https://kopia.io/signing-key
-deb "[arch=amd64] https://packages.kopia.io/apt/ stable main"
+deb "[arch=amd64,arm64,armhf] https://packages.kopia.io/apt/ stable main"
 
 # mise
 key https://mise.jdx.dev/gpg-key.pub
@@ -15,6 +15,7 @@ deb "[arch=amd64,arm64,armhf] https://mise.jdx.dev/deb stable main"
 ############################
 
 apt apt-transport-https
+apt bubblewrap
 apt build-essential
 apt ca-certificates
 apt git

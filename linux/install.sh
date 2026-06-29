@@ -6,13 +6,14 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 install_aptfile() {
   local aptfile="$1"
 
-  if [ -f "$aptfile" ]; then
+    if [ -f "$aptfile" ]; then
     if ! command -v apt-bundle >/dev/null 2>&1; then
       echo "[*] Installing apt-bundle"
+      sudo apt-get update && sudo apt-get install -y --no-install-recommends ca-certificates gnupg
       curl -fsSL https://raw.githubusercontent.com/apt-bundle/apt-bundle/main/install.sh | sudo bash
     fi
 
-    sudo apt-bundle --file "$aptfile"
+    sudo apt-bundle --file "$aptfile" 2> >(grep -v "Warning: Could not check if" >&2)
   fi
 }
 
@@ -50,7 +51,7 @@ install_brewfile() {
       NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
 
-    brew bundle --file "$brewfile"
+    /home/linuxbrew/.linuxbrew/bin/brew bundle --file "$brewfile"
   fi
 }
 

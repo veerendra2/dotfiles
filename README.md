@@ -23,7 +23,7 @@
 
 ---
 
-## 📦 Package Management
+## Package Management
 
 Monorepo declarative package mapping:
 
@@ -38,15 +38,20 @@ Monorepo declarative package mapping:
 
 ---
 
-## ⚙️ Dotfiles Management
+## Dotfiles Management
 
 Apply dotfiles via [`mise`](https://mise.jdx.dev/):
 
 ```bash
+# Enable experimental feature for dotfiles
+mise settings experimental=true
+
+
+
 mise dotfiles apply --yes
 ```
 
-Uninstall dotfiles via custom uninstaller companion:
+Uninstall dotfiles via custom uninstaller:
 
 ```bash
 # Install uninstaller
@@ -56,11 +61,13 @@ brew install veerendra2/tap/mise-dotfiles-uninstall
 mise-dotfiles-uninstall -c mise.toml
 ```
 
-See [`veerendra2/mise-dotfiles-uninstall`](https://github.com/veerendra2/mise-dotfiles-uninstall) for binaries and details.
+See
+[`veerendra2/mise-dotfiles-uninstall`](https://github.com/veerendra2/mise-dotfiles-uninstall)
+for binaries and details.
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### macOS & Linux
 
@@ -76,15 +83,29 @@ irm https://raw.githubusercontent.com/veerendra2/dotfiles/refactor-to-make-monor
 
 ---
 
-## 💡 Custom Cheat Sheets via `navi`
+## Custom Cheat Sheets via `navi`
 
 Terminal cheatsheet integration:
 
-- Press `Ctrl+g` to launch navi as [shell widget](https://github.com/denisidoro/navi/blob/master/docs/widgets/README.md)
-- Custom sheets are at `tools/navi/cheats/` and are automatically symlinked to `~/.config/navi/cheats`.
+- Press `Ctrl+g` to launch navi as
+  [shell widget](https://github.com/denisidoro/navi/blob/master/docs/widgets/README.md)
+- Custom sheets are at `tools/navi/cheats/` and are automatically symlinked to
+  `~/.config/navi/cheats`.
 
 Manage cheatsheet repositories:
 
 ```bash
 navi repo
+```
+
+## Test Locally
+
+```bash
+docker build --no-cache --tag dotfiles:latest .
+...
+
+docker run -it --rm -v ./:/home/dotfiles/dotfiles dotfiles:latest
+dotfiles@135ec4adbe1c:~$ ./dotfiles/bootstrap
+[sudo] password for dotfiles:
+...
 ```

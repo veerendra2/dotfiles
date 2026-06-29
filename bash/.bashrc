@@ -120,3 +120,8 @@ fi
 if hash fzf 2>/dev/null; then
   eval "$(fzf --bash)"
 fi
+
+# Homebrew
+if hash fzf 2>/dev/null; then
+  eval "$(brew shellenv bash)"
+fi
