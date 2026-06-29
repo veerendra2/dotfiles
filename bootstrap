@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-}")" && pwd)"
+ROOT_DIR="$(dirname -- "$( readlink -f -- "$0"; )";)"
 TARGET_DIR="${HOME}/projects/dotfiles"
 
 # Check if running standalone (e.g. via curl | bash), clone first
