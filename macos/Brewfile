@@ -75,7 +75,6 @@ brew "mongosh"           # MongoDB shell
 brew "openjdk"           # Java development kit
 brew "pipx"              # Isolated Python CLI installer
 brew "pkgconf"           # Package compiler metadata
-brew "python@3.12"       # Python runtime
 brew "rtk-ai/tap/rtk", trusted: true # RTK CLI
 brew "uv"                # Python package manager
 brew "vim"               # Text editor
@@ -84,7 +83,6 @@ brew "vim"               # Text editor
 #         Network          #
 ############################
 
-brew "dog"               # DNS client
 brew "grpcurl"           # gRPC curl-like client
 brew "iperf"             # Network bandwidth tester
 brew "iproute2mac"       # macOS ip command wrapper
@@ -104,14 +102,14 @@ brew "restic"            # Backup tool
 #         Desktop          #
 ############################
 
-cask "bitwarden"         # Password manager
-cask "firefox"           # Web browser
-cask "font-ubuntu-nerd-font" # Nerd Font
-cask "ghostty"           # Terminal emulator
-cask "google-chrome", args: { require_sha: false } # Web browser
-cask "iterm2"            # Terminal emulator
-cask "obsidian"          # Markdown notes app
-cask "protonvpn"         # VPN client
-cask "raycast"           # Launcher and automation
-cask "visual-studio-code" # Code editor
-cask "vlc"               # Media player
+# cask "bitwarden"         # Password manager
+# cask "firefox"           # Web browser
+# cask "font-ubuntu-nerd-font" # Nerd Font
+# cask "ghostty"           # Terminal emulator
+# cask "google-chrome", args: { require_sha: false } # Web browser
+# cask "iterm2"            # Terminal emulator
+# cask "obsidian"          # Markdown notes app
+# cask "protonvpn"         # VPN client
+# cask "raycast"           # Launcher and automation
+# cask "visual-studio-code" # Code editor
+# cask "vlc"               # Media player

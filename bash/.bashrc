@@ -45,7 +45,7 @@ if [[ -d /etc/bash_completion.d/ ]]; then
 fi
 
 # We do this before the following so that all the paths work.
-for file in ~/.{aliases,functions,exports,extra}; do
+for file in ~/.{aliases,functions,extra,exports}; do
 	if [[ -r "$file" ]] && [[ -f "$file" ]]; then
 		source "$file"
 	fi

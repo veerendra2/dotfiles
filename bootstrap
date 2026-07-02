@@ -48,22 +48,6 @@ else
   exit 1
 fi
 
-# Convert to git repo if not already one (git is now available after platform install)
-if [ ! -d "${ROOT_DIR}/.git" ]; then
-  echo "[*] Converting to git repository..."
-  git -C "${ROOT_DIR}" init
-  git -C "${ROOT_DIR}" remote add origin git@github.com:veerendra2/dotfiles.git
-  git -C "${ROOT_DIR}" fetch origin "${BRANCH}"
-  git -C "${ROOT_DIR}" checkout -b "${BRANCH}" --track "origin/${BRANCH}"
-else
-  # Already a git repo - ensure remote uses SSH
-  CURRENT_REMOTE=$(git -C "${ROOT_DIR}" remote get-url origin 2>/dev/null || echo "")
-  if [[ "$CURRENT_REMOTE" == https://* ]]; then
-    echo "[*] Converting remote URL from HTTPS to SSH..."
-    git -C "${ROOT_DIR}" remote set-url origin git@github.com:veerendra2/dotfiles.git
-  fi
-fi
-
 if command -v mise >/dev/null 2>&1; then
   echo "[*] Applying and installing mise dotfiles/runtimes..."
   mise settings experimental=true

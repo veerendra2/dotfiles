@@ -54,7 +54,9 @@ if [[ "$(uname -s)" == "Linux" ]]; then
 
 elif [[ "$(uname -s)" == "Darwin" ]]; then
   # macOS
-  if [[ "$(uname -m)" == "arm64" ]]; then
+  if [[ "${LOCAL_HOMEBREW:-}" == "1" ]]; then
+    prepend_path "$HOME/.local/Homebrew/bin"
+  elif [[ "$(uname -m)" == "arm64" ]]; then
     # Apple Silicon
     prepend_path "/opt/homebrew/bin"
   else
@@ -62,7 +64,7 @@ elif [[ "$(uname -s)" == "Darwin" ]]; then
     prepend_path "/usr/local/bin"
   fi
 
-  export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=/Library/Fonts"
+  export HOMEBREW_CASK_OPTS="--appdir=$HOME/Applications"
   export LC_ALL=en_US.UTF-8
   export LC_CTYPE=en_US.UTF-8
 fi
