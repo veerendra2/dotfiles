@@ -55,6 +55,9 @@ if [[ "$(uname -s)" == "Linux" ]]; then
 elif [[ "$(uname -s)" == "Darwin" ]]; then
   # macOS
   if [[ "${LOCAL_HOMEBREW:-}" == "1" ]]; then
+    # Prioritize gcloud from local homebrew
+    # ==TEMPORARY WORKAROUND==
+    prepend_path "$HOME/.local/Homebrew/share/google-cloud-sdk/bin"
     prepend_path "$HOME/.local/Homebrew/bin"
   elif [[ "$(uname -m)" == "arm64" ]]; then
     # Apple Silicon
