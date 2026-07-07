@@ -60,10 +60,11 @@ truncation_symbol = '…/'
 'office' = ' '
 
 [kubernetes]
-format = '[$symbol$context\($namespace\)]($style) '
+format = '[$symbol$context(\($namespace\))]($style) '
 symbol = "󱃾 "
 disabled = false
 contexts = [
+  { context_pattern = "^gke_.*_shared-reference$", context_alias = "shared-reference", style = "color_purple" },
   { context_pattern = "^dev.*", style = "color_purple" },
   { context_pattern = "^stage.*", style = "color_orange" },
   { context_pattern = "^prod.*", style = "color_red" },
