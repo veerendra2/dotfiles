@@ -96,6 +96,10 @@ if hash kubectl 2>/dev/null; then
 	source <(kubectl completion bash)
 fi
 
+if hash thefuck 2>/dev/null; then
+  eval $(thefuck --alias)
+fi
+
 # thefuck alternative
 if hash pay-respects 2>/dev/null; then
   eval "$(pay-respects bash)"
