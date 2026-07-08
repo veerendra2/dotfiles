@@ -65,6 +65,9 @@ symbol = "󱃾 "
 disabled = false
 contexts = [
   { context_pattern = "^gke_.*_shared-reference$", context_alias = "shared-reference", style = "color_purple" },
+  { context_pattern = "^gke_.*_webshop-reference$", context_alias = "webshop-reference", style = "color_purple" },
+  { context_pattern = "^gke_.*_shared-production-v2$", context_alias = "shared-production-v2", style = "color_red" },
+  { context_pattern = "^gke_.*_webshop-production$", context_alias = "webshop-production", style = "color_red" },
   { context_pattern = "^dev.*", style = "color_purple" },
   { context_pattern = "^stage.*", style = "color_orange" },
   { context_pattern = "^prod.*", style = "color_red" },
