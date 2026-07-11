@@ -20,6 +20,7 @@ $azure\
 $docker_context\
 $vagrant\
 $direnv\
+$mise\
 $jobs\
 $time\
 $cmd_duration\
@@ -28,7 +29,7 @@ $character"""
 
 add_newline = true
 
-palette = "cusom"
+palette = "custom"
 
 [username]
 format = '[$user]($style) at '
@@ -92,6 +93,11 @@ format = '[${symbol}${pyenv_prefix}(${version})(\($virtualenv\) )]($style)'
 pyenv_version_name = true
 style = 'teal'
 symbol = ' '
+
+[mise]
+symbol = "mise "
+style = "bold purple"
+disabled = false
 
 [nodejs]
 style = 'blue'
@@ -206,7 +212,7 @@ SUSE = ""
 Ubuntu = "󰕈"
 Windows = "󰍲"
 
-[palettes.cusom]
+[palettes.custom]
 color_fg0 = '#fbf1c7'
 color_bg1 = '#3c3836'
 color_bg3 = '#665c54'
