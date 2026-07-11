@@ -3,7 +3,33 @@ set -euo pipefail
 
 ROOT_DIR="$(dirname -- "$( readlink -f -- "$0"; )";)"
 TARGET_DIR="${HOME}/projects/dotfiles"
-BRANCH="refactor-to-make-monorepo"
+BRANCH="main"
+
+# Ask about local homebrew install (no sudo required)
+install_local_homebrew() {
+  echo ""
+  read -r -p "[?] Install Homebrew locally (no sudo, into ~/.local/Homebrew)? [y/N] " answer
+  case "$answer" in
+    [yY]*)
+      echo "[*] Installing Homebrew locally..."
+      mkdir -p "$HOME/.local/Homebrew"
+      curl -L https://github.com/Homebrew/brew/tarball/main | tar xz --strip-components 1 -C "$HOME/.local/Homebrew"
+      eval "$("$HOME/.local/Homebrew/bin/brew" shellenv)"
+      "$HOME/.local/Homebrew/bin/brew" update --force --quiet
+      # Persist LOCAL_HOMEBREW for install scripts and future sessions
+      grep -qxF 'export LOCAL_HOMEBREW=1' "$HOME/.extra" 2>/dev/null || \
+        echo 'export LOCAL_HOMEBREW=1' >> "$HOME/.extra"
+      echo "[+] Local Homebrew installed at ~/.local/Homebrew"
+      ;;
+    *)
+      echo "[.] Skipping local Homebrew install"
+      ;;
+  esac
+}
+
+if [ "$(uname -s)" = "Darwin" ]; then
+  install_local_homebrew
+fi
 
 # Check if running standalone (e.g. via curl | bash), download tarball first
 if [ ! -d "${ROOT_DIR}/linux" ] && [ ! -d "${ROOT_DIR}/macos" ]; then
