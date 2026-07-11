@@ -13,7 +13,10 @@ install_local_homebrew() {
     [yY]*)
       echo "[*] Installing Homebrew locally..."
       mkdir -p "$HOME/.local/Homebrew"
-      curl -L https://github.com/Homebrew/brew/tarball/main | tar xz --strip-components 1 -C "$HOME/.local/Homebrew"
+      if ! curl -fsSL https://github.com/Homebrew/brew/tarball/main | tar xz --strip-components 1 -C "$HOME/.local/Homebrew"; then
+        echo "[!] Failed to download or extract Homebrew"
+        return 1
+      fi
       eval "$("$HOME/.local/Homebrew/bin/brew" shellenv)"
       "$HOME/.local/Homebrew/bin/brew" update --force --quiet
       # Persist LOCAL_HOMEBREW for install scripts and future sessions
