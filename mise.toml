@@ -6,10 +6,16 @@ dotfiles.default_mode = "symlink"
 [dotfiles]
 
 ############################
-#           Bash           #
+#          Shell           #
 ############################
 
-"~/" = { source = "bash", mode = "symlink-each" }
+"~/.aliases" = "shell/common/.aliases"
+"~/.functions" = "shell/common/.functions"
+"~/.exports" = "shell/common/.exports"
+"~/.bashrc" = "shell/bash/.bashrc"
+"~/.bash_profile" = "shell/bash/.bash_profile"
+"~/.zshrc" = "shell/zsh/.zshrc"
+"~/.zprofile" = "shell/zsh/.zprofile"
 
 ############################
 #           Core           #
