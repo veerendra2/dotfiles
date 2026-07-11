@@ -1,6 +1,6 @@
 [settings]
 experimental = true
-dotfiles.root = "~/projects/dotfiles-refactor"
+dotfiles.root = "~/projects/dotfiles"
 dotfiles.default_mode = "symlink"
 
 [dotfiles]
