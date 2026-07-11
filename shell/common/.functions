@@ -145,12 +145,12 @@ docker_rm_stopped(){
 	local running stopped
 	running=$(docker ps -q)
 	stopped=$(docker ps -aq | grep -v "$running")
-	docker rm -f $stopped
+	docker rm -f "$stopped"
 }
 
 # Stop all containers
 docker_stop_all(){
-	docker stop $(docker ps -q)
+	docker stop "$(docker ps -q)"
 }
 
 # Removes all docker Images ** DANGER **
@@ -158,7 +158,7 @@ docker_rm_imgs(){
 	echo "Are you sure want to delete all Docker images?"
 	read -r a
 	if [ "$a" = "yes" ]; then
-		docker rmi -f $(docker images -q --no-trunc) > /dev/null
+		docker rmi -f "$(docker images -q --no-trunc)" > /dev/null
 	fi
 }
 
