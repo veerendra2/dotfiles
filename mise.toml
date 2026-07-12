@@ -1,5 +1,6 @@
 [settings]
 experimental = true
+
 dotfiles.root = "~/projects/dotfiles"
 dotfiles.default_mode = "symlink"
 
@@ -9,21 +10,19 @@ dotfiles.default_mode = "symlink"
 #          Shell           #
 ############################
 
-"~/.aliases" = "shell/common/.aliases"
-"~/.functions" = "shell/common/.functions"
-"~/.exports" = "shell/common/.exports"
-"~/.bashrc" = "shell/bash/.bashrc"
 "~/.bash_profile" = "shell/bash/.bash_profile"
-"~/.zshrc" = "shell/zsh/.zshrc"
-"~/.zprofile" = "shell/zsh/.zprofile"
+"~/.bashrc" = "shell/bash/.bashrc"
+
+# "~/.zprofile" = "shell/zsh/.zprofile"
+# "~/.zshrc" = "shell/zsh/.zshrc"
+
+"~/" = { source = "shell/common", mode = "symlink-each" }
 
 ############################
 #           Core           #
 ############################
 
 "~/.curlrc" = "tools/curl/.curlrc"
-"~/.gitconfig" = "tools/git/.gitconfig"
-"~/.extra-gitconfig" = "tools/git/.extra-gitconfig"
 "~/.screenrc" = "tools/screen/.screenrc"
 "~/.ssh/config" = "tools/ssh/config"
 
@@ -31,18 +30,14 @@ dotfiles.default_mode = "symlink"
 #          Config          #
 ############################
 
+"~/.claude" = { source = "tools/claude", mode = "symlink-each" }
 "~/.config/direnv/direnv.toml" = "tools/direnv/direnv.toml"
 "~/.config/ghostty" = { source = "tools/ghostty", mode = "symlink-each" }
+"~/.config/git" = { source = "tools/git", mode = "symlink-each" }
 "~/.config/k9s/hotkeys.yaml" = "tools/k9s/hotkeys.yaml"
 "~/.config/mise/config.toml" = "tools/mise/config.toml"
-"~/.config/navi/config.yaml" = "tools/navi/config.yaml"
 "~/.config/navi/cheats" = { source = "tools/navi/cheats", mode = "symlink-each" }
+"~/.config/navi/config.yaml" = "tools/navi/config.yaml"
 "~/.config/opencode/opencode.json" = "tools/opencode/opencode.json"
 "~/.config/rtk/config.toml" = "tools/rtk/config.toml"
 "~/.config/starship/starship.toml" = "tools/starship/starship.toml"
-
-############################
-#          Claude          #
-############################
-
-"~/.claude" = { source = "tools/claude", mode = "symlink-each" }

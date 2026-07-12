@@ -20,3 +20,5 @@ tools/ghostty/local
 
 .ssh/*
 !.ssh/config
+.superpowers/
+docs/superpowers/

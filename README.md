@@ -50,7 +50,7 @@ mise settings experimental=true
 mise trust --yes mise.toml
 
 # Apply
-mise dotfiles apply --yes
+mise dotfiles apply --yes --force
 ```
 
 Uninstall dotfiles via custom uninstaller:
@@ -99,6 +99,41 @@ Manage cheatsheet repositories:
 ```bash
 navi repo
 ```
+
+## Tip for Machine Specific Dotfiles
+
+### Env
+
+`shell/common/.extra`
+
+```
+# To put local homebrew path first!
+export LOCAL_HOMEBREW=1
+
+# Override claude code settings
+export ANTHROPIC_BASE_URL="https://your-gateway/v1"
+export ANTHROPIC_API_KEY="YOUR_API_KEY"
+export ANTHROPIC_MODEL="claude-sonnet-4.6"
+export CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1
+```
+
+### Ghostty Config
+
+> - See
+>   [Splitting into Multiple Files](https://ghostty.org/docs/config#splitting-into-multiple-files)
+> - [Config Generator](https://ghostty.zerebos.com/)
+
+`tools/ghostty/local`
+
+```
+# To launch custom command or shell by ghostty on start
+# In this case, useful for force launch bash
+command = ~/.local/Homebrew/bin/bash -l
+```
+
+### Git Config
+
+`.extra-gitconfig`
 
 ## Test Locally
 
