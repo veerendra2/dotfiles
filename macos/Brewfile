@@ -1,0 +1,115 @@
+#############################################################
+# Brewfile                                                  #
+#                                                           #
+# Generic macOS packages installed via Homebrew Bundle.     #
+#############################################################
+
+cask_args appdir: "~/Applications", require_sha: true
+
+tap "rtk-ai/tap", trusted: true
+tap "veerendra2/tap", trusted: true
+
+############################
+#           Core           #
+############################
+
+brew "bash"              # Modern Bash shell
+brew "bash-completion"   # Bash completion scripts
+brew "bitwarden-cli"     # Bitwarden CLI
+brew "ca-certificates"   # Certificate authority bundle
+brew "coreutils"         # GNU core utilities
+brew "curl"              # HTTP client
+brew "findutils"         # GNU find utilities
+brew "gnu-sed"           # GNU stream editor
+brew "gnu-tar"           # GNU tar archiver
+brew "grep"              # GNU grep
+brew "openssl@3"         # TLS and cryptography toolkit
+brew "readline"          # Command-line editing library
+brew "sqlite"            # SQLite database CLI and library
+brew "tcl-tk@8"          # Tcl/Tk libraries for Python builds
+brew "wget"              # File downloader
+brew "xz"                # XZ compression utilities
+brew "zlib"              # Compression library
+brew "zstd"              # Zstandard compression library
+
+############################
+#          Shell           #
+############################
+
+brew "direnv"            # Directory-based environment loader
+brew "fzf"               # Fuzzy finder
+brew "starship"          # Cross-shell prompt
+brew "tmux"              # Terminal multiplexer
+
+############################
+#        Utilities         #
+############################
+
+brew "btop"              # Resource monitor
+brew "fd"                # Fast find replacement
+brew "htop"              # Process viewer
+brew "jq"                # JSON processor
+brew "lsd"               # Modern ls replacement
+brew "mise-dotfiles-uninstall" # mise's dotfiles uninstaller
+brew "moreutils"         # Extra Unix utilities
+brew "navi"              # Interactive cheatsheets
+brew "pv"                # Pipe progress viewer
+brew "ripgrep"           # Fast text search
+brew "tree"              # Directory tree viewer
+brew "unzip"             # Zip archive extractor
+brew "watch"             # Re-run commands periodically
+brew "yq"                # YAML, JSON, XML processor
+
+############################
+#       Development        #
+############################
+
+brew "gh"                # GitHub CLI
+brew "git"               # Version control
+brew "git-filter-repo"   # Git history rewriting
+brew "go"                # Go compiler and tools
+brew "golangci-lint"     # Go linter runner
+brew "httpie"            # HTTP client
+brew "mkcert"            # Local trusted certificates
+brew "mongosh"           # MongoDB shell
+brew "openjdk"           # Java development kit
+brew "pipx"              # Isolated Python CLI installer
+brew "pkgconf"           # Package compiler metadata
+brew "rtk-ai/tap/rtk", trusted: true # RTK CLI
+brew "uv"                # Python package manager
+brew "vim"               # Text editor
+
+############################
+#         Network          #
+############################
+
+brew "grpcurl"           # gRPC curl-like client
+brew "iperf"             # Network bandwidth tester
+brew "iproute2mac"       # macOS ip command wrapper
+brew "nmap"              # Network scanner
+brew "tcping"            # TCP connectivity tester
+brew "telnet"            # Telnet client
+
+############################
+#         Storage          #
+############################
+
+brew "kopia"             # Backup tool
+brew "rclone"            # Cloud storage sync
+brew "restic"            # Backup tool
+
+############################
+#         Desktop          #
+############################
+
+# cask "bitwarden"         # Password manager
+# cask "firefox"           # Web browser
+# cask "font-ubuntu-nerd-font" # Nerd Font
+# cask "ghostty"           # Terminal emulator
+# cask "google-chrome", args: { require_sha: false } # Web browser
+# cask "iterm2"            # Terminal emulator
+# cask "obsidian"          # Markdown notes app
+# cask "protonvpn"         # VPN client
+# cask "raycast"           # Launcher and automation
+# cask "visual-studio-code" # Code editor
+# cask "vlc"               # Media player

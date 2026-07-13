@@ -1,0 +1,15 @@
+theme = Dark+
+font-family = CommitMono Nerd Font
+font-synthetic-style = false
+font-size = 18
+
+window-height = 35
+window-width = 150
+
+background-opacity = 0.9
+background-blur-radius = 20
+
+mouse-hide-while-typing = true
+window-decoration = true
+
+config-file = ?local

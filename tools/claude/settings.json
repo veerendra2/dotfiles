@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "0",
+    "OTEL_METRICS_EXPORTER": "otlp",
+    "CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY": "1",
+    "cleanupPeriodDays": "365"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(gh api repos:*)",
+      "Bash(gh pr create)",
+      "Bash(gh pr review *)",
+      "Bash(gh run *)",
+      "Bash(gh search:*)",
+      "Bash(grep -v \"^$\")",
+      "Bash(npm run lint)",
+      "Bash(npm run test *)",
+      "Read(~/.zshrc)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebSearch"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Read(./.env*)",
+      "Read(./secrets/**)",
+      "Read(./.aws/**)",
+      "Read(./.ssh/**)"
+    ],
+    "ask": [
+      "Bash(curl *)",
+      "Bash(sudo *)",
+      "Bash(git push *)",
+      "Bash(git force-push *)",
+      "Bash(git reset --hard *)"
+    ]
+  },
+  "model": "claude-sonnet-4.5",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh",
+    "padding": 2
+  },
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true,
+    "andrej-karpathy-skills@karpathy-skills": true
+  },
+  "extraKnownMarketplaces": {
+    "karpathy-skills": {
+      "source": {
+        "source": "github",
+        "repo": "forrestchang/andrej-karpathy-skills"
+      }
+    }
+  },
+  "theme": "dark",
+  "mcpServers": {
+    "atlassian": {
+      "transport": {
+        "type": "docker",
+        "image": "mcp/atlassian"
+      }
+    }
+  }
+}

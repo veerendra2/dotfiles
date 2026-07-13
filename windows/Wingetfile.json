@@ -1,0 +1,152 @@
+{
+	"$schema": "https://aka.ms/winget-packages.schema.2.0.json",
+	"CreationDate": "2026-06-27T00:07:57.024-00:00",
+	"Sources": [
+		{
+			"Packages": [
+				{
+					"PackageIdentifier": "Bitwarden.Bitwarden"
+				},
+				{
+					"PackageIdentifier": "CoreyButler.NVMforWindows"
+				},
+				{
+					"PackageIdentifier": "CPUID.CPU-Z"
+				},
+				{
+					"PackageIdentifier": "Mozilla.Firefox"
+				},
+				{
+					"PackageIdentifier": "mridgers.Clink"
+				},
+				{
+					"PackageIdentifier": "Notepad++.Notepad++"
+				},
+				{
+					"PackageIdentifier": "Proton.ProtonVPN"
+				},
+				{
+					"PackageIdentifier": "SumatraPDF.SumatraPDF"
+				},
+				{
+					"PackageIdentifier": "Ghisler.TotalCommander"
+				},
+				{
+					"PackageIdentifier": "VideoLAN.VLC"
+				},
+				{
+					"PackageIdentifier": "Obsidian.Obsidian"
+				},
+				{
+					"PackageIdentifier": "Google.Chrome"
+				},
+				{
+					"PackageIdentifier": "RaspberryPiFoundation.RaspberryPiImager"
+				},
+				{
+					"PackageIdentifier": "Apple.Bonjour"
+				},
+				{
+					"PackageIdentifier": "astral-sh.uv"
+				},
+				{
+					"PackageIdentifier": "WinDirStat.WinDirStat"
+				},
+				{
+					"PackageIdentifier": "WireGuard.WireGuard"
+				},
+				{
+					"PackageIdentifier": "Starship.Starship"
+				},
+				{
+					"PackageIdentifier": "Oracle.VirtualBox"
+				},
+				{
+					"PackageIdentifier": "Microsoft.PowerShell"
+				},
+				{
+					"PackageIdentifier": "7zip.7zip"
+				},
+				{
+					"PackageIdentifier": "DiskInternals.LinuxReader"
+				},
+				{
+					"PackageIdentifier": "OBSProject.OBSStudio"
+				},
+				{
+					"PackageIdentifier": "Guru3D.RTSS"
+				},
+				{
+					"PackageIdentifier": "Valve.Steam"
+				},
+				{
+					"PackageIdentifier": "Ubisoft.Connect"
+				},
+				{
+					"PackageIdentifier": "Python.Launcher"
+				},
+				{
+					"PackageIdentifier": "Apache.OpenOffice"
+				},
+				{
+					"PackageIdentifier": "DEVCOM.JetBrainsMonoNerdFont"
+				},
+				{
+					"PackageIdentifier": "Mobatek.MobaXterm"
+				},
+				{
+					"PackageIdentifier": "Jellyfin.JellyfinMediaPlayer"
+				},
+				{
+					"PackageIdentifier": "jdx.mise"
+				},
+				{
+					"PackageIdentifier": "undergroundwires.privacy.sexy"
+				},
+				{
+					"PackageIdentifier": "Kopia.KopiaUI"
+				},
+				{
+					"PackageIdentifier": "Spotify.Spotify"
+				},
+				{
+					"PackageIdentifier": "sigoden.Dufs"
+				},
+				{
+					"PackageIdentifier": "waterlan.dos2unix"
+				},
+				{
+					"PackageIdentifier": "Telegram.TelegramDesktop"
+				},
+				{
+					"PackageIdentifier": "Python.Pipx"
+				},
+				{
+					"PackageIdentifier": "Python.Python.3.14"
+				},
+				{
+					"PackageIdentifier": "Microsoft.VisualStudioCode"
+				},
+				{
+					"PackageIdentifier": "Devolutions.UniGetUI"
+				},
+				{
+					"PackageIdentifier": "Canonical.Ubuntu"
+				},
+				{
+					"PackageIdentifier": "Microsoft.WindowsTerminal"
+				},
+				{
+					"PackageIdentifier": "Microsoft.WSL"
+				}
+			],
+			"SourceDetails": {
+				"Argument": "https://cdn.winget.microsoft.com/cache",
+				"Identifier": "Microsoft.Winget.Source_8wekyb3d8bbwe",
+				"Name": "winget",
+				"Type": "Microsoft.PreIndexed.Package"
+			}
+		}
+	],
+	"WinGetVersion": "1.29.280"
+}

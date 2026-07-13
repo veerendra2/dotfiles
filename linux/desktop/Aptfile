@@ -1,0 +1,47 @@
+############################
+#          Repos           #
+############################
+
+# VirtualBox
+key https://www.virtualbox.org/download/oracle_vbox_2016.asc
+deb "[arch=amd64] https://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib"
+
+# Proton VPN
+key https://repo.protonvpn.com/debian/public_key.asc
+deb "https://repo.protonvpn.com/debian stable main"
+
+# VS Code
+key https://packages.microsoft.com/keys/microsoft.asc
+deb "[arch=amd64,arm64,armhf] https://packages.microsoft.com/repos/code stable main"
+
+############################
+#       Development        #
+############################
+
+apt code
+
+############################
+#        Utilities         #
+############################
+
+apt feh
+apt xclip
+
+############################
+#         Network          #
+############################
+
+apt proton-vpn-gnome-desktop
+apt gnome-shell-extension-appindicator
+
+############################
+#     Virtualization       #
+############################
+
+apt virtualbox-7.1
+
+############################
+#         Storage          #
+############################
+
+apt kopia-ui

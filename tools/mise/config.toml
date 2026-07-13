@@ -1,0 +1,12 @@
+[tools]
+python = { version = "3.14", postinstall = "uv pip install --python $MISE_TOOL_INSTALL_PATH/bin/python requests beautifulsoup4 jmespath loguru jc rich" }
+"pipx:ansible" = { version = "latest", uvx = false, pipx_args = "--include-deps" }
+"pipx:black" = "latest"
+"pipx:claude-chat-to-md" = "latest"
+"pipx:isort" = "latest"
+"pipx:jc" = "latest"
+"pipx:pre-commit" = "latest"
+"pipx:rich-cli" = "latest"
+"pipx:ruff" = "latest"
+"pipx:tldr" = "latest"
+"pipx:toolong" = "latest"

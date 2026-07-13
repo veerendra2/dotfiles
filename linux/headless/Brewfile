@@ -1,0 +1,23 @@
+############################
+#       Development        #
+############################
+
+tap "hashicorp/tap", trusted: true
+tap "veerendra2/tap", trusted: true
+
+brew "bitwarden-cli"     # Bitwarden CLI
+brew "go"                # Go compiler and tools
+brew "golangci-lint"     # Go linter runner
+brew "hashicorp/tap/terraform" # Terraform CLI (HashiCorp Tap for ARM64 Linux support)
+brew "kubecolor"         # Colorized kubectl output
+brew "kubectx"           # Kubernetes context switcher
+brew "kubernetes-cli"    # kubectl
+brew "mise-dotfiles-uninstall" # mise's dotfiles uninstaller
+brew "pyenv"             # Python version manager
+brew "uv"                # Python package manager
+
+############################
+#        Utilities         #
+############################
+
+brew "starship"          # Cross-shell prompt
