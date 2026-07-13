@@ -3,7 +3,7 @@ set -euo pipefail
 
 ROOT_DIR="$(dirname -- "$( readlink -f -- "$0"; )";)"
 TARGET_DIR="${HOME}/projects/dotfiles"
-BRANCH="main"
+BRANCH="master"
 
 # Ask about local homebrew install (no sudo required)
 install_local_homebrew() {
@@ -22,6 +22,7 @@ install_local_homebrew() {
       # Persist LOCAL_HOMEBREW for install scripts and future sessions
       grep -qxF 'export LOCAL_HOMEBREW=1' "$HOME/.extra" 2>/dev/null || \
         echo 'export LOCAL_HOMEBREW=1' >> "$HOME/.extra"
+      export LOCAL_HOMEBREW=1
       echo "[+] Local Homebrew installed at ~/.local/Homebrew"
       ;;
     *)
@@ -44,8 +45,12 @@ if [ ! -d "${ROOT_DIR}/linux" ] && [ ! -d "${ROOT_DIR}/macos" ]; then
     TARBALL_URL="https://github.com/veerendra2/dotfiles/archive/refs/heads/${BRANCH}.tar.gz"
     curl -fsSL "$TARBALL_URL" | tar -xz -C "${HOME}/projects"
     mv "${HOME}/projects/dotfiles-${BRANCH}" "$TARGET_DIR"
+  elif command -v git >/dev/null 2>&1; then
+    echo "[*] Repository exists. Updating via git..."
+    git -C "$TARGET_DIR" pull
   else
-    echo "[*] Repository already exists. Skipping download..."
+    echo "[*] Repository exists but git not installed. Using existing copy..."
+    echo "[!] Install git (via Xcode Command Line Tools or Homebrew) to enable updates"
   fi
 
   exec "$TARGET_DIR/bootstrap" "$@"
@@ -80,8 +85,8 @@ fi
 if command -v mise >/dev/null 2>&1; then
   echo "[*] Applying and installing mise dotfiles/runtimes..."
   mise settings experimental=true
-  mise -C ${ROOT_DIR} trust --yes "${ROOT_DIR}/mise.toml"
-  mise -C ${ROOT_DIR} dotfiles apply --yes --force
+  mise -C "${ROOT_DIR}" trust --yes "${ROOT_DIR}/mise.toml"
+  mise -C "${ROOT_DIR}" dotfiles apply --yes --force
   mise install --global
   echo "[+] All global tools installed successfully!"
 else

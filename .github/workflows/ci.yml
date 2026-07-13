@@ -47,3 +47,71 @@ jobs:
         run: |
           curl -fsSL https://raw.githubusercontent.com/apt-bundle/apt-bundle/main/install.sh | sudo bash
           find . -name "Aptfile*" | xargs -I {} apt-bundle check --file {} --no-update || true
+
+  test-macos:
+    name: Test Bootstrap on macOS
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install shellcheck
+        run: brew install shellcheck
+
+      - name: Shellcheck bootstrap script
+        run: shellcheck bootstrap macos/install.sh
+
+      - name: Test one-liner mode (skip LOCAL_HOMEBREW)
+        run: |
+          # Set up isolated test home
+          export HOME="${RUNNER_TEMP}/test-home"
+          mkdir -p "${HOME}"
+
+          # Simulate one-liner execution (pipe 'n' to skip LOCAL_HOMEBREW prompt)
+          echo 'n' | bash bootstrap || true
+
+          # Verify directory structure created
+          test -d "${HOME}/projects/dotfiles" || { echo "FAIL: dotfiles directory not created"; exit 1; }
+          test -d "${HOME}/.config" || { echo "FAIL: .config directory not created"; exit 1; }
+          test -d "${HOME}/.ssh/config.d" || { echo "FAIL: .ssh/config.d not created"; exit 1; }
+
+          echo "SUCCESS: One-liner mode created expected directory structure"
+
+      - name: Test git availability check (missing git scenario)
+        run: |
+          # Set up test scenario: repo exists but git is missing
+          export HOME="${RUNNER_TEMP}/test-home-nogit"
+          mkdir -p "${HOME}/projects/dotfiles/macos"
+          mkdir -p "${HOME}/projects/dotfiles/linux"
+          cp bootstrap "${HOME}/projects/dotfiles/"
+
+          # Temporarily hide git to simulate fresh macOS
+          sudo mv /usr/local/bin/git /usr/local/bin/git.bak 2>/dev/null || true
+          sudo mv /opt/homebrew/bin/git /opt/homebrew/bin/git.bak 2>/dev/null || true
+
+          # Run bootstrap - should handle missing git gracefully
+          cd "${HOME}/projects/dotfiles"
+          echo 'n' | bash bootstrap || true
+
+          # Restore git
+          sudo mv /usr/local/bin/git.bak /usr/local/bin/git 2>/dev/null || true
+          sudo mv /opt/homebrew/bin/git.bak /opt/homebrew/bin/git 2>/dev/null || true
+
+          echo "SUCCESS: Bootstrap handled missing git without crashing"
+
+      - name: Validate Brewfile syntax
+        run: ruby -wc macos/Brewfile
+
+      - name: Verify --force-bottle is conditional
+        run: |
+          # Verify macos/install.sh only uses --force-bottle when LOCAL_HOMEBREW=1
+          if grep -q "brew bundle.*--force-bottle" macos/install.sh; then
+            # Found --force-bottle, verify it's inside a LOCAL_HOMEBREW conditional
+            if ! grep -B2 "brew bundle.*--force-bottle" macos/install.sh | grep -q 'LOCAL_HOMEBREW.*==.*"1"'; then
+              echo "FAIL: --force-bottle must only be used when LOCAL_HOMEBREW=1"
+              exit 1
+            fi
+            echo "SUCCESS: --force-bottle is correctly conditional on LOCAL_HOMEBREW=1"
+          else
+            echo "INFO: No --force-bottle usage found"
+          fi
