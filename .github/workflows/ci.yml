@@ -72,7 +72,7 @@ jobs:
           mv macos macos.bak
 
           # Simulate one-liner execution (yes n provides infinite 'n' responses for both prompts)
-          yes n | timeout 120 bash bootstrap
+          yes n | bash bootstrap
 
           # Restore directories
           mv linux.bak linux
