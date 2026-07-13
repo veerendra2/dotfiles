@@ -67,8 +67,16 @@ jobs:
           export HOME="${RUNNER_TEMP}/test-home"
           mkdir -p "${HOME}"
 
+          # Temporarily hide linux/macos dirs to trigger one-liner mode detection
+          mv linux linux.bak
+          mv macos macos.bak
+
           # Simulate one-liner execution (pipe 'n' to skip LOCAL_HOMEBREW prompt)
           echo 'n' | bash bootstrap || true
+
+          # Restore directories
+          mv linux.bak linux
+          mv macos.bak macos
 
           # Verify directory structure created
           test -d "${HOME}/projects/dotfiles" || { echo "FAIL: dotfiles directory not created"; exit 1; }
