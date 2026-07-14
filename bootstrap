@@ -87,7 +87,7 @@ if command -v mise >/dev/null 2>&1; then
   mise settings experimental=true
   mise -C "${ROOT_DIR}" trust --yes "${ROOT_DIR}/mise.toml"
   mise -C "${ROOT_DIR}" dotfiles apply --yes --force
-  mise install --global
+  mise install
   echo "[+] All global tools installed successfully!"
 else
   echo "[!] mise not found. Run 'mise dotfiles apply --yes' manually after installation." >&2

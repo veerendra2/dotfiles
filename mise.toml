@@ -13,8 +13,8 @@ dotfiles.default_mode = "symlink"
 "~/.bash_profile" = "shell/bash/.bash_profile"
 "~/.bashrc" = "shell/bash/.bashrc"
 
-# "~/.zprofile" = "shell/zsh/.zprofile"
-# "~/.zshrc" = "shell/zsh/.zshrc"
+"~/.zprofile" = "shell/zsh/.zprofile"
+"~/.zshrc" = "shell/zsh/.zshrc"
 
 "~/" = { source = "shell/common", mode = "symlink-each" }
 

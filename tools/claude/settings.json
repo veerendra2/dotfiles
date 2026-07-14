@@ -75,5 +75,9 @@
         "image": "mcp/atlassian"
       }
     }
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
   }
 }
