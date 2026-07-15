@@ -41,3 +41,4 @@ dotfiles.default_mode = "symlink"
 "~/.config/opencode/opencode.json" = "tools/opencode/opencode.json"
 "~/.config/rtk/config.toml" = "tools/rtk/config.toml"
 "~/.config/starship/starship.toml" = "tools/starship/starship.toml"
+"~/.vim" = { source = "tools/vim", mode = "symlink-each" }
