@@ -102,14 +102,21 @@ brew "restic"            # Backup tool
 #         Desktop          #
 ############################
 
-# cask "bitwarden"         # Password manager
-# cask "firefox"           # Web browser
-# cask "font-ubuntu-nerd-font" # Nerd Font
-# cask "ghostty"           # Terminal emulator
-# cask "google-chrome", args: { require_sha: false } # Web browser
-# cask "iterm2"            # Terminal emulator
-# cask "obsidian"          # Markdown notes app
-# cask "protonvpn"         # VPN client
-# cask "raycast"           # Launcher and automation
-# cask "visual-studio-code" # Code editor
-# cask "vlc"               # Media player
+cask "bitwarden"              # Password manager
+cask "chatgpt"                # ChatGPT desktop app
+cask "claude"                 # Claude AI desktop app
+cask "coteditor"              # Text editor
+cask "firefox"                # Web browser
+cask "firefox"                # Web browser
+cask "font-ubuntu-nerd-font"  # Nerd Font
+cask "ghostty"                # Terminal emulator
+cask "google-chrome", args: { require_sha: false } # Web browser
+cask "iterm2"                 # Terminal emulator
+cask "jellyfin-media-player"  # Jellyfin desktop client
+cask "keepingyouawake"        # Caffeine alternative
+cask "obsidian"               # Markdown notes app
+cask "protonvpn"              # VPN client
+cask "raycast"                # Launcher and automation
+cask "stats"                  # System monitor for the menu bar
+cask "visual-studio-code"     # Code editor
+cask "vlc"                    # Media player
