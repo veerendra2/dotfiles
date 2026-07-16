@@ -25,7 +25,7 @@
 
 ## Package Management
 
-Monorepo declarative package mapping:
+Cross-platform package setup
 
 - **Linux (Ubuntu)**:
   - [`apt-bundle`](https://github.com/apt-bundle/apt-bundle)
@@ -97,20 +97,34 @@ Terminal cheatsheet integration:
 Manage cheatsheet repositories:
 
 ```bash
-navi repo
+navi repo --help
+Manages cheatsheet repositories
+
+Usage: navi repo <COMMAND>
+
+Commands:
+  add     Imports cheatsheets from a repo
+  browse  Browses for featured cheatsheet repos
+  help    Print this message or the help of the given subcommand(s)
+
+Options:
+  -h, --help  Print help
 ```
 
-## Tip for Machine Specific Dotfiles
+## Tips for Machine-Specific Dotfiles
+
+> These files are not tracked in git — use them for machine-specific overrides
+> that shouldn't be shared or committed.
 
 ### Env
 
 `shell/common/.extra`
 
-```
-# To put local homebrew path first!
+```sh
+# Put local Homebrew path(`~/.local/Homebrew`) first
 export LOCAL_HOMEBREW=1
 
-# Override claude code settings
+# Override Claude Code settings
 export ANTHROPIC_BASE_URL="https://your-gateway/v1"
 export ANTHROPIC_API_KEY="YOUR_API_KEY"
 export ANTHROPIC_MODEL="claude-sonnet-4.6"
@@ -125,17 +139,23 @@ export CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1
 
 `tools/ghostty/local`
 
-```
-# To launch custom command or shell by ghostty on start
-# In this case, useful for force launch bash
+```sh
+# Launch a custom command or shell on Ghostty start
+# Useful here for forcing bash to launch
 command = ~/.local/Homebrew/bin/bash -l
 ```
 
 ### Git Config
 
-`.extra-gitconfig`
+`tools/git/.extra-gitconfig`
 
-## Test Locally
+```ini
+# e.g. use a custom email for commits on this machine
+[user]
+  email = your-custom-email@example.com
+```
+
+## Testing Locally
 
 ```bash
 docker build --no-cache --tag dotfiles:latest .

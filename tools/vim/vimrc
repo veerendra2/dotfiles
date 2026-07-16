@@ -53,4 +53,5 @@ endif
 syntax enable
 colorscheme monokai
 
-set rtp+=/opt/homebrew/opt/fzf
+" TODO: Remove hardcoded path, should pick dynamically!
+" set rtp+=/opt/homebrew/opt/fzf

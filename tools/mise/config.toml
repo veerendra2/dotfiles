@@ -10,3 +10,6 @@ python = { version = "3.14", postinstall = "uv pip install --python $MISE_TOOL_I
 "pipx:ruff" = "latest"
 "pipx:tldr" = "latest"
 "pipx:toolong" = "latest"
+
+[settings]
+experimental = true
