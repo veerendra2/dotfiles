@@ -12,7 +12,7 @@ brew "hashicorp/tap/terraform" # Terraform CLI (HashiCorp Tap for ARM64 Linux su
 brew "kubecolor"         # Colorized kubectl output
 brew "kubectx"           # Kubernetes context switcher
 brew "kubernetes-cli"    # kubectl
-brew "mise-dotfiles-uninstall" # mise's dotfiles uninstaller
+brew "veerendra2/tap/symlinkr" # Declarative symlink manager
 brew "pyenv"             # Python version manager
 brew "uv"                # Python package manager
 

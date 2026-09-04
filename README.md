@@ -40,32 +40,24 @@ Cross-platform package setup
 
 ## Dotfiles Management
 
-Apply dotfiles via [`mise`](https://mise.jdx.dev/):
+Apply dotfiles via [`symlinkr`](https://github.com/veerendra2/symlinkr):
 
 ```bash
-# Enable experimental feature for dotfiles
-mise settings experimental=true
-
-# Trust the mise config
-mise trust --yes mise.toml
+# Install
+brew install veerendra2/tap/symlinkr
 
 # Apply
-mise dotfiles apply --yes --force
+symlinkr --config symlinkr.yaml -f
 ```
 
-Uninstall dotfiles via custom uninstaller:
+Uninstall (remove) symlinks:
 
 ```bash
-# Install uninstaller
-brew install veerendra2/tap/mise-dotfiles-uninstall
-
-# Uninstall symlinks
-mise-dotfiles-uninstall -c mise.toml
+symlinkr --config symlinkr.yaml -r
 ```
 
-See
-[`veerendra2/mise-dotfiles-uninstall`](https://github.com/veerendra2/mise-dotfiles-uninstall)
-for binaries and details.
+See [`veerendra2/symlinkr`](https://github.com/veerendra2/symlinkr) for
+binaries and details.
 
 ---
 

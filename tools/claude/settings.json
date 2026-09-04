@@ -6,6 +6,10 @@
     "CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY": "1",
     "cleanupPeriodDays": "365"
   },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "permissions": {
     "allow": [
       "Bash(gh api repos:*)",
@@ -35,7 +39,7 @@
       "Bash(git reset --hard *)"
     ]
   },
-  "model": "claude-sonnet-4.5",
+  "model": "gh/claude-sonnet-5",
   "hooks": {
     "PreToolUse": [
       {
@@ -57,13 +61,26 @@
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true,
-    "andrej-karpathy-skills@karpathy-skills": true
+    "andrej-karpathy-skills@karpathy-skills": true,
+    "obsidian@obsidian-skills": true
   },
   "extraKnownMarketplaces": {
     "karpathy-skills": {
       "source": {
         "source": "github",
         "repo": "forrestchang/andrej-karpathy-skills"
+      }
+    },
+    "mattpocock": {
+      "source": {
+        "source": "github",
+        "repo": "mattpocock/skills"
+      }
+    },
+    "obsidian-skills": {
+      "source": {
+        "source": "github",
+        "repo": "kepano/obsidian-skills"
       }
     }
   },
@@ -75,9 +92,5 @@
         "image": "mcp/atlassian"
       }
     }
-  },
-  "attribution": {
-    "commit": "",
-    "pr": ""
   }
 }

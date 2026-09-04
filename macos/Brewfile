@@ -50,7 +50,7 @@ brew "fd"                # Fast find replacement
 brew "htop"              # Process viewer
 brew "jq"                # JSON processor
 brew "lsd"               # Modern ls replacement
-brew "mise-dotfiles-uninstall" # mise's dotfiles uninstaller
+brew "veerendra2/tap/symlinkr" # Declarative symlink manager
 brew "moreutils"         # Extra Unix utilities
 brew "navi"              # Interactive cheatsheets
 brew "pv"                # Pipe progress viewer
