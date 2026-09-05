@@ -108,7 +108,7 @@ your Ollama server's configured context and model capabilities.
 ### macOS & Linux
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/veerendra2/dotfiles/master/bootstrap | bash
+curl -fsSL https://raw.githubusercontent.com/veerendra2/dotfiles/main/bootstrap | bash
 ```
 
 ### Windows
