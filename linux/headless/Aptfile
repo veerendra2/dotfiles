@@ -32,6 +32,8 @@ apt vim
 apt binutils
 apt direnv
 apt jq
+apt kubecolor
+apt kubectx
 apt libbz2-dev
 apt libffi-dev
 apt liblzma-dev
@@ -45,11 +47,14 @@ apt libusb-1.0-0-dev
 apt libxml2-dev
 apt libxmlsec1-dev
 apt mise
+apt nodejs
+apt npm
 apt pipx
 apt python3-dev
 apt python3-pip
 apt tk-dev
 apt xz-utils
+apt yamllint
 apt zlib1g-dev
 
 ############################

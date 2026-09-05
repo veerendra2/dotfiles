@@ -40,6 +40,7 @@ symlinks:
     recursive: true
   - ~/.config/navi/config.yaml: tools/navi/config.yaml
   - ~/.config/opencode/opencode.json: tools/opencode/opencode.json
+  - ~/.pi/agent/extensions/ollama.ts: tools/pi/extensions/ollama.ts
   - ~/.config/rtk/config.toml: tools/rtk/config.toml
   - ~/.config/starship/starship.toml: tools/starship/starship.toml
   - ~/.vim: tools/vim

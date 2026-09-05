@@ -55,6 +55,27 @@ symlinkr --config symlinkr.yaml -r
 
 ---
 
+## Pi Local Models
+
+Ollama models are registered by `tools/pi/extensions/ollama.ts`, symlinked to
+`~/.pi/agent/extensions/ollama.ts`. Pi loads this extension automatically; use
+`/reload` in an existing session after applying the symlinks.
+
+The extension lists `gpt-oss:latest`, `glm-4.7-flash:latest`, and `gemma4:latest`
+at `http://localhost:11434/v1`. Pull the models with Ollama before using them,
+then select one through `/model` or `pi --model ollama/gpt-oss:latest`.
+Registration does not download models or change Pi's default model.
+
+Keep other provider settings in `~/.pi/agent/models.json` and credentials outside
+this repository. If you previously copied the old Pi config there, remove only
+its `providers.ollama` entry to avoid overriding the extension's model list.
+
+The extension uses text-only mode with reasoning controls disabled and a
+32,768-token context budget (4,096 output tokens). Adjust these values to match
+your Ollama server's configured context and model capabilities.
+
+---
+
 ## Installation
 
 ### macOS & Linux
