@@ -115,11 +115,6 @@ if hash navi 2>/dev/null; then
   eval "$(navi widget bash)"
 fi
 
-# mise shell integration
-if hash mise 2>/dev/null; then
-  eval "$(mise activate bash)"
-fi
-
 # Set up fzf key bindings and fuzzy completion
 if hash fzf 2>/dev/null; then
   eval "$(fzf --bash)"

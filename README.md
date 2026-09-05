@@ -55,16 +55,43 @@ symlinkr --config symlinkr.yaml -r
 
 ---
 
+## Runtimes and Python Tools
+
+macOS uses Homebrew for Python 3.14, Node.js (including npm), and Python CLI
+tools. Ubuntu uses APT for Python 3, Node.js, npm, and available Python tools
+and libraries, with Homebrew for the remaining CLIs. Ubuntu package availability
+was checked against 24.04; Python follows the distribution version.
+
+Both Brewfiles use `uv` entries for `claude-chat-to-md` and `toolong`, which have
+no Homebrew formula or Ubuntu 24.04 package. Homebrew Bundle installs these into
+isolated tool environments; `~/.local/bin` is already on the shell PATH.
+
+For Python libraries on macOS, use a project virtual environment instead of
+installing into Homebrew's externally managed Python:
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install requests beautifulsoup4 jmespath loguru jc rich
+```
+
+Existing runtime-manager installations and environments are not uninstalled by
+bootstrap. Restart your shell after applying the updated dotfiles to drop old
+shell activation.
+
+---
+
 ## Pi Local Models
 
 Ollama models are registered by `tools/pi/extensions/ollama.ts`, symlinked to
 `~/.pi/agent/extensions/ollama.ts`. Pi loads this extension automatically; use
 `/reload` in an existing session after applying the symlinks.
 
-The extension lists `gpt-oss:latest`, `glm-4.7-flash:latest`, and `gemma4:latest`
-at `http://localhost:11434/v1`. Pull the models with Ollama before using them,
-then select one through `/model` or `pi --model ollama/gpt-oss:latest`.
-Registration does not download models or change Pi's default model.
+The extension discovers installed models from `http://localhost:11434/api/tags`
+at startup and on `/reload`, and uses `http://localhost:11434/v1` for inference.
+After pulling or deleting models in Ollama, run `/reload`, then select a model
+through `/model` or `pi --model ollama/qwen3.8:latest`.
+Discovery has a five-second timeout; if Ollama is unavailable, Pi still starts
+with a warning. Registration does not download models or change Pi's default model.
 
 Keep other provider settings in `~/.pi/agent/models.json` and credentials outside
 this repository. If you previously copied the old Pi config there, remove only
@@ -136,6 +163,9 @@ export ANTHROPIC_BASE_URL="https://your-gateway/v1"
 export ANTHROPIC_API_KEY="YOUR_API_KEY"
 export ANTHROPIC_MODEL="claude-sonnet-4.6"
 export CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1
+
+# Let Node.js (npm/Pi) trust the system CA bundle; restart Pi after setting this.
+export NODE_EXTRA_CA_CERTS=/etc/ssl/cert.pem
 ```
 
 ### Ghostty Config

@@ -27,6 +27,16 @@ brew "pyenv"             # Python version manager
 brew "uv"                # Python package manager
 
 ############################
+#       Python Tools       #
+############################
+
+brew "rich-cli"          # Rich terminal output
+brew "ruff"              # Python linter and formatter
+
+uv "claude-chat-to-md"
+uv "toolong"
+
+############################
 #        Utilities         #
 ############################
 

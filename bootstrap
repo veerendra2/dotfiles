@@ -112,6 +112,11 @@ elif [ "$(uname -s)" = "Linux" ]; then
   echo "[*] Running Linux installation..."
   "${ROOT_DIR}/linux/install.sh"
 
+  # The installer runs in a child process, so initialize PATH here as well.
+  if ! command -v brew >/dev/null 2>&1 && [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  fi
+
 else
   echo "Error: Unsupported OS" >&2
   exit 1
@@ -123,6 +128,7 @@ if command -v symlinkr >/dev/null 2>&1; then
   echo "[+] Dotfiles symlinked successfully!"
 else
   echo "[!] symlinkr not found. Run 'symlinkr --config ${ROOT_DIR}/symlinkr.yaml' manually after installation." >&2
+  exit 1
 fi
 
 # SSH key setup

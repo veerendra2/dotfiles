@@ -6,10 +6,6 @@
 key https://kopia.io/signing-key
 deb "[arch=amd64,arm64,armhf] https://packages.kopia.io/apt/ stable main"
 
-# mise
-key https://mise.jdx.dev/gpg-key.pub
-deb "[arch=amd64,arm64,armhf] https://mise.jdx.dev/deb stable main"
-
 ############################
 #           Core           #
 ############################
@@ -46,7 +42,6 @@ apt libssl-dev
 apt libusb-1.0-0-dev
 apt libxml2-dev
 apt libxmlsec1-dev
-apt mise
 apt nodejs
 apt npm
 apt pipx
@@ -56,6 +51,24 @@ apt tk-dev
 apt xz-utils
 apt yamllint
 apt zlib1g-dev
+
+############################
+#       Python Tools       #
+############################
+
+apt ansible
+apt black
+apt isort
+apt jc
+apt pre-commit
+apt python3
+apt python3-bs4
+apt python3-jmespath
+apt python3-loguru
+apt python3-requests
+apt python3-rich
+apt python3-venv
+apt tldr
 
 ############################
 #        Utilities         #

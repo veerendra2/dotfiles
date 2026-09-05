@@ -20,7 +20,6 @@ $azure\
 $docker_context\
 $vagrant\
 $direnv\
-$mise\
 $jobs\
 $time\
 $cmd_duration\
@@ -93,11 +92,6 @@ format = '[${symbol}${pyenv_prefix}(${version})(\($virtualenv\) )]($style)'
 pyenv_version_name = true
 style = 'teal'
 symbol = ' '
-
-[mise]
-symbol = "mise "
-style = "bold purple"
-disabled = false
 
 [nodejs]
 style = 'blue'

@@ -27,9 +27,6 @@ export SAM_CLI_TELEMETRY=0
 export AZURE_CORE_COLLECT_TELEMETRY=0
 export HOMEBREW_NO_ANALYTICS=1
 
-# Enable mise experimental settings
-export MISE_EXPERIMENTAL=1
-
 export FZF_CTRL_R_OPTS="
   --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
   --color header:italic

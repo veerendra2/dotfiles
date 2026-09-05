@@ -84,10 +84,27 @@ brew "node"              # JavaScript runtime and npm
 brew "openjdk"           # Java development kit
 brew "pipx"              # Isolated Python CLI installer
 brew "pkgconf"           # Package compiler metadata
+brew "python@3.14"       # Python runtime and pip
 brew "rtk-ai/tap/rtk", trusted: true # RTK CLI
 brew "uv"                # Python package manager
 brew "vim"               # Text editor
 brew "yamllint"          # YAML linter
+
+############################
+#       Python Tools       #
+############################
+
+brew "ansible"           # Infrastructure automation
+brew "black"             # Python formatter
+brew "isort"             # Python import sorter
+brew "jc"                # Convert command output to JSON
+brew "pre-commit"        # Git hook framework
+brew "rich-cli"          # Rich terminal output
+brew "ruff"              # Python linter and formatter
+brew "tlrc"              # Maintained tldr client
+
+uv "claude-chat-to-md"
+uv "toolong"
 
 ############################
 #   Kubernetes & IaC       #
