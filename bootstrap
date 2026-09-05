@@ -123,15 +123,6 @@ else
   echo "[!] symlinkr not found. Run 'symlinkr --config ${ROOT_DIR}/symlinkr.yaml' manually after installation." >&2
 fi
 
-if command -v mise >/dev/null 2>&1; then
-  echo "[*] Installing mise-managed runtimes..."
-  mise settings experimental=true
-  mise install
-  echo "[+] All global tools installed successfully!"
-else
-  echo "[!] mise not found. Install global tools manually after installation." >&2
-fi
-
 # SSH key setup
 if [ ! -f "${HOME}/.ssh/id_ed25519" ] && [ ! -f "${HOME}/.ssh/id_rsa" ]; then
   echo "[*] Generating SSH key..."

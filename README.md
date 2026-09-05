@@ -48,16 +48,10 @@ brew install veerendra2/tap/symlinkr
 
 # Apply
 symlinkr --config symlinkr.yaml -f
-```
 
-Uninstall (remove) symlinks:
-
-```bash
+# Uninstall (remove) symlinks
 symlinkr --config symlinkr.yaml -r
 ```
-
-See [`veerendra2/symlinkr`](https://github.com/veerendra2/symlinkr) for
-binaries and details.
 
 ---
 
