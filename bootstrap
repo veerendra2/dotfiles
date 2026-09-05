@@ -79,9 +79,11 @@ if [ ! -d "${ROOT_DIR}/linux" ] && [ ! -d "${ROOT_DIR}/macos" ]; then
     git clone --branch "$BRANCH" "$REPO_HTTPS" "$TARGET_DIR"
     # Switch to SSH for future pulls/pushes; works even before an SSH key is set up
     git -C "$TARGET_DIR" remote set-url origin "$REPO_SSH"
+
   elif git -C "$TARGET_DIR" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
     echo "[*] Repository exists. Updating via git..."
     git -C "$TARGET_DIR" pull || echo "[!] git pull failed (SSH key not added to GitHub yet?) - continuing with existing copy"
+
   else
     echo "[*] Repository exists but isn't a git checkout. Using existing copy..."
   fi
@@ -92,12 +94,12 @@ fi
 mkdir -p "${HOME}"/{projects,.config,.ssh/config.d}
 chmod 700 "${HOME}/.ssh"
 
-curl -fsSL https://github.com/veerendra2.keys >> "${HOME}/.ssh/authorized_keys"
-chmod 600 "${HOME}/.ssh/authorized_keys"
+# curl -fsSL https://github.com/veerendra2.keys >> "${HOME}/.ssh/authorized_keys"
+# chmod 600 "${HOME}/.ssh/authorized_keys"
 
-if command -v ssh-keyscan >/dev/null 2>&1; then
-  ssh-keyscan github.com gitlab.com >> "${HOME}/.ssh/known_hosts" 2>/dev/null || true
-fi
+# if command -v ssh-keyscan >/dev/null 2>&1; then
+#   ssh-keyscan github.com gitlab.com >> "${HOME}/.ssh/known_hosts" 2>/dev/null || true
+# fi
 
 if [ "$(uname -s)" = "Darwin" ]; then
   echo "[*] Running macOS installation..."
