@@ -1,7 +1,7 @@
 % python
 
 # Create virtual environment using venv
-python -m venv <venv_name>
+python3 -m venv <venv_name>
 
 # Activate virtual environment
 source <venv_name>/bin/activate
@@ -9,40 +9,9 @@ source <venv_name>/bin/activate
 # Deactivate virtual environment
 deactivate
 
-# Create virtual environment using mise
-mise exec -- python -m venv <venv_name>
-
 $ venv_name: echo 'venv' --- --allow-empty
 
 % direnv
 
 # Create and load virtual environment with direnv
 echo "layout python3" > .envrc
-
-# Load mise-managed tools with direnv
-echo 'eval "$(mise direnv)"' > .envrc
-
-$ MISE_PYTHON_INSTALLED_VERSIONS: mise ls python --installed | awk '{print $2}'
-
-% mise
-
-# List installed versions
-mise ls python --installed
-
-# List available versions
-mise ls-remote python
-
-# Install a Python version
-mise install python@<MISE_PYTHON_VERSIONS>
-
-# Select Python version just for current shell session
-mise shell python@<MISE_PYTHON_INSTALLED_VERSIONS>
-
-# Select Python version just for the current directory (or its subdirectories):
-mise use python@<MISE_PYTHON_INSTALLED_VERSIONS>
-
-# Select Python version globally
-mise use --global python@<MISE_PYTHON_INSTALLED_VERSIONS>
-
-$ MISE_PYTHON_VERSIONS: mise ls-remote python
-$ MISE_PYTHON_INSTALLED_VERSIONS: mise ls python --installed | awk '{print $2}'

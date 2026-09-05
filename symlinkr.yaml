@@ -1,0 +1,46 @@
+---
+root_dir: "~/projects/dotfiles"
+force_overwrite: false
+
+symlinks:
+  ############################
+  #          Shell           #
+  ############################
+  - ~/.bash_profile: shell/bash/.bash_profile
+  - ~/.bashrc: shell/bash/.bashrc
+
+  - ~/.zprofile: shell/zsh/.zprofile
+  - ~/.zshrc: shell/zsh/.zshrc
+
+  - ~/.aliases: shell/common/.aliases
+  - ~/.exports: shell/common/.exports
+  - ~/.extra: shell/common/.extra
+  - ~/.functions: shell/common/.functions
+
+  ############################
+  #           Core           #
+  ############################
+  - ~/.curlrc: tools/curl/.curlrc
+  - ~/.screenrc: tools/screen/.screenrc
+  - ~/.ssh/config: tools/ssh/config
+
+  ############################
+  #          Config          #
+  ############################
+  - ~/.claude: tools/claude
+    recursive: true
+  - ~/.config/direnv/direnv.toml: tools/direnv/direnv.toml
+  - ~/.config/ghostty: tools/ghostty
+    recursive: true
+  - ~/.config/git: tools/git
+    recursive: true
+  - ~/.config/k9s/hotkeys.yaml: tools/k9s/hotkeys.yaml
+  - ~/.config/navi/cheats: tools/navi/cheats
+    recursive: true
+  - ~/.config/navi/config.yaml: tools/navi/config.yaml
+  - ~/.config/opencode/opencode.json: tools/opencode/opencode.json
+  - ~/.pi/agent/extensions/ollama.ts: tools/pi/extensions/ollama.ts
+  - ~/.config/rtk/config.toml: tools/rtk/config.toml
+  - ~/.config/starship/starship.toml: tools/starship/starship.toml
+  - ~/.vim: tools/vim
+    recursive: true

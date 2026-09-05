@@ -2,22 +2,50 @@
 #       Development        #
 ############################
 
+tap "anomalyco/tap", trusted: true
 tap "hashicorp/tap", trusted: true
 tap "veerendra2/tap", trusted: true
 
+brew "anomalyco/tap/opencode" # Terminal AI coding agent
+brew "argocd"            # GitOps continuous delivery CLI
 brew "bitwarden-cli"     # Bitwarden CLI
+brew "codeburn"          # AI coding token usage tracker
+brew "defuddle"          # Web page content extractor
 brew "go"                # Go compiler and tools
+brew "go-task"           # Task runner
 brew "golangci-lint"     # Go linter runner
+brew "goreleaser"        # Go release automation
 brew "hashicorp/tap/terraform" # Terraform CLI (HashiCorp Tap for ARM64 Linux support)
-brew "kubecolor"         # Colorized kubectl output
-brew "kubectx"           # Kubernetes context switcher
+brew "helm"              # Kubernetes package manager
+brew "herdr"             # Terminal agent multiplexer
+brew "k9s"               # Kubernetes terminal UI
+brew "krew"              # kubectl plugin manager
 brew "kubernetes-cli"    # kubectl
-brew "mise-dotfiles-uninstall" # mise's dotfiles uninstaller
+brew "kustomize"         # Kubernetes manifest customization
+brew "veerendra2/tap/symlinkr" # Declarative symlink manager
 brew "pyenv"             # Python version manager
 brew "uv"                # Python package manager
+
+############################
+#       Python Tools       #
+############################
+
+brew "rich-cli"          # Rich terminal output
+brew "ruff"              # Python linter and formatter
+
+uv "claude-chat-to-md"
+uv "toolong"
 
 ############################
 #        Utilities         #
 ############################
 
 brew "starship"          # Cross-shell prompt
+
+############################
+#        AI Agents         #
+############################
+
+cask "claude-code"       # Claude terminal coding agent (Linux supported)
+cask "codex"             # OpenAI terminal coding agent (Linux supported)
+cask "copilot-cli"       # GitHub Copilot terminal coding agent (Linux supported)

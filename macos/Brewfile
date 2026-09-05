@@ -6,6 +6,8 @@
 
 cask_args appdir: "~/Applications", require_sha: true
 
+tap "anomalyco/tap", trusted: true
+tap "hashicorp/tap", trusted: true
 tap "rtk-ai/tap", trusted: true
 tap "veerendra2/tap", trusted: true
 
@@ -50,7 +52,7 @@ brew "fd"                # Fast find replacement
 brew "htop"              # Process viewer
 brew "jq"                # JSON processor
 brew "lsd"               # Modern ls replacement
-brew "mise-dotfiles-uninstall" # mise's dotfiles uninstaller
+brew "veerendra2/tap/symlinkr" # Declarative symlink manager
 brew "moreutils"         # Extra Unix utilities
 brew "navi"              # Interactive cheatsheets
 brew "pv"                # Pipe progress viewer
@@ -64,20 +66,59 @@ brew "yq"                # YAML, JSON, XML processor
 #       Development        #
 ############################
 
+brew "anomalyco/tap/opencode" # Terminal AI coding agent
+brew "codeburn"          # AI coding token usage tracker
+brew "defuddle"          # Web page content extractor
 brew "gh"                # GitHub CLI
 brew "git"               # Version control
 brew "git-filter-repo"   # Git history rewriting
 brew "go"                # Go compiler and tools
+brew "go-task"           # Task runner
 brew "golangci-lint"     # Go linter runner
+brew "goreleaser"        # Go release automation
+brew "herdr"            # Terminal agent multiplexer
 brew "httpie"            # HTTP client
 brew "mkcert"            # Local trusted certificates
 brew "mongosh"           # MongoDB shell
+brew "node"              # JavaScript runtime and npm
 brew "openjdk"           # Java development kit
 brew "pipx"              # Isolated Python CLI installer
 brew "pkgconf"           # Package compiler metadata
+brew "python@3.14"       # Python runtime and pip
 brew "rtk-ai/tap/rtk", trusted: true # RTK CLI
 brew "uv"                # Python package manager
 brew "vim"               # Text editor
+brew "yamllint"          # YAML linter
+
+############################
+#       Python Tools       #
+############################
+
+brew "ansible"           # Infrastructure automation
+brew "black"             # Python formatter
+brew "isort"             # Python import sorter
+brew "jc"                # Convert command output to JSON
+brew "pre-commit"        # Git hook framework
+brew "rich-cli"          # Rich terminal output
+brew "ruff"              # Python linter and formatter
+brew "tlrc"              # Maintained tldr client
+
+uv "claude-chat-to-md"
+uv "toolong"
+
+############################
+#   Kubernetes & IaC       #
+############################
+
+brew "argocd"            # GitOps continuous delivery CLI
+brew "hashicorp/tap/terraform" # Infrastructure as code
+brew "helm"              # Kubernetes package manager
+brew "k9s"               # Kubernetes terminal UI
+brew "krew"              # kubectl plugin manager
+brew "kubecolor"         # Colorized kubectl output
+brew "kubectx"           # Kubernetes context switcher
+brew "kubernetes-cli"    # kubectl
+brew "kustomize"         # Kubernetes manifest customization
 
 ############################
 #         Network          #
@@ -105,8 +146,11 @@ brew "restic"            # Backup tool
 cask "bitwarden"              # Password manager
 cask "chatgpt"                # ChatGPT desktop app
 cask "claude"                 # Claude AI desktop app
+cask "claude-code"            # Claude terminal coding agent
+cask "codex"                  # OpenAI terminal coding agent
+cask "codexbar"               # AI coding usage menu bar monitor
+cask "copilot-cli"            # GitHub Copilot terminal coding agent
 cask "coteditor"              # Text editor
-cask "firefox"                # Web browser
 cask "firefox"                # Web browser
 cask "font-ubuntu-nerd-font"  # Nerd Font
 cask "ghostty"                # Terminal emulator
