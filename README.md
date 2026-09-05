@@ -164,7 +164,7 @@ export ANTHROPIC_API_KEY="YOUR_API_KEY"
 export ANTHROPIC_MODEL="claude-sonnet-4.6"
 export CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1
 
-# Let Node.js (npm/Pi) trust the system CA bundle; restart Pi after setting this.
+# Add the system CA bundle to Node.js trusted certificates.
 export NODE_EXTRA_CA_CERTS=/etc/ssl/cert.pem
 ```
 
