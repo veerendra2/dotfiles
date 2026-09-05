@@ -55,54 +55,6 @@ symlinkr --config symlinkr.yaml -r
 
 ---
 
-## Runtimes and Python Tools
-
-macOS uses Homebrew for Python 3.14, Node.js (including npm), and Python CLI
-tools. Ubuntu uses APT for Python 3, Node.js, npm, and available Python tools
-and libraries, with Homebrew for the remaining CLIs. Ubuntu package availability
-was checked against 24.04; Python follows the distribution version.
-
-Both Brewfiles use `uv` entries for `claude-chat-to-md` and `toolong`, which have
-no Homebrew formula or Ubuntu 24.04 package. Homebrew Bundle installs these into
-isolated tool environments; `~/.local/bin` is already on the shell PATH.
-
-For Python libraries on macOS, use a project virtual environment instead of
-installing into Homebrew's externally managed Python:
-
-```bash
-python3 -m venv .venv
-.venv/bin/python -m pip install requests beautifulsoup4 jmespath loguru jc rich
-```
-
-Existing runtime-manager installations and environments are not uninstalled by
-bootstrap. Restart your shell after applying the updated dotfiles to drop old
-shell activation.
-
----
-
-## Pi Local Models
-
-Ollama models are registered by `tools/pi/extensions/ollama.ts`, symlinked to
-`~/.pi/agent/extensions/ollama.ts`. Pi loads this extension automatically; use
-`/reload` in an existing session after applying the symlinks.
-
-The extension discovers installed models from `http://localhost:11434/api/tags`
-at startup and on `/reload`, and uses `http://localhost:11434/v1` for inference.
-After pulling or deleting models in Ollama, run `/reload`, then select a model
-through `/model` or `pi --model ollama/qwen3.8:latest`.
-Discovery has a five-second timeout; if Ollama is unavailable, Pi still starts
-with a warning. Registration does not download models or change Pi's default model.
-
-Keep other provider settings in `~/.pi/agent/models.json` and credentials outside
-this repository. If you previously copied the old Pi config there, remove only
-its `providers.ollama` entry to avoid overriding the extension's model list.
-
-The extension uses text-only mode with reasoning controls disabled and a
-32,768-token context budget (4,096 output tokens). Adjust these values to match
-your Ollama server's configured context and model capabilities.
-
----
-
 ## Installation
 
 ### macOS & Linux
