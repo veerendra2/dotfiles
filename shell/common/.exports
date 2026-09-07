@@ -3,6 +3,16 @@
 # Move the given directory to the front of PATH, removing duplicates.
 # Note: the last path in this file is added first (highest priority)
 prepend_path() {
+  if [[ -z "${1-}" ]]; then
+    printf '%s\n' 'prepend_path: directory must not be empty' >&2
+    return 1
+  fi
+
+  if [[ -z "${PATH-}" ]]; then
+    PATH="$1"
+    return 0
+  fi
+
   local directory="$1" remaining="$PATH" entry result="$1"
 
   while :; do
