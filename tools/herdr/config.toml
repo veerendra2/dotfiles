@@ -3,3 +3,6 @@ onboarding = false
 [theme]
 name = "gruvbox"
 auto_switch = false
+
+[keys]
+prefix = "ctrl+a"

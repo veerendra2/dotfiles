@@ -34,6 +34,7 @@ symlinks:
     recursive: true
   - ~/.config/git: tools/git
     recursive: true
+  - ~/.config/herdr/config.toml: tools/herdr/config.toml
   - ~/.config/k9s/hotkeys.yaml: tools/k9s/hotkeys.yaml
   - ~/.config/navi/cheats: tools/navi/cheats
     recursive: true
