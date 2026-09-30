@@ -110,11 +110,27 @@ Options:
 # Put local Homebrew path(`~/.local/Homebrew`) first
 export LOCAL_HOMEBREW=1
 
-# Override Claude Code settings
-export ANTHROPIC_BASE_URL="https://your-gateway/v1"
+# Override Claude Code settings for 9Router
+export ANTHROPIC_BASE_URL="REDACTED"
+export NINE_ROUTER_API_KEY="REDACTED"
+export ANTHROPIC_AUTH_TOKEN="$NINE_ROUTER_API_KEY"
+export ANTHROPIC_MODEL="gh/claude-sonnet-4.6"
+
+# Override Claude Code settings for Openrouter
 export ANTHROPIC_API_KEY="YOUR_API_KEY"
-export ANTHROPIC_MODEL="claude-sonnet-4.6"
+export ANTHROPIC_BASE_URL="https://openrouter.ai/api"
+export ANTHROPIC_MODEL="z-ai/glm-5.3-flash"
+export ANTHROPIC_AUTH_TOKEN="$OPENROUTER_API_KEY"
+export ANTHROPIC_API_KEY=""
+
 export CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1
+
+# Overide default Claude models, if required
+export ANTHROPIC_DEFAULT_FABLE_MODEL="$ANTHROPIC_MODEL"
+export ANTHROPIC_DEFAULT_OPUS_MODEL="$ANTHROPIC_MODEL"
+export ANTHROPIC_DEFAULT_SONNET_MODEL="$ANTHROPIC_MODEL"
+export ANTHROPIC_DEFAULT_HAIKU_MODEL="$ANTHROPIC_MODEL"
+export CLAUDE_CODE_SUBAGENT_MODEL="$ANTHROPIC_MODEL"
 
 # Add the system CA bundle to Node.js trusted certificates.
 export NODE_EXTRA_CA_CERTS=/etc/ssl/cert.pem

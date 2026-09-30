@@ -1,0 +1,86 @@
+{
+  "version": 4,
+  "lines": [
+    [
+      {
+        "id": "1",
+        "type": "model",
+        "color": "cyan"
+      },
+      {
+        "id": "3",
+        "type": "context-length",
+        "color": "brightBlack"
+      },
+      {
+        "id": "fada25f1-cbe2-4ee0-991a-2fdf804b9b70",
+        "type": "context-percentage",
+        "color": "blue",
+        "backgroundColor": "bgBrightRed"
+      },
+      {
+        "id": "120e84f8-5045-49bb-a232-ef972552bf95",
+        "type": "tokens-input",
+        "backgroundColor": "bgBrightWhite"
+      },
+      {
+        "id": "60cf8a6f-27f3-4c36-9cef-b583cec03883",
+        "type": "tokens-output",
+        "backgroundColor": "bgGreen"
+      },
+      {
+        "id": "cd07d615-12f2-4291-9d59-8bd2982e2676",
+        "type": "tokens-total",
+        "backgroundColor": "bgBrightBlue"
+      },
+      {
+        "id": "30c0eb87-9413-4da8-a4d6-4b0660f44c46",
+        "type": "flex-separator",
+        "backgroundColor": "bgBrightWhite"
+      },
+      {
+        "id": "05edbcf8-0d42-4e84-ade5-61282ddf59c8",
+        "type": "thinking-effort",
+        "backgroundColor": "bgBrightGreen"
+      }
+    ],
+    [
+      {
+        "id": "ccae93a1-2a2a-4b54-9dad-792296d834ea",
+        "type": "git-root-dir",
+        "backgroundColor": "bgBrightWhite"
+      },
+      {
+        "id": "3096fa31-01e2-4869-97eb-0865d83127d0",
+        "type": "git-branch",
+        "backgroundColor": "bgBrightRed"
+      }
+    ],
+    []
+  ],
+  "flexMode": "full",
+  "compactThreshold": 60,
+  "colorLevel": 0,
+  "defaultPadding": " ",
+  "defaultPaddingSide": "both",
+  "inheritSeparatorColors": false,
+  "globalBold": true,
+  "gitCacheTtlSeconds": 5,
+  "terminalWidthCacheTtlSeconds": 5,
+  "customCommandCacheTtlSeconds": 0,
+  "minimalistMode": false,
+  "powerline": {
+    "enabled": true,
+    "separators": ["|"],
+    "separatorInvertBackground": [false],
+    "startCaps": [],
+    "endCaps": [],
+    "theme": "nord",
+    "autoAlign": false,
+    "continueThemeAcrossLines": true
+  },
+  "installation": {
+    "method": "pinned",
+    "installedVersion": "2.2.30"
+  }
+}

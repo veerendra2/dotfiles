@@ -39,7 +39,7 @@
       "Bash(git reset --hard *)"
     ]
   },
-  "model": "gh/claude-sonnet-5",
+  "model": "ag/claude-sonnet-4-6",
   "hooks": {
     "PreToolUse": [
       {
@@ -55,8 +55,9 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "~/.claude/statusline.sh",
-    "padding": 2
+    "command": "ccstatusline",
+    "padding": 0,
+    "refreshInterval": 10
   },
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": true,
@@ -64,7 +65,9 @@
     "andrej-karpathy-skills@karpathy-skills": true,
     "obsidian@obsidian-skills": true,
     "ponytail@ponytail": true,
-    "i-have-adhd@i-have-adhd": true
+    "i-have-adhd@i-have-adhd": true,
+    "humanizer@humanizer": true,
+    "mattpocock-skills@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "karpathy-skills": {
@@ -96,6 +99,17 @@
         "source": "github",
         "repo": "ayghri/i-have-adhd"
       }
+    },
+    "humanizer": {
+      "source": {
+        "source": "github",
+        "repo": "blader/humanizer"
+      }
+    }
+  },
+  "modelSettings": {
+    "z-ai/glm-5.3-flash": {
+      "effortLevel": "medium"
     }
   },
   "theme": "dark",

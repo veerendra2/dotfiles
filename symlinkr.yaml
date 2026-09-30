@@ -27,6 +27,8 @@ symlinks:
   ############################
   #          Config          #
   ############################
+  - ~/.config/ccstatusline: tools/ccstatusline
+    recursive: true
   - ~/.claude: tools/claude
     recursive: true
   - ~/.config/direnv/direnv.toml: tools/direnv/direnv.toml
