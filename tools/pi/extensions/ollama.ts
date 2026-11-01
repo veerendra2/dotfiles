@@ -1,5 +1,23 @@
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
+type OllamaModel = { name: string } & Record<string, unknown>;
+
+function isNonEmptyString(value: unknown): value is string {
+  return typeof value === "string" && value.trim().length > 0;
+}
+
+// Ollama lists cloud models in /api/tags next to installed local ones. They are
+// marked with remote_host/remote_model, or (older versions) a :cloud / -cloud tag.
+const CLOUD_NAME_SUFFIX = /(?::|-)cloud$/i;
+
+function isCloudModel(model: OllamaModel): boolean {
+  return (
+    isNonEmptyString(model.remote_host) ||
+    isNonEmptyString(model.remote_model) ||
+    CLOUD_NAME_SUFFIX.test(model.name)
+  );
+}
+
 export default async function (pi: ExtensionAPI) {
   let modelIds: string[];
   try {
@@ -24,7 +42,17 @@ export default async function (pi: ExtensionAPI) {
     ) {
       throw new Error("Invalid model list returned by Ollama");
     }
-    modelIds = [...new Set<string>(data.models.map((model: { name: string }) => model.name))];
+
+    const allModels = data.models as OllamaModel[];
+    const localModels = allModels.filter((model) => !isCloudModel(model));
+    modelIds = [...new Set<string>(localModels.map((model) => model.name))];
+
+    if (modelIds.length === 0 && allModels.length > 0) {
+      console.warn(
+        `[ollama] Only cloud models found (${allModels.map((model) => model.name).join(", ")}). Pull a local model and run /reload.`,
+      );
+      return;
+    }
   } catch (error) {
     console.warn(
       `[ollama] Model discovery failed: ${error instanceof Error ? error.message : String(error)}. Start Ollama and run /reload to retry.`,
